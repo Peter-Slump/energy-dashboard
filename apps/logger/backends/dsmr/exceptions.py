@@ -1,0 +1,2 @@
+class DSMRParseError(Exception):
+    pass
