@@ -2,6 +2,8 @@ from django.db import models, connection
 
 
 class Reading(models.Model):
+    objects = models.Manager()
+
     datetime = models.DateTimeField(unique=True)
 
     class Meta:
