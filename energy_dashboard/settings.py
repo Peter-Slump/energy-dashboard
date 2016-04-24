@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
+
+    'apps.dashboard',
     'apps.logger'
 ]
 
@@ -134,10 +137,6 @@ LOGGING = {
         '': {
             'handlers': ['console'],
             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO')
-        },
-        'apps.logger.backends.dsmr.parsing': {
-            'handlers': ['console'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'ERROR')
         },
         'django': {
             'handlers': ['console'],
