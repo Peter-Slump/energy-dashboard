@@ -20,9 +20,6 @@ class ElectricityUsageTotal(APIView):
         end = timezone.now()
         start = end - datetime.timedelta(days=1)
 
-        start = datetime.datetime(2016, 4, 24)
-        end = start + datetime.timedelta(days=1)
-
         return Response(
             ElectricityUsedReading.reports.used(
                 start=start,
@@ -36,8 +33,7 @@ class GasUsageTotal(APIView):
     def get(self, request, format=None):
         end = timezone.now()
         start = end - datetime.timedelta(days=1)
-        start = datetime.datetime(2016, 4, 24)
-        end = start + datetime.timedelta(days=1)
+
         return Response(
             GasReading.reports.used(
                 start=start,
