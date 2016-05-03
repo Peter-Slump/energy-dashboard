@@ -125,6 +125,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/var/www/energy_dashboard/static/'
+STATICFILES_DIR = '/var/www/energy_dashboard/static/'
 
 LOGGING = {
     'version': 1,
