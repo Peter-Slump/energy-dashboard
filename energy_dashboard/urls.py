@@ -5,6 +5,6 @@ import apps.logger.api.urls
 
 
 urlpatterns = [
-    url(r'^api/', include(apps.logger.api.urls.url_patterns)),
+    url(r'^api/', include(apps.logger.api.urls.url_patterns, namespace='api')),
     url(r'^', include(apps.dashboard.urls.urlpatterns, namespace='dashboard')),
 ]

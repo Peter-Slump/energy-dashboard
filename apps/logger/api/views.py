@@ -1,3 +1,6 @@
+import datetime
+
+from django.utils import timezone
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -14,12 +17,16 @@ class ElectricityUsageActual(APIView):
 class ElectricityUsageTotal(APIView):
 
     def get(self, request, format=None):
+        end = timezone.now()
+        start = end - datetime.timedelta(days=1)
+
+        start = datetime.datetime(2016, 4, 24)
+        end = start + datetime.timedelta(days=1)
 
         return Response(
             ElectricityUsedReading.reports.used(
-                start=None,
-                end=None,
-                aggregate=None
+                start=start,
+                end=end
             )
         )
 
@@ -27,11 +34,13 @@ class ElectricityUsageTotal(APIView):
 class GasUsageTotal(APIView):
 
     def get(self, request, format=None):
-
+        end = timezone.now()
+        start = end - datetime.timedelta(days=1)
+        start = datetime.datetime(2016, 4, 24)
+        end = start + datetime.timedelta(days=1)
         return Response(
             GasReading.reports.used(
-                start=None,
-                end=None,
-                aggregate=None
+                start=start,
+                end=end
             )
         )

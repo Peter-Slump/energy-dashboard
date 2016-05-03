@@ -18,36 +18,51 @@ class ElectricityReportsQuerySet(models.QuerySet):
 
 class ElectricityUsedReportsQuerySet(ElectricityReportsQuerySet):
 
-    def used(self, start, end, aggregate=None):
-
-        if aggregate is None:
-            aggregate = 'hour'
-
+    def used(self, start, end, interval=3600):
         cursor = connection.cursor()
+
+        # Currently only aggregate by minute.
         cursor.execute("""
-            SELECT datetime((strftime('%s', datetime) / 3600) * 3600, 'unixepoch') interval,
-                   MAX(total)-MIN(total)
-            FROM logger_electricityusedreading
-            GROUP BY interval
-        """)
+            SELECT strftime('%%Y-%%m-%%dT%%H:%%M:%%S',
+                       Datetime((strftime('%%s', r.datetime) / %s) * %s, 'unixepoch')
+                   ) interval,
+                   printf("%%.2f", SUM(r.total-r2.total)) AS delta,
+                   r.tariff
+            FROM logger_electricityusedreading r
+            LEFT JOIN logger_electricityusedreading AS r2
+                ON  r.id - 1 = r2.id
+                AND r.tariff = r2.tariff
+            WHERE r.datetime >= Datetime(%s)
+            AND r.datetime < Datetime(%s)
+            GROUP BY interval, r.tariff
+        """, [interval,
+              interval,
+              start.strftime('%Y-%m-%d %H:%M:%S'),
+              end.strftime('%Y-%m-%d %H:%M:%S')])
 
         return cursor.fetchall()
 
 
 class GasUsedReportsQuerySet(models.QuerySet):
 
-    def used(self, start, end, aggregate=None):
-
-        if aggregate is None:
-            aggregate = 'hour'
-
+    def used(self, start, end, interval=3600):
         cursor = connection.cursor()
+
+        # Currently only aggregate by hour.
         cursor.execute("""
-            SELECT datetime((strftime('%s', datetime) / 86400) * 86400, 'unixepoch') interval,
-                   MAX(total)-MIN(total)
-            FROM logger_gasreading
+            SELECT strftime('%%Y-%%m-%%dT%%H:%%M:%%S',
+                       Datetime((strftime('%%s', r.datetime) / %s) * %s, 'unixepoch')
+                   ) interval,
+                   printf("%%.2f", SUM(r.total-r2.total)) AS delta
+            FROM logger_gasreading AS r
+            INNER JOIN logger_gasreading AS r2 ON r.id - 1 = r2.id
+            WHERE r.datetime >= Datetime(%s)
+            AND r.datetime < Datetime(%s)
             GROUP BY interval
-        """)
+        """, [interval,
+              interval,
+              start.strftime('%Y-%m-%d %H:%M:%S'),
+              end.strftime('%Y-%m-%d %H:%M:%S')])
 
         return cursor.fetchall()
 
