@@ -4,7 +4,8 @@ from django.utils import timezone
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from apps.logger.models import ElectricityUsedReading, GasReading
+from apps.logger.models import ElectricityUsedReading, GasReading, \
+    AGGREGATE_HOUR
 
 
 class ElectricityUsageActual(APIView):
@@ -23,7 +24,8 @@ class ElectricityUsageTotal(APIView):
         return Response(
             ElectricityUsedReading.reports.used(
                 start=start,
-                end=end
+                end=end,
+                aggregate_by=AGGREGATE_HOUR
             )
         )
 
@@ -37,6 +39,7 @@ class GasUsageTotal(APIView):
         return Response(
             GasReading.reports.used(
                 start=start,
-                end=end
+                end=end,
+                aggregate_by=AGGREGATE_HOUR
             )
         )

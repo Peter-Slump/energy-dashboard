@@ -1,6 +1,21 @@
 from django.db import models, connection
 
 
+AGGREGATE_YEAR = 'year'
+AGGREGATE_MONTH = 'month'
+AGGREGATE_DAY = 'day'
+AGGREGATE_HOUR = 'hour'
+AGGREGATE_MINUTE = 'minute'
+
+AGGREGATES = {
+    AGGREGATE_YEAR: '%%Y-01-01T00:00:00',
+    AGGREGATE_MONTH: '%%Y-%%m-01T00:00:00',
+    AGGREGATE_DAY: '%%Y-%%m-%%dT00:00:00',
+    AGGREGATE_HOUR: '%%Y-%%m-%%dT%%H:00:00',
+    AGGREGATE_MINUTE: '%%Y-%%m-%%dT%%H:%%M:00'
+}
+
+
 class Reading(models.Model):
     objects = models.Manager()
 
@@ -18,51 +33,59 @@ class ElectricityReportsQuerySet(models.QuerySet):
 
 class ElectricityUsedReportsQuerySet(ElectricityReportsQuerySet):
 
-    def used(self, start, end, interval=3600):
+    def used(self, start, end, aggregate_by, split_tariff=False):
         cursor = connection.cursor()
 
-        # Currently only aggregate by minute.
-        cursor.execute("""
-            SELECT strftime('%%Y-%%m-%%dT%%H:%%M:%%S',
-                       Datetime((strftime('%%s', r.datetime) / %s) * %s, 'unixepoch')
-                   ) interval,
-                   printf("%%.2f", SUM(r.total-r2.total)) AS delta,
-                   r.tariff
+        query = """
+            SELECT strftime('{aggregate}', r.datetime) AS start,
+                   CAST(
+                       printf("%%.2f", SUM(r_next.total-r.total))
+                       AS FLOAT
+                   ) AS delta
+                   {tariff}
             FROM logger_electricityusedreading r
-            LEFT JOIN logger_electricityusedreading AS r2
-                ON  r.id - 1 = r2.id
-                AND r.tariff = r2.tariff
+            INNER JOIN logger_electricityusedreading AS r_next
+                ON  r.id + 1 = r_next.id
+                AND r.tariff = r_next.tariff
+                AND r_next.datetime <= Datetime(%s)
             WHERE r.datetime >= Datetime(%s)
-            AND r.datetime < Datetime(%s)
-            GROUP BY interval, r.tariff
-        """, [interval,
-              interval,
-              start.strftime('%Y-%m-%d %H:%M:%S'),
-              end.strftime('%Y-%m-%d %H:%M:%S')])
+            GROUP BY start{tariff}
+            ORDER BY start
+        """.format(aggregate=AGGREGATES[aggregate_by],
+                   tariff=', r.tariff' if split_tariff else '')
+
+        query_parameters = [end.strftime('%Y-%m-%d %H:%M:%S'),
+                            start.strftime('%Y-%m-%d %H:%M:%S')]
+
+        cursor.execute(query, query_parameters)
 
         return cursor.fetchall()
 
 
 class GasUsedReportsQuerySet(models.QuerySet):
 
-    def used(self, start, end, interval=3600):
+    def used(self, start, end, aggregate_by):
         cursor = connection.cursor()
 
-        # Currently only aggregate by hour.
-        cursor.execute("""
-            SELECT strftime('%%Y-%%m-%%dT%%H:%%M:%%S',
-                       Datetime((strftime('%%s', r.datetime) / %s) * %s, 'unixepoch')
-                   ) interval,
-                   printf("%%.2f", SUM(r.total-r2.total)) AS delta
-            FROM logger_gasreading AS r
-            INNER JOIN logger_gasreading AS r2 ON r.id - 1 = r2.id
+        query = """
+            SELECT strftime('{aggregate}', r.datetime) AS start,
+                   CAST(
+                       printf("%%.2f", SUM(r_next.total-r.total))
+                       AS FLOAT
+                   ) AS delta
+            FROM logger_gasreading r
+            INNER JOIN logger_gasreading AS r_next
+                ON  r.id + 1 = r_next.id
+                AND r_next.datetime <= Datetime(%s)
             WHERE r.datetime >= Datetime(%s)
-            AND r.datetime < Datetime(%s)
-            GROUP BY interval
-        """, [interval,
-              interval,
-              start.strftime('%Y-%m-%d %H:%M:%S'),
-              end.strftime('%Y-%m-%d %H:%M:%S')])
+            GROUP BY start
+            ORDER BY start
+        """.format(aggregate=AGGREGATES[aggregate_by])
+
+        query_parameters = [end.strftime('%Y-%m-%d %H:%M:%S'),
+                            start.strftime('%Y-%m-%d %H:%M:%S')]
+
+        cursor.execute(query, query_parameters)
 
         return cursor.fetchall()
 
