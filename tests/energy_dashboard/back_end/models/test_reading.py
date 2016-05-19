@@ -1,5 +1,6 @@
 from django.utils import dateparse
 from django.test import TestCase
+from operator import itemgetter
 
 from energy_dashboard.back_end.factories import (
     PowerMeterFactory,
@@ -35,7 +36,7 @@ class BackEndModelReadingTestCase(TestCase):
                        datetime=dateparse.parse_datetime('2016-05-19 22:15:00'),
                        value_increment=28)
 
-    def test_get_sum_grouped_by_hour(self):
+    def test_report_summed_per_hour(self):
         """
         Case: The sum of all increment values get requested
         Expected: Two items get returned for each hour one with the sum of
@@ -43,7 +44,23 @@ class BackEndModelReadingTestCase(TestCase):
         """
         sum_per_hour = Reading.reports.hourly()
 
-        for item in sum_per_hour:
-            print(item)
+        self.assertEqual(len(sum_per_hour), 2)
 
-        # self.assertEqual(sum_per_hour, 2)
+        sum_per_hour_sorted = sorted(sum_per_hour,
+                                     key=itemgetter('datetime__aggregate'))
+
+        self.assertEqual(
+            dateparse.parse_datetime(
+                sum_per_hour_sorted[0]['datetime__aggregate']
+            ),
+            dateparse.parse_datetime('2016-05-19 21:00:00')
+        )
+        self.assertEqual(
+            dateparse.parse_datetime(
+                sum_per_hour_sorted[1]['datetime__aggregate']
+            ),
+            dateparse.parse_datetime('2016-05-19 22:00:00')
+        )
+
+        self.assertEqual(sum_per_hour_sorted[0]['value_increment__sum'], 83)
+        self.assertEqual(sum_per_hour_sorted[1]['value_increment__sum'], 149)

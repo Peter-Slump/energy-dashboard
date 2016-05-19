@@ -6,8 +6,8 @@ from django.utils.translation import ugettext as _
 class PowerMeter(models.Model):
 
     UNITS = (
-        ('kwh', _('Kilowatt hour')),
-        ('m3', _('Cubic meter'))
+        ('kwh', _('kWh')),
+        ('m3', _('m³'))
     )
 
     name = models.CharField(max_length=255)
@@ -85,6 +85,3 @@ class Reading(models.Model):
     datetime = models.DateTimeField()
     value_increment = models.DecimalField()
     value_total = models.DecimalField()
-
-    class Meta:
-        db_table = 'reading'
