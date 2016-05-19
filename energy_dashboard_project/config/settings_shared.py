@@ -32,7 +32,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'energy_dashboard.urls'
+ROOT_URLCONF = 'energy_dashboard_project.urls'
 
 TEMPLATES = [
     {
@@ -50,7 +50,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'energy_dashboard.wsgi.application'
+WSGI_APPLICATION = 'energy_dashboard_project.wsgi.application'
 
 DATABASES = {
     'default': {
