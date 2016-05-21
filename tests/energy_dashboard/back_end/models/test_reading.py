@@ -47,20 +47,7 @@ class BackEndModelReadingTestCase(TestCase):
         self.assertEqual(len(sum_per_hour), 2)
 
         sum_per_hour_sorted = sorted(sum_per_hour,
-                                     key=itemgetter('datetime__aggregate'))
-
-        self.assertEqual(
-            dateparse.parse_datetime(
-                sum_per_hour_sorted[0]['datetime__aggregate']
-            ),
-            dateparse.parse_datetime('2016-05-19 21:00:00')
-        )
-        self.assertEqual(
-            dateparse.parse_datetime(
-                sum_per_hour_sorted[1]['datetime__aggregate']
-            ),
-            dateparse.parse_datetime('2016-05-19 22:00:00')
-        )
+                                     key=itemgetter('value_increment__sum'))
 
         self.assertEqual(sum_per_hour_sorted[0]['value_increment__sum'], 83)
         self.assertEqual(sum_per_hour_sorted[1]['value_increment__sum'], 149)
