@@ -5,7 +5,7 @@ from energy_dashboard.back_end.factories import (
     PowerMeterFactory,
     ReadingFactory
 )
-from energy_dashboard.back_end.models import Reading, ReadingReportsQuerySet
+from energy_dashboard.back_end.models import Reading, ReadingReport
 
 
 class BackEndModelReadingTestCase(TestCase):
@@ -47,7 +47,7 @@ class BackEndModelReadingTestCase(TestCase):
 
         # 2016-05-19 21:00:00
         item = sum_per_hour[0]
-        self.assertIsInstance(item, ReadingReportsQuerySet.Report)
+        self.assertIsInstance(item, ReadingReport)
         self.assertEqual(item.datetime,
                          dateparse.parse_datetime('2016-05-19 21:00:00'))
         self.assertEqual(item.power_meter, self.power_meter)
@@ -55,7 +55,7 @@ class BackEndModelReadingTestCase(TestCase):
 
         # 2016-05-19 22:00:00
         item = sum_per_hour[1]
-        self.assertIsInstance(item, ReadingReportsQuerySet.Report)
+        self.assertIsInstance(item, ReadingReport)
         self.assertEqual(item.datetime,
                          dateparse.parse_datetime('2016-05-19 22:00:00'))
         self.assertEqual(item.power_meter, self.power_meter)

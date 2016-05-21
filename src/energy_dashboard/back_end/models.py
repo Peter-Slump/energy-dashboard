@@ -17,60 +17,61 @@ class PowerMeter(models.Model):
     unit = models.CharField(choices=UNITS, max_length=10)
 
 
+class ReadingReport(object):
+
+    def __init__(self, power_meter, **kwargs):
+        self._power_meter = power_meter
+        self._values = kwargs
+
+    def __getattr__(self, item):
+        if item in self._values:
+            return self._values[item]
+        return super(ReadingReport, self).__getattr__(item)
+
+    @property
+    def power_meter(self):
+        return self._power_meter
+
+    @property
+    def datetime(self):
+        return datetime(
+            year=self._values['_datetime__year'],
+            month=self._values.get('_datetime__month', 1),
+            day=self._values.get('_datetime__day', 1),
+            hour=self._values.get('_datetime__hour', 0),
+            minute=self._values.get('_datetime__minute', 0),
+            second=0
+        )
+
+
+class ReadingReportIterable(ValuesIterable):
+    """
+    Gives a ReadingReportsQuerySet.Report as result instead of a dict.
+    """
+
+    def get_power_meter(self, id):
+        """
+        Fetch and cache a power meter.
+        :param int id:
+        :rtype: PowerMeter
+        """
+        if not hasattr(self, '_power_meters'):
+            self._power_meters = {}
+
+        if id not in self._power_meters:
+            self._power_meters[id] = PowerMeter.objects.get(pk=id)
+        return self._power_meters[id]
+
+    def __iter__(self):
+        for item in super(ReadingReportIterable, self).__iter__():
+            power_meter = self.get_power_meter(item.pop('power_meter'))
+            yield ReadingReport(power_meter=power_meter, **item)
+
+
 class ReadingReportsQuerySet(models.QuerySet):
     """
     .. Note:: The `annotate` method should be called after the `values` method.
     """
-    class ReportIterable(ValuesIterable):
-        """
-        Gives a ReadingReportsQuerySet.Report as result instead of a dict.
-        """
-
-        def get_power_meter(self, id):
-            """
-            Fetch and cache a power meter.
-            :param int id:
-            :rtype: PowerMeter
-            """
-            if not hasattr(self, '_power_meters'):
-                self._power_meters = {}
-
-            if id not in self._power_meters:
-                self._power_meters[id] = PowerMeter.objects.get(pk=id)
-            return self._power_meters[id]
-
-        def __iter__(self):
-            for item in super(ReadingReportsQuerySet.ReportIterable, self).__iter__():
-                power_meter = self.get_power_meter(item.pop('power_meter'))
-                yield ReadingReportsQuerySet.Report(power_meter=power_meter,
-                                                    **item)
-
-    class Report(object):
-
-        def __init__(self, power_meter, **kwargs):
-            self._power_meter = power_meter
-            self._values = kwargs
-
-        def __getattr__(self, item):
-            if item in self._values:
-                return self._values[item]
-
-            return super(ReadingReportsQuerySet.Report, self).__getattr__(item)
-
-        @property
-        def power_meter(self):
-            return self._power_meter
-
-        @property
-        def datetime(self):
-            return datetime(
-                year=self._values['_datetime__year'],
-                month=self._values.get('_datetime__month', 1),
-                day=self._values.get('_datetime__day', 1),
-                hour=self._values.get('_datetime__hour', 0),
-                minute=self._values.get('_datetime__minute', 0),
-                second=0
-            )
 
     def minutely(self):
         return self._report('_datetime__year', '_datetime__month',
@@ -96,7 +97,7 @@ class ReadingReportsQuerySet(models.QuerySet):
             .order_by(*args or [] + ['power_meter'])\
             .values('power_meter', *args) \
             .annotate(Sum('value_increment'))
-        qs._iterable_class = ReadingReportsQuerySet.ReportIterable
+        qs._iterable_class = ReadingReportIterable
         return qs
 
 
@@ -149,6 +150,4 @@ class ReadingDateTime(models.Model):
     second = models.SmallIntegerField()
 
     class Meta:
-        unique_together = (
-            ('year', 'month', 'day', 'hour', 'minute', 'second')
-        )
+        unique_together = (('year', 'month', 'day', 'hour', 'minute', 'second'),)
