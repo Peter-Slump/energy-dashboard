@@ -16,6 +16,9 @@ class PowerMeter(models.Model):
     name = models.CharField(max_length=255)
     unit = models.CharField(choices=UNITS, max_length=10)
 
+    def __repr__(self):
+        return self.name
+
 
 class ReadingReport(object):
 
@@ -23,9 +26,15 @@ class ReadingReport(object):
         self._values = kwargs
 
     def __getattr__(self, item):
+        print('__getattr__', item)
         if item in self._values:
             return self._values[item]
-        return super(ReadingReport, self).__getattr__(item)
+
+    @property
+    def pk(self):
+        # Pretend that this "object" is saved. DRF only want to create a link to
+        # a related object (power_meter) when the primary key is set.
+        return True
 
     @property
     def power_meter(self):
@@ -67,8 +76,9 @@ class ReadingReportIterable(ValuesIterable):
 
     def __iter__(self):
         for item in super(ReadingReportIterable, self).__iter__():
-            power_meter = self.get_power_meter(item.pop('power_meter'))
-            yield ReadingReport(power_meter=power_meter, **item)
+            yield ReadingReport(**item)
+            # power_meter = self.get_power_meter(item.pop('power_meter'))
+            # yield ReadingReport(power_meter=power_meter, **item)
 
 
 class ReadingReportsQuerySet(models.QuerySet):
