@@ -63,7 +63,7 @@ class ReadingQuerySet(models.QuerySet):
         :return: a Q object to filter on datetime
         :rtype: Q
         """
-        filter_ = ''
+        filter_ = None
         if '__' in key:
             key, filter_ = key.split('__')
 
@@ -85,8 +85,8 @@ class ReadingQuerySet(models.QuerySet):
         # which the operator returns True.
         # Example: 2016-05-20 23:35:59 < 2016-05-21 22:36:05
         #   CHECK 2016 < 2016 = False > proceed to lesser significant
-        #   CHECK 5 < 5 = False > proceed to lesser significant
-        #   CHECK 20 < 21 = True >> return True.
+        #   CHECK 2016 == 2016 AND 5 < 5 = False > proceed to lesser significant
+        #   CHECK 2016 == 2016 AND 5 == 5 AND 20 < 21 = True >> return True.
         #   SKIPPED 23 < 22
         #   SKIPPED 35 < 36
         #   SKIPPED 59 < 05
@@ -181,8 +181,10 @@ class ReadingQuerySet(models.QuerySet):
         if filter_ in ('gte', 'lte'):
             # Returned combined Q-object. To validate LT/GT OR EQ.
             return Q(q_object | q_object_eq)
-        else:
+        elif filter_ is None:
             return q_object_eq
+
+        raise NotImplementedError()
 
     def order_by(self, *field_names):
         """
