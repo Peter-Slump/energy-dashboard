@@ -30,7 +30,7 @@ class ReadingReport(object):
 
     @property
     def power_meter(self):
-        return self._power_meter
+        return self._values['power_meter']
 
     @property
     def datetime(self):
@@ -64,8 +64,9 @@ class ReadingReportIterable(ValuesIterable):
 
     def __iter__(self):
         for item in super(ReadingReportIterable, self).__iter__():
-            power_meter = self.get_power_meter(item.pop('power_meter'))
-            yield ReadingReport(power_meter=power_meter, **item)
+            yield ReadingReport(**item)
+            # power_meter = self.get_power_meter(item.pop('power_meter'))
+            # yield ReadingReport(power_meter=power_meter, **item)
 
 
 class ReadingReportsQuerySet(models.QuerySet):
@@ -104,8 +105,8 @@ class Reading(models.Model):
 
     power_meter = models.ForeignKey(PowerMeter)
 
-    value_increment = models.DecimalField()
-    value_total = models.DecimalField()
+    value_increment = models.DecimalField(max_digits=18, decimal_places=3)
+    value_total = models.DecimalField(max_digits=18, decimal_places=3)
 
     datetime = models.DateTimeField()
 
