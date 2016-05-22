@@ -8,12 +8,12 @@ from energy_dashboard.back_end.models import Reading
 class BackEndReadingQuerySetTestCase(TestCase):
 
     def setUp(self):
-        ReadingFactory(datetime=dateparse.parse_datetime('2016-05-21 21:05:00'))
-        ReadingFactory(datetime=dateparse.parse_datetime('2016-05-21 21:10:00'))
-        ReadingFactory(datetime=dateparse.parse_datetime('2016-05-21 21:15:00'))
-        ReadingFactory(datetime=dateparse.parse_datetime('2016-05-21 21:20:03'))
-        ReadingFactory(datetime=dateparse.parse_datetime('2016-05-21 21:25:00'))
-        ReadingFactory(datetime=dateparse.parse_datetime('2016-05-21 21:30:00'))
+        ReadingFactory(datetime=dateparse.parse_datetime('2015-05-21 21:05:00'))
+        ReadingFactory(datetime=dateparse.parse_datetime('2016-04-21 21:10:00'))
+        ReadingFactory(datetime=dateparse.parse_datetime('2016-05-20 21:15:00'))
+        ReadingFactory(datetime=dateparse.parse_datetime('2016-05-21 20:20:03'))
+        ReadingFactory(datetime=dateparse.parse_datetime('2016-05-21 21:29:00'))
+        ReadingFactory(datetime=dateparse.parse_datetime('2016-05-21 21:30:59'))
         ReadingFactory(datetime=dateparse.parse_datetime('2016-05-21 21:35:00'))
 
     def test_get_equal(self):
@@ -22,11 +22,11 @@ class BackEndReadingQuerySetTestCase(TestCase):
               value
         Expected: One value get returned
         """
-        reading = Reading.objects.get(datetime='2016-05-21 21:20:03')
+        reading = Reading.objects.get(datetime='2016-05-21 20:20:03')
         self.assertEqual(reading._datetime.year, 2016)
         self.assertEqual(reading._datetime.month, 5)
         self.assertEqual(reading._datetime.day, 21)
-        self.assertEqual(reading._datetime.hour, 21)
+        self.assertEqual(reading._datetime.hour, 20)
         self.assertEqual(reading._datetime.minute, 20)
         self.assertEqual(reading._datetime.second, 3)
 
@@ -35,7 +35,7 @@ class BackEndReadingQuerySetTestCase(TestCase):
         Case: readings get filtered on a datetime with a "less than" filter
         Expected: All resulted readings are LT of given datetime
         """
-        parsed_datetime = dateparse.parse_datetime('2016-05-21 21:25:00')
+        parsed_datetime = dateparse.parse_datetime('2016-05-21 21:29:00')
         readings = Reading.objects.filter(datetime__lt=parsed_datetime)
 
         self.assertEqual(readings.count(), 4)
@@ -48,7 +48,7 @@ class BackEndReadingQuerySetTestCase(TestCase):
               filter
         Expected: All resulted readings are LTE of given datetime
         """
-        parsed_datetime = dateparse.parse_datetime('2016-05-21 21:25:00')
+        parsed_datetime = dateparse.parse_datetime('2016-05-21 21:29:00')
         readings = Reading.objects.filter(datetime__lte=parsed_datetime)
 
         self.assertEqual(readings.count(), 5)
@@ -61,7 +61,7 @@ class BackEndReadingQuerySetTestCase(TestCase):
               filter
         Expected: All resulted readings are GT of given datetime
         """
-        parsed_datetime = dateparse.parse_datetime('2016-05-21 21:15:00')
+        parsed_datetime = dateparse.parse_datetime('2016-05-20 21:15:00')
         readings = Reading.objects.filter(datetime__gt=parsed_datetime)
 
         self.assertEqual(readings.count(), 4)
@@ -74,7 +74,7 @@ class BackEndReadingQuerySetTestCase(TestCase):
               filter
         Expected: All resulted readings are GTE of given datetime
         """
-        parsed_datetime = dateparse.parse_datetime('2016-05-21 21:15:00')
+        parsed_datetime = dateparse.parse_datetime('2016-05-20 21:15:00')
         readings = Reading.objects.filter(datetime__gte=parsed_datetime)
 
         self.assertEqual(readings.count(), 5)
@@ -86,8 +86,8 @@ class BackEndReadingQuerySetTestCase(TestCase):
         Case: readings get filtered on range
         Expected: only readings which fits in the range get returned
         """
-        parsed_begin_datetime = dateparse.parse_datetime('2016-05-21 21:15:00')
-        parsed_end_datetime = dateparse.parse_datetime('2016-05-21 21:25:00')
+        parsed_begin_datetime = dateparse.parse_datetime('2016-05-20 21:15:00')
+        parsed_end_datetime = dateparse.parse_datetime('2016-05-21 21:29:00')
         readings = Reading.objects.filter(datetime__gte=parsed_begin_datetime,
                                           datetime__lte=parsed_end_datetime)
 

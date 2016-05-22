@@ -1,32 +1,22 @@
 from energy_dashboard.back_end.models import Reading
 
 
-def update_next_reading_value_increment(reading):
-    next_reading = get_next_reading(current_reading=reading)
-    update_value_increment(previous_reading=reading, reading=next_reading)
+def reading_post_save_handler(instance, update_fields, **kwargs):
+    """
+    Signal handler to make sure that the the value_increment of the next reading
+    is updated when required.
+    :param instance:
+    :param update_fields:
+    """
+    if update_fields is not None and 'value_total' not in update_fields:
+        return
 
+    try:
+        next_reading = Reading.objects.filter(power_meter=instance.power_meter,
+                                              datetime__gt=instance.datetime)\
+            .order_by('-datetime')[0]
+    except IndexError:
+        return
 
-def get_next_reading(current_reading):
-
-    Reading.objects.filter(
-        power_meter=current_reading.power_meter,
-        _datetime__year__gte=current_reading.datetime.year,
-        _datetime__month__gte=current_reading.datetime.month,
-        _datetime__day__gte=current_reading.datetime.day,
-        _datetime__hour__gte=current_reading.datetime.hour,
-        _datetime__minute__gte=current_reading.datetime.minute,
-        _datetime__second__gte=current_reading.datetime.second
-    ).order_by(
-        '-_datetime__year',
-        '-_datetime__month',
-        '-_datetime__day',
-        '-_datetime__hour',
-        '-_datetime__minute',
-        '-_datetime__second'
-    )
-
-
-def update_value_increment(previous_reading, reading):
-    reading.update(
-        value_increment=previous_reading.value_total - reading.value_total
-    )
+    next_reading.value_increment = next_reading.value_total - instance.value_total
+    next_reading.save(update_fields=('value_increment',))

@@ -92,21 +92,75 @@ class ReadingQuerySet(models.QuerySet):
         #   SKIPPED 59 < 05
         if filter_ in ('lt', 'lte'):
             q_object = Q(
-                Q(_datetime__year__lt=datetime_.year) |
-                Q(_datetime__month__lt=datetime_.month) |
-                Q(_datetime__day__lt=datetime_.day) |
-                Q(_datetime__hour__lt=datetime_.hour) |
-                Q(_datetime__minute__lt=datetime_.minute) |
-                Q(_datetime__second__lt=datetime_.second)
+                Q(
+                    _datetime__year__lt=datetime_.year
+                ) |
+                Q(
+                    _datetime__year=datetime_.year,
+                    _datetime__month__lt=datetime_.month
+                ) |
+                Q(
+                    _datetime__year=datetime_.year,
+                    _datetime__month=datetime_.month,
+                    _datetime__day__lt=datetime_.day
+                ) |
+                Q(
+                    _datetime__year=datetime_.year,
+                    _datetime__month=datetime_.month,
+                    _datetime__day=datetime_.day,
+                    _datetime__hour__lt=datetime_.hour
+                ) |
+                Q(
+                    _datetime__year=datetime_.year,
+                    _datetime__month=datetime_.month,
+                    _datetime__day=datetime_.day,
+                    _datetime__hour=datetime_.hour,
+                    _datetime__minute__lt=datetime_.minute
+                ) |
+                Q(
+                    _datetime__year=datetime_.year,
+                    _datetime__month=datetime_.month,
+                    _datetime__day=datetime_.day,
+                    _datetime__hour=datetime_.hour,
+                    _datetime__minute=datetime_.minute,
+                    _datetime__second__lt=datetime_.second
+                )
             )
         elif filter_ in ('gt', 'gte'):
             q_object = Q(
-                Q(_datetime__year__gt=datetime_.year) |
-                Q(_datetime__month__gt=datetime_.month) |
-                Q(_datetime__day__gt=datetime_.day) |
-                Q(_datetime__hour__gt=datetime_.hour) |
-                Q(_datetime__minute__gt=datetime_.minute) |
-                Q(_datetime__second__gt=datetime_.second)
+                Q(
+                    _datetime__year__gt=datetime_.year
+                ) |
+                Q(
+                    _datetime__year=datetime_.year,
+                    _datetime__month__gt=datetime_.month
+                ) |
+                Q(
+                    _datetime__year=datetime_.year,
+                    _datetime__month=datetime_.month,
+                    _datetime__day__gt=datetime_.day
+                ) |
+                Q(
+                    _datetime__year=datetime_.year,
+                    _datetime__month=datetime_.month,
+                    _datetime__day=datetime_.day,
+                    _datetime__hour__gt=datetime_.hour
+                ) |
+                Q(
+                    _datetime__year=datetime_.year,
+                    _datetime__month=datetime_.month,
+                    _datetime__day=datetime_.day,
+                    _datetime__hour=datetime_.hour,
+                    _datetime__minute__gt=datetime_.minute
+                ) |
+                Q(
+                    _datetime__year=datetime_.year,
+                    _datetime__month=datetime_.month,
+                    _datetime__day=datetime_.day,
+                    _datetime__hour=datetime_.hour,
+                    _datetime__minute=datetime_.minute,
+                    _datetime__second__gt=datetime_.second
+                )
             )
 
         # If we only have to check on lower than or greater than return the
@@ -148,7 +202,6 @@ class ReadingQuerySet(models.QuerySet):
                 datetime_ordering = ['-' + f for f in datetime_ordering]
             processed_field_names += datetime_ordering
         return super(ReadingQuerySet, self).order_by(*processed_field_names)
-
 
 
 class ReadingReport(object):
