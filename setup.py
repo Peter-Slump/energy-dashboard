@@ -23,7 +23,8 @@ setup(
         'Django==1.9.*',
         'djangorestframework==3.3.*',
         'gunicorn==19.4.*',
-        'factory_boy'
+        'factory_boy',
+        'git+git://github.com/Peter-Slump/django-dynamic-fixtures.git'
     ],
     tests_require=[
         'pytest-django',

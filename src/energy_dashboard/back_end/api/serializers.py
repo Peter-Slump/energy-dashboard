@@ -23,5 +23,6 @@ class ReadingReportSerializer(serializers.Serializer):
     value_increment = serializers.DecimalField(max_digits=18, decimal_places=3)
     power_meter = serializers.PrimaryKeyRelatedField(
         many=False,
-        queryset=PowerMeter.objects.all()
+        queryset=PowerMeter.objects.all(),
+        default=PowerMeterSerializer()
     )
