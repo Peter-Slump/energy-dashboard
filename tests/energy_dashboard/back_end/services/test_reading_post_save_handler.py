@@ -37,7 +37,7 @@ class BackEndServiceReadingPostSaveCallbackTestCase(TestCase):
         Expected: the next reading increment value get updated
         """
         # Create new reading before reading "225"
-        ReadingFactory(
+        Reading.objects.create(
             datetime=dateparse.parse_datetime('2016-05-21 21:12:00'),
             value_total=175,
             value_increment=25,
@@ -60,7 +60,7 @@ class BackEndServiceReadingPostSaveCallbackTestCase(TestCase):
         """
 
         # Create newest reading
-        ReadingFactory(
+        Reading.objects.create(
             datetime=dateparse.parse_datetime('2016-05-22 21:12:00'),
             value_total=175,
             value_increment=-50,
@@ -83,7 +83,8 @@ class BackEndServiceReadingPostSaveCallbackTestCase(TestCase):
         """
 
         # Create new reading before reading "225" with different power meter
-        ReadingFactory(
+        Reading.objects.create(
+            power_meter=PowerMeterFactory(),
             datetime=dateparse.parse_datetime('2016-05-21 21:12:00'),
             value_total=175,
             value_increment=175,

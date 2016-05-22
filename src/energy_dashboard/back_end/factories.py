@@ -1,5 +1,7 @@
 import factory
 
+from django.db.models.signals import post_save
+
 from energy_dashboard.back_end.models import Reading, PowerMeter
 
 
@@ -11,6 +13,7 @@ class PowerMeterFactory(factory.DjangoModelFactory):
     name = factory.Faker('word')
 
 
+@factory.django.mute_signals(post_save)
 class ReadingFactory(factory.DjangoModelFactory):
 
     class Meta:
