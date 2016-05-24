@@ -4,14 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Yeah</title>
-    <script src="https://fb.me/react-with-addons-15.1.0.min.js"></script>
-    <script src="https://fb.me/react-dom-15.1.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 </head>
 <body>
     <div id="content"></div>
-    <script src="{% static 'hello.js' %}"></script>
-    <script src="{% static 'node_modules/d3-react-squared/dist/d3-react-squared.js' %}"></script>
-    <script type="text/babel" src="{% static 'js/app_raw.js' %}"></script>
+    <script src="{% static 'dist/vendor.js' %}"></script>
+    <script src="{% static 'dist/app.js' %}"></script>
+    <script>
+        for (var n in window.exports) {
+            window[n] = window.exports[n];
+        }
+        window.$ = window.jQuery;
+        $(document).ready(function(){
+            ReactDOM.render(
+              React.createElement(BaseBox, null),
+              document.getElementById('content')
+            );
+        });
+    </script>
 </body>
 </html>
