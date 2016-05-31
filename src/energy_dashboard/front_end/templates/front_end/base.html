@@ -14,10 +14,21 @@
             window[n] = window.exports[n];
         }
         window.$ = window.jQuery;
+
+        var data = [
+            {
+                'datetime': '2016-05-31 21:52:00',
+                'value_increment': 120
+            },
+            {
+                'datetime': '2016-05-31 21:53:00',
+                'value_increment': 1234
+            }
+        ];
         $(document).ready(function(){
             ReactDOM.render(
-              React.createElement(BaseBox, null),
-              document.getElementById('content')
+                React.createElement(BaseBox, {'data': data}),
+                document.getElementById('content')
             );
         });
     </script>

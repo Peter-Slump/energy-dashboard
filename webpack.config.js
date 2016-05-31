@@ -9,16 +9,17 @@ var entry = {
     'app': 'src',
     'vendor': [
         'jquery',
+        'moment',
+        'flot/jquery.flot',
+        'flot/jquery.flot.stack',
+        'flot/jquery.flot.time',
+        'flot-tooltip/jquery.flot.tooltip',
     ]
 }
 
 var config = {
     entry: entry,
     context: path.join(__dirname, staticsFolder),
-    output: {
-        path: distFolder,
-        filename: "[name].js"
-    },
     module: {
         loaders: [
             {
@@ -34,8 +35,12 @@ var config = {
         path.join(__dirname, 'node_modules', 'jquery', 'dist', 'jquery.js'),
     ],
     resolve: {
+        alias: {
+            'flot': path.join(__dirname, staticsFolder, 'vendor', 'jquery-flot'),
+            'flot-tooltip': path.join(__dirname, staticsFolder, 'vendor', 'jquery-flot-tooltip'),
+        },
         modulesDirectories: [path.join(__dirname, staticsFolder), 'node_modules'],
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx', '.json']
     },
     plugins: [
         new webpack.ProvidePlugin({
