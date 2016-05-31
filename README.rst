@@ -11,3 +11,8 @@ Run tests::
 
   $ python setup.py test
 
+
+Screenshots
+===========
+
+.. image:: screenshot.png
