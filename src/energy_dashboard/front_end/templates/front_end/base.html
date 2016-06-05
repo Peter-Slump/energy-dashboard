@@ -1,12 +1,12 @@
-{% load staticfiles %}
-<!DOCTYPE html>
+{% load staticfiles %}<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Yeah</title>
 </head>
 <body>
-    <div id="content"></div>
+    <div class="container-fluid" id="content"></div>
     <script src="{% static 'dist/vendor.js' %}"></script>
     <script src="{% static 'dist/app.js' %}"></script>
     <script>
@@ -14,20 +14,9 @@
             window[n] = window.exports[n];
         }
         window.$ = window.jQuery;
-
-        var data = [
-            {
-                'datetime': '2016-05-31 21:52:00',
-                'value_increment': 120
-            },
-            {
-                'datetime': '2016-05-31 21:53:00',
-                'value_increment': 1234
-            }
-        ];
         $(document).ready(function(){
             ReactDOM.render(
-                React.createElement(BaseBox, {'data': data}),
+                React.createElement(Page, null),
                 document.getElementById('content')
             );
         });

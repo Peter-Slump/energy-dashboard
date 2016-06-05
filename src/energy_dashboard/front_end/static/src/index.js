@@ -1,15 +1,8 @@
-var BaseBox = require('./base');
-    jQuery = require('jquery')
-
-//jQuery(document).click(function(){
-//    console.log('hoi');
-//});
-//
-jQuery
+var Page = require('./base');
 
 module.exports = {
-    jQuery: jQuery,
+    jQuery: require('jquery'),
     React: require('react'),
     ReactDOM: require('react-dom'),
-    BaseBox: BaseBox,
+    Page: Page,
 }

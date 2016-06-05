@@ -10,7 +10,9 @@
     "jquery": "^2.2.4",
     "moment": "^2.13.0",
     "react": "^15.1.0",
+    "react-bootstrap": "^0.29.4",
     "react-dom": "^15.1.0",
+    "reflux": "^0.4.1",
     "webpack": "^1.13.1"
   },
   "devDependencies": {

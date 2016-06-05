@@ -14,6 +14,7 @@ var entry = {
         'flot/jquery.flot.stack',
         'flot/jquery.flot.time',
         'flot-tooltip/jquery.flot.tooltip',
+        'react-bootstrap'
     ]
 }
 

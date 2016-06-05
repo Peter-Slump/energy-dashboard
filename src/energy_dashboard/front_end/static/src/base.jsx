@@ -1,6 +1,14 @@
 var React = require('react'),
     $ = require('jquery'),
-    FlotChart = require('./flotChart');
+    FlotChart = require('./flotChart'),
+    ReactBootstrap = require('react-bootstrap');
+
+// React-Bootstrap mappings
+var Checkbox = ReactBootstrap.Checkbox,
+    Col = ReactBootstrap.Col,
+    FormGroup = ReactBootstrap.FormGroup,
+    Label = ReactBootstrap.Label,
+    Row = ReactBootstrap.Row;
 
 var BaseBox = React.createClass({
     getInitialState: function() {
@@ -50,33 +58,59 @@ var BaseBox = React.createClass({
         );
     }
 });
-var ReadingsTable = React.createClass({
+
+var PowerMeterWrapper = React.createClass({
+    getInitialState: function() {
+        return {enabled: [], data: []};
+    },
+    fetchData: function() {
+        $.ajax({
+            url: '/api/power-meter/',
+            dataType: 'json',
+            cache: false,
+            success: function(data) {
+                this.setState({data: data});
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
+    },
+    componentDidMount: function() {
+        this.fetchData();
+    },
+    handleChange: function(e) {
+        console.log(e.target.value);
+    },
     render: function() {
-        var rows = this.props.readings.map(function(reading){
+        var that = this;
+        var checkBoxes = this.state.data.map(function(powerMeter){
             return (
-                <TableRow key={reading.datetime} reading={reading} />
+                <Checkbox inline key={powerMeter.id} value={powerMeter.id} onChange={that.handleChange}>
+                    {powerMeter.name}
+                    <span className="muted">{powerMeter.unit}</span>
+                </Checkbox>
             );
         });
         return (
-            <table className="readingsTable">
-                <tbody>
-                    {rows}
-                </tbody>
-            </table>
-        );
-    }
-});
-var TableRow = React.createClass({
-    render: function() {
-        var datetime = new Date(this.props.reading.datetime);
-        datetime = datetime.toString();
-        return (
-            <tr className="tableRow">
-                <td>{datetime}</td>
-                <td>{this.props.reading.value_increment}</td>
-            </tr>
+            <FormGroup>
+                {checkBoxes}
+            </FormGroup>
         );
     }
 });
 
-module.exports = BaseBox;
+var Page = React.createClass({
+    render: function() {
+        return (
+            <Row>
+                <Col xs={12} md={8}>
+                    <PowerMeterWrapper />
+                    <BaseBox />
+                </Col>
+            </Row>
+        );
+    }
+});
+
+module.exports = Page;
