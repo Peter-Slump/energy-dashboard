@@ -7,12 +7,17 @@
   },
   "private": true,
   "dependencies": {
+    "bootstrap": "^3.3.6",
+    "css-loader": "^0.23.1",
+    "file-loader": "^0.8.5",
     "jquery": "^2.2.4",
     "moment": "^2.13.0",
     "react": "^15.1.0",
     "react-bootstrap": "^0.29.4",
     "react-dom": "^15.1.0",
     "reflux": "^0.4.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.1"
   },
   "devDependencies": {

@@ -6,20 +6,20 @@
     <title>Yeah</title>
 </head>
 <body>
-    <div class="container-fluid" id="content"></div>
-    <script src="{% static 'dist/vendor.js' %}"></script>
-    <script src="{% static 'dist/app.js' %}"></script>
-    <script>
-        for (var n in window.exports) {
-            window[n] = window.exports[n];
-        }
-        window.$ = window.jQuery;
-        $(document).ready(function(){
-            ReactDOM.render(
-                React.createElement(Page, null),
-                document.getElementById('content')
-            );
-        });
-    </script>
+    <div id="root"></div>
+    <!--<script src="{% static 'dist/vendor.js' %}"></script>-->
+    <script src="{% static 'dist/bundle.js' %}"></script>
+    <!--<script>-->
+        <!--for (var n in window.exports) {-->
+            <!--window[n] = window.exports[n];-->
+        <!--}-->
+        <!--window.$ = window.jQuery;-->
+        <!--$(document).ready(function(){-->
+            <!--ReactDOM.render(-->
+                <!--React.createElement(Page, null),-->
+                <!--document.getElementById('content')-->
+            <!--);-->
+        <!--});-->
+    <!--</script>-->
 </body>
 </html>

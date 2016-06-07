@@ -1,14 +1,15 @@
-var React = require('react'),
-    $ = require('jquery'),
-    FlotChart = require('./flotChart'),
-    ReactBootstrap = require('react-bootstrap');
+import React from 'react';
+import jQuery from 'jquery';
+import FlotChart from './flotChart';
+import ReactBootstrap from 'react-bootstrap';
 
 // React-Bootstrap mappings
 var Checkbox = ReactBootstrap.Checkbox,
     Col = ReactBootstrap.Col,
     FormGroup = ReactBootstrap.FormGroup,
     Label = ReactBootstrap.Label,
-    Row = ReactBootstrap.Row;
+    Row = ReactBootstrap.Row,
+    $ = jQuery;
 
 var BaseBox = React.createClass({
     getInitialState: function() {
@@ -113,4 +114,4 @@ var Page = React.createClass({
     }
 });
 
-module.exports = Page;
+export default Page;
