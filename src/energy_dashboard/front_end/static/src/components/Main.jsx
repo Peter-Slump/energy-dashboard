@@ -1,12 +1,16 @@
 import React from 'react';
-import { Grid } from 'react-bootstrap';
+import { Grid, Navbar } from 'react-bootstrap';
+import Header from './Header'
 
 const Main = React.createClass({
     render: function(){
         return (
-            <Grid fluid={true}>
-                <h1>Yeah</h1>
-            </Grid>
+            <div>
+                <Header></Header>
+                <Grid fluid={false}>
+                    {React.cloneElement(this.props.children, this.props)}
+                </Grid>
+            </div>
         );
     }
 });
