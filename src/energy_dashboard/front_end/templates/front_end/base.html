@@ -1,31 +1,12 @@
-{% load staticfiles %}<!DOCTYPE html>
+{% load staticfiles i18n %}<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Yeah</title>
-    <style>
-        #root {
-            margin: 0;
-            padding: 0;
-        }
-    </style>
+    <title>{% trans 'Energy Dashboard' %}</title>
 </head>
 <body>
     <div id="root"></div>
-    <!--<script src="{% static 'dist/vendor.js' %}"></script>-->
     <script src="{% static 'dist/bundle.js' %}"></script>
-    <!--<script>-->
-        <!--for (var n in window.exports) {-->
-            <!--window[n] = window.exports[n];-->
-        <!--}-->
-        <!--window.$ = window.jQuery;-->
-        <!--$(document).ready(function(){-->
-            <!--ReactDOM.render(-->
-                <!--React.createElement(Page, null),-->
-                <!--document.getElementById('content')-->
-            <!--);-->
-        <!--});-->
-    <!--</script>-->
 </body>
 </html>

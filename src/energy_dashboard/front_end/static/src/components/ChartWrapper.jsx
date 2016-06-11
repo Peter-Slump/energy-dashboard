@@ -1,17 +1,7 @@
 import React from 'react';
-import jQuery from 'jquery';
-import FlotChart from './flotChart';
-import ReactBootstrap from 'react-bootstrap';
+import FlotChart from './FlotChart';
 
-// React-Bootstrap mappings
-var Checkbox = ReactBootstrap.Checkbox,
-    Col = ReactBootstrap.Col,
-    FormGroup = ReactBootstrap.FormGroup,
-    Label = ReactBootstrap.Label,
-    Row = ReactBootstrap.Row,
-    $ = jQuery;
-
-var BaseBox = React.createClass({
+var ChartWrapper = React.createClass({
     getInitialState: function() {
         return {data: []};
     },
@@ -55,23 +45,9 @@ var BaseBox = React.createClass({
             },
         ]
         return (
-            <FlotChart style={{height: 250}} plotData={plotData} />
+            <FlotChart style={{height: 250}} className="row-bottom-spacing" plotData={plotData} />
         );
     }
 });
 
-
-var Page = React.createClass({
-    render: function() {
-        return (
-            <Row>
-                <Col xs={12} md={8}>
-                    <PowerMeterWrapper />
-                    <BaseBox />
-                </Col>
-            </Row>
-        );
-    }
-});
-
-export default Page;
+export default ChartWrapper;

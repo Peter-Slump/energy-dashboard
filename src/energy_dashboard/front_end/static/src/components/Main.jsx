@@ -7,9 +7,7 @@ const Main = React.createClass({
         return (
             <div>
                 <Header></Header>
-                <Grid fluid={false}>
-                    {React.cloneElement(this.props.children, this.props)}
-                </Grid>
+                {React.cloneElement(this.props.children, this.props)}
             </div>
         );
     }

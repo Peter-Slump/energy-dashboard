@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 
 // Import styling
 import Paper from 'bootswatch/paper/bootstrap.min.css';
+import '../less/styles.less';
 
 // Import components
 import Main from './components/Main';
@@ -10,9 +11,10 @@ import Dashboard from './components/Dashboard';
 
 // Import router dependencies
 import { Router, Route, IndexRoute } from 'react-router';
+
+// Import redux dependencies
 import { Provider } from 'react-redux';
 import store, { history } from './store';
-
 
 const router = (
     <Provider store={store}>
@@ -23,6 +25,5 @@ const router = (
         </Router>
     </Provider>
 );
-
 
 render(router, document.getElementById('root'));

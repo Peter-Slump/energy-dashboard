@@ -7,15 +7,6 @@ var staticsFolder = "src/energy_dashboard/front_end/static",
 
 var entry = {
     'bundle': 'src/EnergyDashboard',
-//    'vendor': [
-//        'jquery',
-//        'moment',
-//        'flot/jquery.flot',
-//        'flot/jquery.flot.stack',
-//        'flot/jquery.flot.time',
-//        'flot-tooltip/jquery.flot.tooltip',
-//        'react-bootstrap'
-//    ]
 }
 
 var config = {
@@ -33,7 +24,8 @@ var config = {
             { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
             { test: /\.(woff|woff2)$/, loader:"url?prefix=font/&limit=5000" },
             { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
-            { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" }
+            { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
+            { test: /\.less$/, loader: "style!css!less" }
         ],
 
     },
