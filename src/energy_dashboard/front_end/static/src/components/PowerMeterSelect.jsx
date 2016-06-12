@@ -2,42 +2,24 @@ import React from 'react';
 import { Checkbox, Form, FormGroup } from 'react-bootstrap';
 
 var PowerMeterSelect = React.createClass({
-    getInitialState: function() {
-        return {enabled: [], data: []};
-    },
-    fetchData: function() {
-        $.ajax({
-            url: '/api/power-meter/',
-            dataType: 'json',
-            cache: false,
-            success: function(data) {
-                this.setState({data: data});
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-            }.bind(this)
-        });
-    },
-    componentDidMount: function() {
-        this.fetchData();
-    },
-    handleChange: function(e) {
-        console.log(e.target.value);
+    handleChange: function(e){
+        console.log(this, e);
+        this.props.changeSelectedPowerMeter(e.target.value, e.target.checked);
     },
     render: function() {
-        var that = this;
-        var checkBoxes = this.state.data.map(function(powerMeter){
-            return (
-                <Checkbox key={powerMeter.id} value={powerMeter.id} onChange={that.handleChange}>
-                    {powerMeter.name}
-                    <span className="muted">{powerMeter.unit}</span>
-                </Checkbox>
-            );
-        });
+        var powerMeters = this.props.readingReports.powerMeterList.powerMeters,
+        powerMetersCheckedState = this.props.readingReports.powerMeters;
+        powerMeters = powerMeters == null ? [] : powerMeters;
         return (
             <Form componentClass="fieldset" inline>
                 <FormGroup>
-                    {checkBoxes}
+                    {
+                        powerMeters.map((powerMeter, i) =>
+                            <Checkbox checked={powerMetersCheckedState[powerMeter.id]} key={powerMeter.id} value={powerMeter.id} onChange={this.handleChange}>
+                                {powerMeter.name}
+                                <span className="text-muted">({powerMeter.unit})</span>
+                            </Checkbox>)
+                    }
                 </FormGroup>
             </Form>
         );

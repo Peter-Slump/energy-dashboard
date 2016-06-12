@@ -42,6 +42,7 @@ var config = {
         extensions: ['', '.js', '.jsx', '.json']
     },
     plugins: [
+        // TODO find out what it does or remove.
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',
@@ -51,10 +52,12 @@ var config = {
         }),
     ],
     output: {
-        path: distFolder,
+        path: distFolder,  // Folder to put the resulting .js file
+        contentBase: distFolder,  // Path to store statics (font-files etc.)
+        publicPath: '/static/dist/',  // Public path to retrieve statics (font-files etc.)
         filename: '[name].js',
-        libraryTarget: 'var',
-        library: 'exports',
+        libraryTarget: 'var', // TODO find out what it does or remove.
+        library: 'exports', // TODO find out what it does or remove.
     }
 }
 

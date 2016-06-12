@@ -11,10 +11,10 @@ const Dashboard = React.createClass({
                 <Row>
                     <Col xs={12} md={12}>
                         <Panel>
-                            <ReadingsViewPresets></ReadingsViewPresets>
+                            <ReadingsViewPresets {...this.props}></ReadingsViewPresets>
                             <Clearfix></Clearfix>
-                            <ChartWrapper></ChartWrapper>
-                            <PowerMeterSelect></PowerMeterSelect>
+                            <ChartWrapper {...this.props}></ChartWrapper>
+                            <PowerMeterSelect {...this.props}></PowerMeterSelect>
                         </Panel>
                    </Col>
                 </Row>
