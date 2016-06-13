@@ -26,12 +26,13 @@ let numberWithCommas = function(x) {
 let buildTooltipHandler = function(series) {
   return function(_l, xval, _y, flotItem) {
     let yval;
-    let content = '<h6>' + moment(xval).format('MMMM D YYYY HH:mm z') + '</h6>';
+    let content = '<div class="panel panel-primary"><div class="panel-heading"><h3 class="panel-title">' + moment(xval).format('MMMM D YYYY HH:mm z') + '</h3></div><div class="panel-body">';
     for (let i = 0; i < series.length; i++) {
       // we're assuming series are identical
       yval = numberWithCommas(series[i].data[flotItem.dataIndex][1] || 0);
       content += '<strong style="color:' + series[i].color + '">' + series[i].label + ':</strong> ' + yval + '<br>';
     }
+    content += '</div></div>';
     return content;
   };
 };
