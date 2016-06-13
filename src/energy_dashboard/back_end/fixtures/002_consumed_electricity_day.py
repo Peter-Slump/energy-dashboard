@@ -10,5 +10,3 @@ class Fixture(BaseFixture):
         power_meter = PowerMeterFactory(name='Consumed electricity (day)',
                                         unit='kwh')
         ReadingFactory.create_batch(1000, power_meter=power_meter)
-
-

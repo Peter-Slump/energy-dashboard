@@ -4,27 +4,36 @@ import FlotChart from './FlotChart';
 
 var ChartWrapper = React.createClass({
     render: function() {
-        var plotData =[];
-        jQuery.each(this.props.readingReports.reports, function(k, item){
-            var series = item.report.map(function(item){
-                return [new Date(item.datetime), parseFloat(item.value_increment)]
-            });
-            plotData.append({
-                data: series,
-                color: 'rgb(86, 175, 232)',
+        const {report, powerMeter} = this.props;
+        let plotData = [];
+        let start, end = null;
+        Object.keys(report).map(function(powerMeterId){
+            let currentPowerMeter = powerMeter.powerMetersById[powerMeterId];
+
+            if(!currentPowerMeter.isSelected) {
+                return;
+            }
+
+            plotData.push({
+                data: report[powerMeterId].items.map(function(item){
+                    return [new Date(item.datetime), parseFloat(item.value_increment)]
+                }),
+                color: currentPowerMeter.color,
                 shadowSize: 0,
-                label: 'Meter #1',
-                stack: true,
+                label: currentPowerMeter.data.name,
+                // stack: true,
                 lines: {
                     lineWidth: 2,
                     show: true,
                     fill: true
                 }
             });
+            start = report[powerMeterId].start;
+            end = report[powerMeterId].end;
         });
         console.log(plotData);
         return (
-            <FlotChart style={{height: 250}} className="row-bottom-spacing" plotData={plotData} />
+            <FlotChart style={{height: 250}} start={start} end={end} className="row-bottom-spacing" plotData={plotData} />
         );
     }
 });

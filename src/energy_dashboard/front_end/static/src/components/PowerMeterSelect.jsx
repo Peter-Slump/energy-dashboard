@@ -3,21 +3,21 @@ import { Checkbox, Form, FormGroup } from 'react-bootstrap';
 
 var PowerMeterSelect = React.createClass({
     handleChange: function(e){
-        console.log(this, e);
-        this.props.changeSelectedPowerMeter(e.target.value, e.target.checked);
+        const { powerMeterActions, reportActions } = this.props;
+
+        powerMeterActions.changeSelectedPowerMeter(e.target.value, e.target.checked);
+        reportActions.receiveReportsIfNeeded();
     },
     render: function() {
-        var powerMeters = this.props.readingReports.powerMeterList.powerMeters,
-        powerMetersCheckedState = this.props.readingReports.powerMeters;
-        powerMeters = powerMeters == null ? [] : powerMeters;
+        var powerMeters = this.props.powerMeter.powerMetersById;
         return (
             <Form componentClass="fieldset" inline>
                 <FormGroup>
                     {
-                        powerMeters.map((powerMeter, i) =>
-                            <Checkbox checked={powerMetersCheckedState[powerMeter.id]} key={powerMeter.id} value={powerMeter.id} onChange={this.handleChange}>
-                                {powerMeter.name}
-                                <span className="text-muted">({powerMeter.unit})</span>
+                        Object.keys(powerMeters).map((key) =>
+                            <Checkbox checked={powerMeters[key].isSelected} key={powerMeters[key].data.id} value={powerMeters[key].data.id} onChange={this.handleChange}>
+                                {powerMeters[key].data.name}
+                                <span className="text-muted">({powerMeters[key].data.unit})</span>
                             </Checkbox>)
                     }
                 </FormGroup>

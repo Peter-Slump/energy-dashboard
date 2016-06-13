@@ -35,7 +35,7 @@ class ReadingReportList(views.APIView):
 
 class PowerMeterViewSet(viewsets.ModelViewSet):
 
-    queryset = PowerMeter.objects.all()
+    queryset = PowerMeter.objects.order_by('-name').all()
     serializer_class = PowerMeterSerializer
 
 

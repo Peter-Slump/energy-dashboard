@@ -97,7 +97,9 @@ const FlotChart = React.createClass({
       xaxis: {
         mode: 'time',
         minTickSize: [1, 'hour'],
-        tickFormatter: tickFormatter
+        tickFormatter: tickFormatter,
+        min: this.props.start,
+        max: this.props.end
       },
       yaxis: {
         min: 0,
