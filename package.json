@@ -1,6 +1,10 @@
 {
-  "name": "Energy Dashboard",
-  "version": "0.0.0",
+  "name": "energy-dashboard",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "NODE_ENV=production webpack --config webpack.config.prod.js",
+    "start": "webpack --colors --watch"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/Peter-Slump/energy_dashboard"

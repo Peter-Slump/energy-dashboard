@@ -1,3 +1,5 @@
+import jQuery from 'jquery';
+
 export const FETCH_POWER_METERS = 'FETCH_POWER_METERS';
 export function fetchPowerMeters() {
     return {

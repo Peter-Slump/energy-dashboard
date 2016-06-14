@@ -1,4 +1,3 @@
-import jQuery from 'jquery';
 import {
     FETCH_POWER_METERS,
     FETCH_POWER_METERS_FAILED,

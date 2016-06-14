@@ -5,14 +5,22 @@ var staticsFolder = "src/energy_dashboard/front_end/static",
     distFolder = staticsFolder + "/dist";
 
 module.exports = {
-    entry: ['src/EnergyDashboard'],
+    entry: [
+        'src/EnergyDashboard'
+    ],
+    output: {
+        path: distFolder,  // Folder to put the resulting .js file
+        contentBase: distFolder,  // Path to store statics (font-files etc.)
+        publicPath: '/static/dist/',  // Public path to retrieve statics (font-files etc.)
+        filename: 'bundle.js',
+    },
     context: path.join(__dirname, staticsFolder),
     module: {
         loaders: [
             {
                 test: /\.jsx?$/,
                 include: path.join(__dirname, staticsFolder),
-                exclude: /node_modules/,
+                // exclude: /node_modules/,
                 loader: 'babel',
             },
             { test: /\.css$/, loader: 'style-loader!css-loader' },
@@ -33,16 +41,21 @@ module.exports = {
         extensions: ['', '.js', '.jsx', '.json']
     },
     plugins: [
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': "'production'"
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compressor: {
+                warnings: false
+            }
+        }),
         new webpack.ProvidePlugin({
             // Make jQuery available in all files (no need to "import jQuery from 'jquery'")
             $: 'jquery',
             jQuery: 'jquery',
         }),
     ],
-    output: {
-        path: distFolder,  // Folder to put the resulting .js file
-        contentBase: distFolder,  // Path to store statics (font-files etc.)
-        publicPath: '/static/dist/',  // Public path to retrieve statics (font-files etc.)
-        filename: 'bundle.js',
-    }
 }
