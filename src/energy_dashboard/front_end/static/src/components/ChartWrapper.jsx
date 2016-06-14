@@ -6,7 +6,8 @@ var ChartWrapper = React.createClass({
     render: function() {
         const {report, powerMeter} = this.props;
         let plotData = [];
-        let start, end = null;
+        let start, end = new Date();
+        let stepSize = 'hour';
         Object.keys(report).map(function(powerMeterId){
             let currentPowerMeter = powerMeter.powerMetersById[powerMeterId];
 
@@ -30,10 +31,10 @@ var ChartWrapper = React.createClass({
             });
             start = report[powerMeterId].start;
             end = report[powerMeterId].end;
+            stepSize = report[powerMeterId].stepSize;
         });
-        console.log(plotData);
         return (
-            <FlotChart style={{height: 250}} start={start} end={end} className="row-bottom-spacing" plotData={plotData} />
+            <FlotChart style={{height: 250}} start={start} end={end} stepSize={stepSize} className="row-bottom-spacing" plotData={plotData} />
         );
     }
 });

@@ -24,7 +24,7 @@ urlpatterns = [
 
     url(r'^reading-report/'
         r'(?P<power_meter>\d+)/'
-        r'(?P<time_interval>minutely|hourly|daily|monthly|yearly)/'
+        r'(?P<step_size>minute|hour|day|month|year)/'
         r'(?P<start>\d{4}-\d{1,2}-\d{1,2}[T ]\d{1,2}:\d{1,2}:\d{1,2}(.\d+)?Z)/'
         r'(?P<end>\d{4}-\d{1,2}-\d{1,2}[T ]\d{1,2}:\d{1,2}:\d{1,2})(.\d+)?Z/$',
         ReadingReportList.as_view(),

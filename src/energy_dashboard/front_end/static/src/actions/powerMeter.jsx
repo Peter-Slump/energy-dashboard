@@ -38,7 +38,6 @@ export function receivePowerMeters() {
             jQuery.ajax({
                 url: '/api/power-meter/',
                 dataType: 'json',
-                cache: false,
                 success: function(data) {
                     resolve(data);
 

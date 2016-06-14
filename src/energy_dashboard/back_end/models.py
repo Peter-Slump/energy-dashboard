@@ -86,19 +86,19 @@ class ReadingReportsQuerySet(models.QuerySet):
     .. Note:: The `annotate` method should be called after the `values` method.
     """
 
-    def minutely(self):
+    def minute(self):
         return self._report('year', 'month', 'day', 'hour', 'minute')
 
-    def hourly(self):
+    def hour(self):
         return self._report('year', 'month', 'day', 'hour')
 
-    def daily(self):
+    def day(self):
         return self._report('year', 'month', 'day')
 
-    def monthly(self):
+    def month(self):
         return self._report('year', 'month')
 
-    def yearly(self):
+    def year(self):
         return self._report('year')
 
     def _report(self, *args):

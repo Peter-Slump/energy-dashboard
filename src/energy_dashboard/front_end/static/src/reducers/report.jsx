@@ -14,7 +14,7 @@ function report(state = {
     error: null,
     start: null,
     end: null,
-    interval: null,
+    stepSize: null,
     didInvalidate: false
 }, action) {
     switch (action.type) {
@@ -36,7 +36,7 @@ function report(state = {
                 items: action.report,
                 start: action.start,
                 end: action.end,
-                interval: action.interval,
+                stepSize: action.stepSize,
                 error: null
             });
         case FETCH_REPORT_FAILED:

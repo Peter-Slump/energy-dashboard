@@ -50,7 +50,7 @@ class BackEndModelReadingReportTestCase(TestCase):
             self.setup_reading(value, year=2016, month=5, day=19, hour=21,
                                minute=6)
 
-        reports = Reading.reports.minutely()
+        reports = Reading.reports.minute()
 
         self.assertEqual(len(reports), 2)
 
@@ -85,7 +85,7 @@ class BackEndModelReadingReportTestCase(TestCase):
         for value in range_hour_22:
             self.setup_reading(value, year=2016, month=5, day=19, hour=22)
 
-        reports = Reading.reports.hourly()
+        reports = Reading.reports.hour()
 
         self.assertEqual(len(reports), 2)
 
@@ -120,7 +120,7 @@ class BackEndModelReadingReportTestCase(TestCase):
         for value in range_day_4:
             self.setup_reading(value, year=2016, month=5, day=4)
 
-        reports = Reading.reports.daily()
+        reports = Reading.reports.day()
 
         self.assertEqual(len(reports), 2)
 
@@ -155,7 +155,7 @@ class BackEndModelReadingReportTestCase(TestCase):
         for value in range_month_2:
             self.setup_reading(value, year=2016, month=2)
 
-        reports = Reading.reports.monthly()
+        reports = Reading.reports.month()
 
         self.assertEqual(len(reports), 2)
 
@@ -190,7 +190,7 @@ class BackEndModelReadingReportTestCase(TestCase):
         for value in range_year_2016:
             self.setup_reading(value, year=2016)
 
-        reports = Reading.reports.yearly()
+        reports = Reading.reports.year()
 
         self.assertEqual(len(reports), 2)
 
