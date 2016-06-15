@@ -20,18 +20,22 @@ Installation
 
   $ ./django-admin startproject energy_dashboard_project
 
-4. Configure settings.
-  4.1 Add the following apps to the INSTALLED_APPS list::
+4 Add the following apps to the INSTALLED_APPS list::
 
-    'rest_framework',
-    'energy_dashboard.back_end',
-    'energy_dashboard.front_end'
+    # energy_dashboard_project/energy_dashboard_project/settings.py
+    INSTALLED_APPS = [
+        ...,
+        'rest_framework',
+        'energy_dashboard.back_end',
+        'energy_dashboard.front_end'
+    ]
 
-  4.2 Configure urls::
+5 Configure urls::
 
+    # energy_dashboard_project/energy_dashboard_project/settings.py
     ROOT_URLCONF = 'energy_dashboard_project.urls'
 
-5. Run::
+6. Run::
 
   $ ./manage.py runserver
 
@@ -50,15 +54,15 @@ Build production front-end bundle::
 
   $ npm build
 
-Install some test data::
+Install some test data. First add 'dynamic_fixtures' to the installed apps::
 
-  First add 'dynamic_fixtures' to the installed apps::
-
+    # energy_dashboard_project/energy_dashboard_project/settings.py
     if DEBUG:
         INSTALLED_APPS = INSTALLED_APPS + ['dynamic_fixtures']
-  Install dummy data::
 
-        $ ./manage.py load_dynamic_fixtures
+Load dummy data::
+
+    $ ./manage.py load_dynamic_fixtures
 
 
 Screenshots
