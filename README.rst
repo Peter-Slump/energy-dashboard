@@ -7,32 +7,31 @@ A dashboard to keep track of your energy usage.
 Installation
 ============
 
-1. Create virtual environment
+1. Create virtual environment::
 
   $ mkdir ~/.virtualenvs && virtualenv ~/.virtualenvs/energy-dashboard
   $ source ~/.virtualenvs/energy-dashboard/bin/activate
 
-2. Install app
+2. Install app::
 
   $ pip install git+https://github.com/peter-slump/energy-dashboard
 
-3. Setup Django app
+3. Setup Django app::
 
   $ ./django-admin startproject energy_dashboard_project
 
 4. Configure settings.
-
-  4.1 Add the following apps to the INSTALLED_APPS list:
+  4.1 Add the following apps to the INSTALLED_APPS list::
 
     'rest_framework',
     'energy_dashboard.back_end',
     'energy_dashboard.front_end'
 
-  4.2 Configure urls:
+  4.2 Configure urls::
 
     ROOT_URLCONF = 'energy_dashboard_project.urls'
 
-5. Run
+5. Run::
 
   $ ./manage.py runserver
 
@@ -43,22 +42,21 @@ Run Python tests::
 
   $ python setup.py test
 
-Build development front-end bundle
+Build development front-end bundle::
 
   $ npm start
 
-Build production front-end bundle
+Build production front-end bundle::
 
   $ npm build
 
-Install some test data:
+Install some test data::
 
-  First add 'dynamic_fixtures' to the installed apps:
+  First add 'dynamic_fixtures' to the installed apps::
 
     if DEBUG:
         INSTALLED_APPS = INSTALLED_APPS + ['dynamic_fixtures']
-
-  Install dummy data:
+  Install dummy data::
 
         $ ./manage.py load_dynamic_fixtures
 
