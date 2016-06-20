@@ -16,7 +16,7 @@ class PowerMeter(models.Model):
     name = models.CharField(max_length=255)
     unit = models.CharField(choices=UNITS, max_length=10)
 
-    def __repr__(self):
+    def __str__(self):
         return self.name
 
 
@@ -140,6 +140,6 @@ class Reading(models.Model):
             self.second = self.datetime.second
         return super(Reading, self).save(update_fields=update_fields, **kwargs)
 
-    def __repr__(self):
-        return 'Reading at {} of {} (increment: {}'.format(
+    def __str__(self):
+        return 'Reading at {} of {} (increment: {})'.format(
             self.datetime.isoformat(), self.value_total, self.value_increment)
