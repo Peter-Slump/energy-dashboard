@@ -1,5 +1,11 @@
 from django.views.decorators.cache import cache_control
-from rest_framework import generics, mixins, views, viewsets
+from rest_framework import (
+    generics,
+    mixins,
+    permissions,
+    views,
+    viewsets
+)
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
@@ -15,7 +21,8 @@ from energy_dashboard.back_end.models import Reading, PowerMeter
 def api_root(request, format=None):
     return Response({
         'power-meters': reverse('power-meter-list', request=request,
-                                format=format)
+                                format=format),
+        'readings': reverse('reading-list', request=request, format=format),
     })
 
 
@@ -41,8 +48,14 @@ class ReadingReportList(views.APIView):
 
 class PowerMeterViewSet(viewsets.ModelViewSet):
 
-    queryset = PowerMeter.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
     serializer_class = PowerMeterSerializer
+
+    def get_queryset(self):
+        return self.request.user.power_meters.all()
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
 class ReadingList(mixins.CreateModelMixin, generics.GenericAPIView):

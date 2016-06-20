@@ -13,6 +13,8 @@ class PowerMeter(models.Model):
         ('m3', _('m³'))
     )
 
+    owner = models.ForeignKey('auth.User', related_name='power_meters')
+
     name = models.CharField(max_length=255)
     unit = models.CharField(choices=UNITS, max_length=10)
 
