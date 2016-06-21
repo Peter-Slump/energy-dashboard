@@ -11,6 +11,7 @@ const Header = React.createClass({
                     <Link to="/">Energy Dashboard</Link>
                   </Navbar.Brand>
                   <Navbar.Toggle />
+                  <Link to="/login">Login</Link>
                 </Navbar.Header>
             </Navbar>
         );
