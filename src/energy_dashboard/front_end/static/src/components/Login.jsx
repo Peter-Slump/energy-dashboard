@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDom from 'react-dom';
 import {
     Button,
     Col,
@@ -11,8 +12,18 @@ import {
     Panel,
     Row
 } from 'react-bootstrap';
+import { browserHistory } from 'react-router';
 
 const Login = React.createClass({
+    handleSubmit: function(e) {
+        e.preventDefault();
+        const { username, password, loginForm } = this.refs;
+        this.props.authActions.login(
+            ReactDom.findDOMNode(username).value,
+            ReactDom.findDOMNode(password).value
+        ).then(function() { browserHistory.push('/'); });
+        ReactDom.findDOMNode(loginForm).reset();
+    },
     render: function(){
         return (
             <Grid fluid={false}>
@@ -22,16 +33,16 @@ const Login = React.createClass({
                             <h4>
                                 Authenticate
                             </h4>
-                            <Form horizontal>
+                            <Form horizontal ref="loginForm" onSubmit={this.handleSubmit}>
                                 <FormGroup controlId="formHorizontalEmail">
                                     <Col sm={12}>
-                                        <FormControl type="text" placeholder="Username" />
+                                        <FormControl type="text" ref="username" placeholder="Username" />
                                     </Col>
                                 </FormGroup>
 
                                 <FormGroup controlId="formHorizontalPassword">
                                     <Col sm={12}>
-                                        <FormControl type="password" placeholder="Password" />
+                                        <FormControl type="password" ref="password" placeholder="Password" />
                                     </Col>
                                 </FormGroup>
 

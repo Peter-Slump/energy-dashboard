@@ -1,25 +1,31 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import * as authActions from '../actions/auth';
 import * as powerMeterActions from '../actions/powerMeter';
 import * as reportActions from '../actions/report';
 import * as reportPeriodActions from '../actions/reportPeriod';
+import * as userActions from '../actions/user';
 import Main from './Main';
 
 // Make sure the store values are available to all components
 function mapStateToProps(state) {
     return {
+        auth: state.auth,
         powerMeter: state.powerMeter,
         report: state.report,
-        reportPeriod: state.reportPeriod
+        reportPeriod: state.reportPeriod,
+        user: state.user
     }
 }
 
 // Make sure all actions are available to the props in the components
 function mapDispatchToProps(dispatch) {
     return {
+        authActions: bindActionCreators(authActions, dispatch),
         powerMeterActions: bindActionCreators(powerMeterActions, dispatch),
         reportActions: bindActionCreators(reportActions, dispatch),
         reportPeriodActions: bindActionCreators(reportPeriodActions, dispatch),
+        userActions: bindActionCreators(userActions, dispatch),
     }
 }
 

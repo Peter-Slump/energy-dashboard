@@ -5,7 +5,12 @@ import PowerMeterSelect from './PowerMeterSelect';
 import ReadingsViewPresets from './ReadingsViewPresets';
 
 const Dashboard = React.createClass({
-    render: function(){
+    componentDidMount: function() {
+        this.props.powerMeterActions.receivePowerMeters().then(
+            () => this.props.reportActions.receiveReportsIfNeeded()
+        );
+    },
+    render: function() {
         return (
             <Grid fluid={false}>
                 <Row>
