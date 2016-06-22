@@ -1,0 +1,8 @@
+- Middleware which checks on login status
+- Global messaging system for error messages en notifications.
+- Error when login failed (400).
+- Reducers should clear when logged out.
+
+Nice to have:
+- Update user screen.
+- Get API paths dynamic if possible
