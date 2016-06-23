@@ -16,9 +16,7 @@ const store = createStore(
 );
 
 // Load user on startup
-store.dispatch(fetchUser()).then(
-    function() { browserHistory.push('/'); }
-);
+store.dispatch(fetchUser());
 
 export const history = syncHistoryWithStore(browserHistory, store);
 

@@ -20847,6 +20847,10 @@
 
 	var _reactRedux = __webpack_require__(194);
 
+	var _actionsApi = __webpack_require__(665);
+
+	var apiActions = _interopRequireWildcard(_actionsApi);
+
 	var _actionsAuth = __webpack_require__(203);
 
 	var authActions = _interopRequireWildcard(_actionsAuth);
@@ -20874,6 +20878,7 @@
 	// Make sure the store values are available to all components
 	function mapStateToProps(state) {
 	    return {
+	        api: state.api,
 	        auth: state.auth,
 	        powerMeter: state.powerMeter,
 	        report: state.report,
@@ -20885,6 +20890,7 @@
 	// Make sure all actions are available to the props in the components
 	function mapDispatchToProps(dispatch) {
 	    return {
+	        apiActions: (0, _redux.bindActionCreators)(apiActions, dispatch),
 	        authActions: (0, _redux.bindActionCreators)(authActions, dispatch),
 	        powerMeterActions: (0, _redux.bindActionCreators)(powerMeterActions, dispatch),
 	        reportActions: (0, _redux.bindActionCreators)(reportActions, dispatch),
@@ -22456,19 +22462,10 @@
 	exports.loginFailed = loginFailed;
 	exports.requestLogout = requestLogout;
 	exports.loggedOut = loggedOut;
-	exports.logOutFailed = logOutFailed;
 	exports.logout = logout;
 	exports.login = login;
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _jsCookie = __webpack_require__(662);
-
-	var _jsCookie2 = _interopRequireDefault(_jsCookie);
-
-	var _jquery = __webpack_require__(204);
-
-	var _jquery2 = _interopRequireDefault(_jquery);
+	var _api = __webpack_require__(665);
 
 	var _user = __webpack_require__(267);
 
@@ -22519,40 +22516,11 @@
 	    };
 	}
 
-	var AUTH_LOG_OUT_FAILED = 'AUTH_LOG_OUT_FAILED';
-	exports.AUTH_LOG_OUT_FAILED = AUTH_LOG_OUT_FAILED;
-
-	function logOutFailed(error) {
-	    return {
-	        type: AUTH_LOG_OUT_FAILED,
-	        error: error
-	    };
-	}
-
 	function logout() {
 	    return function (dispatch) {
 	        dispatch(requestLogout());
-
-	        return new Promise(function (resolve, reject) {
-	            return _jquery2['default'].ajax({
-	                method: 'POST',
-	                url: '/rest-auth/logout/',
-	                success: function success(data) {
-	                    resolve();
-	                },
-	                error: function error(xhr, status, err) {
-	                    reject(err);
-	                },
-	                beforeSend: function beforeSend(xhr, settings) {
-	                    xhr.setRequestHeader("X-CSRFToken", _jsCookie2['default'].get('csrftoken'));
-	                }
-	            }).success(function (data) {
-	                dispatch(loggedOut(data));
-	                resolve(data);
-	            }).error(function (xhr, status, err) {
-	                dispatch(logOutFailed(error));
-	                reject(err);
-	            });
+	        return dispatch((0, _api.callApi)('/rest-auth/logout/', 'POST')).then(function () {
+	            return dispatch(loggedOut());
 	        });
 	    };
 	}
@@ -22560,25 +22528,12 @@
 	function login(username, password) {
 	    return function (dispatch) {
 	        dispatch(requestLogin());
-
-	        return new Promise(function (resolve, reject) {
-	            return _jquery2['default'].ajax({
-	                url: '/rest-auth/login/',
-	                method: 'POST',
-	                data: JSON.stringify({
-	                    username: username, password: password
-	                }),
-	                beforeSend: function beforeSend(xhr, settings) {
-	                    xhr.setRequestHeader("X-CSRFToken", _jsCookie2['default'].get('csrftoken'));
-	                }
-	            }).success(function (data) {
-	                dispatch(loggedIn(data.key));
-	                dispatch((0, _user.fetchUser)());
-	                resolve(data);
-	            }).error(function (xhr, status, err) {
-	                dispatch(loginFailed(error));
-	                reject(err);
-	            });
+	        return dispatch((0, _api.callApi)('/rest-auth/login/', 'POST', { username: username, password: password })).then(function (data) {
+	            return dispatch(loggedIn(data.key));
+	        }, function (xhr, status, error) {
+	            return dispatch(loginFailed(error));
+	        }).then(function () {
+	            return dispatch((0, _user.fetchUser)());
 	        });
 	    };
 	}
@@ -37823,11 +37778,7 @@
 	exports.changeSelectedPowerMeter = changeSelectedPowerMeter;
 	exports.receivePowerMeters = receivePowerMeters;
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _jquery = __webpack_require__(204);
-
-	var _jquery2 = _interopRequireDefault(_jquery);
+	var _api = __webpack_require__(665);
 
 	var FETCH_POWER_METERS = 'FETCH_POWER_METERS';
 	exports.FETCH_POWER_METERS = FETCH_POWER_METERS;
@@ -37871,31 +37822,10 @@
 
 	function receivePowerMeters() {
 	    return function (dispatch, getState) {
-	        var state = getState();
-
-	        // If not logged in we don't have to try
-	        if (!state.auth.loggedIn) {
-	            return Promise.resolve();
-	        }
-
 	        dispatch(fetchPowerMeters());
-
-	        var promise = new Promise(function (resolve, reject) {
-	            _jquery2['default'].ajax({
-	                url: '/api/power-meter/',
-	                dataType: 'json',
-	                success: function success(data) {
-	                    resolve(data);
-	                },
-	                error: function error(xhr, status, err) {
-	                    reject(err);
-	                }
-	            });
-	        });
-
-	        return promise.then(function (result) {
-	            return dispatch(fetchPowerMetersSuccess(result));
-	        }, function (error) {
+	        return dispatch((0, _api.callApi)('/api/power-meter')).then(function (data) {
+	            return dispatch(fetchPowerMetersSuccess(data));
+	        }, function (xhr, status, error) {
 	            return dispatch(fetchPowerMetersFailed(error));
 	        });
 	    };
@@ -37916,11 +37846,7 @@
 	exports.fetchReportFailed = fetchReportFailed;
 	exports.receiveReportsIfNeeded = receiveReportsIfNeeded;
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _jquery = __webpack_require__(204);
-
-	var _jquery2 = _interopRequireDefault(_jquery);
+	var _api = __webpack_require__(665);
 
 	var INVALIDATE_REPORT = 'INVALIDATE_REPORT';
 	exports.INVALIDATE_REPORT = INVALIDATE_REPORT;
@@ -37970,12 +37896,6 @@
 	function receiveReportsIfNeeded() {
 	    return function (dispatch, getState) {
 	        var state = getState();
-
-	        // If not logged in we don't have to try
-	        if (!state.auth.loggedIn) {
-	            return Promise.resolve();
-	        }
-
 	        var stepSize = null,
 	            start = new Date(),
 	            end = new Date();
@@ -38036,18 +37956,11 @@
 
 	function receiveReport(powerMeterId, stepSize, start, end) {
 	    return function (dispatch) {
-	        // Notice a new fetch report
 	        dispatch(fetchReport(powerMeterId));
-
-	        return _jquery2['default'].ajax({
-	            url: '/api/reading-report/' + powerMeterId + '/' + stepSize + '/' + start.toISOString() + '/' + end.toISOString() + '/',
-	            dataType: 'json',
-	            success: function success(data) {
-	                dispatch(fetchReportSuccess(powerMeterId, data, start, end, stepSize));
-	            },
-	            error: function error(xhr, status, err) {
-	                dispatch(fetchReportFailed(powerMeterId, err));
-	            }
+	        return dispatch((0, _api.callApi)('/api/reading-report/' + powerMeterId + '/' + stepSize + '/' + start.toISOString() + '/' + end.toISOString() + '/')).then(function (data) {
+	            return dispatch(fetchReportSuccess(powerMeterId, data, start, end, stepSize));
+	        }, function (xhr, status, error) {
+	            return dispatch(fetchReportFailed(powerMeterId, error));
 	        });
 	    };
 	}
@@ -38083,16 +37996,9 @@
 	});
 	exports.requestUser = requestUser;
 	exports.receiveUser = receiveUser;
-	exports.receiveUserFailed = receiveUserFailed;
 	exports.fetchUser = fetchUser;
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _jquery = __webpack_require__(204);
-
-	var _jquery2 = _interopRequireDefault(_jquery);
-
-	var _reactRouter = __webpack_require__(205);
+	var _api = __webpack_require__(665);
 
 	var REQUEST_USER = 'REQUEST_USER';
 	exports.REQUEST_USER = REQUEST_USER;
@@ -38116,30 +38022,11 @@
 	    };
 	}
 
-	var RECEIVE_USER_FAILED = 'RECEIVE_USER_FAILED';
-	exports.RECEIVE_USER_FAILED = RECEIVE_USER_FAILED;
-
-	function receiveUserFailed(error, statusCode) {
-	    return {
-	        type: RECEIVE_USER_FAILED,
-	        error: error
-	    };
-	}
-
 	function fetchUser() {
 	    return function (dispatch) {
 	        dispatch(requestUser());
-
-	        return new Promise(function (resolve, reject) {
-	            _jquery2['default'].ajax({
-	                url: '/rest-auth/user/'
-	            }).success(function (data) {
-	                dispatch(receiveUser(data.username, data.first_name, data.last_name, data.email));
-	                resolve(data);
-	            }).error(function (xhr, status, err) {
-	                receiveUserFailed(err);
-	                reject(err);
-	            });
+	        return dispatch((0, _api.callApi)('/rest-auth/user/')).then(function (data) {
+	            return dispatch(receiveUser(data.username, data.first_name, data.last_name, data.email));
 	        });
 	    };
 	}
@@ -73496,9 +73383,7 @@
 	var store = (0, _redux.createStore)(_reducersIndex2['default'], (0, _redux.applyMiddleware)(_reduxThunk2['default']));
 
 	// Load user on startup
-	store.dispatch((0, _actionsUser.fetchUser)()).then(function () {
-	    _reactRouter.browserHistory.push('/');
-	});
+	store.dispatch((0, _actionsUser.fetchUser)());
 
 	var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, store);
 
@@ -74483,13 +74368,103 @@
 	        var auth = this.props.auth;
 
 	        if (!auth.loggedIn) {
-	            _reactRouter.browserHistory.push('/login');
+	            //            browserHistory.push('/login');
 	        }
 	    }
 	};
 
 	exports['default'] = LoginRequiredMixin;
 	module.exports = exports['default'];
+
+/***/ },
+/* 665 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports.apiRequest = apiRequest;
+	exports.apiRequestSuccess = apiRequestSuccess;
+	exports.apiRequestFailed = apiRequestFailed;
+	exports.callApi = callApi;
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _jsCookie = __webpack_require__(662);
+
+	var _jsCookie2 = _interopRequireDefault(_jsCookie);
+
+	var _jquery = __webpack_require__(204);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _reactRouter = __webpack_require__(205);
+
+	var API_REQUEST = 'API_REQUEST';
+	exports.API_REQUEST = API_REQUEST;
+
+	function apiRequest(path, method, data) {
+	    return {
+	        type: API_REQUEST,
+	        path: path,
+	        method: method,
+	        data: data
+	    };
+	}
+
+	var API_REQUEST_SUCCESS = 'API_REQUEST_SUCCESS';
+	exports.API_REQUEST_SUCCESS = API_REQUEST_SUCCESS;
+
+	function apiRequestSuccess(data) {
+	    return {
+	        type: API_REQUEST_SUCCESS,
+	        data: data
+	    };
+	}
+
+	var API_REQUEST_FAILED = 'API_REQUEST_FAILED';
+	exports.API_REQUEST_FAILED = API_REQUEST_FAILED;
+
+	function apiRequestFailed(xhr, status, error) {
+	    return {
+	        type: API_REQUEST_FAILED,
+	        error: error,
+	        status: status
+	    };
+	}
+
+	function callApi(path) {
+	    var method = arguments.length <= 1 || arguments[1] === undefined ? 'GET' : arguments[1];
+	    var data = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
+
+	    return function (dispatch) {
+	        dispatch(apiRequest(path, method, data));
+
+	        return new Promise(function (resolve, reject) {
+	            _jquery2['default'].ajax({
+	                url: path,
+	                method: method,
+	                data: data ? JSON.stringify(data) : null,
+	                beforeSend: function beforeSend(xhr, settings) {
+	                    xhr.setRequestHeader("X-CSRFToken", _jsCookie2['default'].get('csrftoken'));
+	                },
+	                statusCode: {
+	                    403: function _() {
+	                        _reactRouter.browserHistory.push('/login');
+	                    }
+	                }
+	            }).success(function (data) {
+	                dispatch(apiRequestSuccess(data));
+	                resolve(data);
+	            }).error(function (xhr, status, err) {
+	                dispatch(apiRequestFailed(xhr, status, err));
+	                reject(xhr, status, err);
+	            });
+	        });
+	    };
+	}
 
 /***/ }
 /******/ ]);
