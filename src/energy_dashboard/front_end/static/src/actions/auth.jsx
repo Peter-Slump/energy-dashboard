@@ -44,7 +44,14 @@ export function logout() {
     return function(dispatch) {
         dispatch(requestLogout());
         return dispatch(callApi(`/rest-auth/logout/`, 'POST')).then(
-            () => dispatch(loggedOut())
+            data => {
+                dispatch(loggedOut())
+                dispatch(notificationAdd(
+                    data.success,
+                    'info',
+                    'Logged out'
+                ))
+            }
         );
     }
 }

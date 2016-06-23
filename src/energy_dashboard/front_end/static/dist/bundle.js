@@ -38008,8 +38008,9 @@
 	function logout() {
 	    return function (dispatch) {
 	        dispatch(requestLogout());
-	        return dispatch((0, _api.callApi)('/rest-auth/logout/', 'POST')).then(function () {
-	            return dispatch(loggedOut());
+	        return dispatch((0, _api.callApi)('/rest-auth/logout/', 'POST')).then(function (data) {
+	            dispatch(loggedOut());
+	            dispatch((0, _notification.notificationAdd)(data.success, 'info', 'Logged out'));
 	        });
 	    };
 	}
