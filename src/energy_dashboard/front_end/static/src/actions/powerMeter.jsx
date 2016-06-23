@@ -33,7 +33,14 @@ export function changeSelectedPowerMeter(id, isSelected) {
 }
 
 export function receivePowerMeters() {
-    return function(dispatch) {
+    return function(dispatch, getState) {
+        const state = getState();
+
+        // If not logged in we don't have to try
+        if( !state.auth.loggedIn ) {
+            return Promise.resolve();
+        }
+
         dispatch(fetchPowerMeters());
 
         const promise = new Promise(function(resolve, reject) {

@@ -6,7 +6,7 @@ import {
     FETCH_REPORT_SUCCESS,
     FETCH_REPORT_FAILED
 } from '../actions/report';
-
+import { AUTH_LOGGED_OUT } from '../actions/auth';
 
 function report(state = {
     items: [],
@@ -51,6 +51,10 @@ function report(state = {
 
 export default function reports(state = {}, action) {
     switch (action.type) {
+        case AUTH_LOGGED_OUT:
+            // Empty state
+            return {};
+
         case INVALIDATE_REPORT:
         case FETCH_REPORT:
         case FETCH_REPORT_SUCCESS:

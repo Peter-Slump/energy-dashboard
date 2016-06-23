@@ -37870,7 +37870,14 @@
 	}
 
 	function receivePowerMeters() {
-	    return function (dispatch) {
+	    return function (dispatch, getState) {
+	        var state = getState();
+
+	        // If not logged in we don't have to try
+	        if (!state.auth.loggedIn) {
+	            return Promise.resolve();
+	        }
+
 	        dispatch(fetchPowerMeters());
 
 	        var promise = new Promise(function (resolve, reject) {
@@ -37963,6 +37970,12 @@
 	function receiveReportsIfNeeded() {
 	    return function (dispatch, getState) {
 	        var state = getState();
+
+	        // If not logged in we don't have to try
+	        if (!state.auth.loggedIn) {
+	            return Promise.resolve();
+	        }
+
 	        var stepSize = null,
 	            start = new Date(),
 	            end = new Date();
@@ -38117,28 +38130,16 @@
 	    return function (dispatch) {
 	        dispatch(requestUser());
 
-	        var promise = new Promise(function (resolve, reject) {
+	        return new Promise(function (resolve, reject) {
 	            _jquery2['default'].ajax({
-	                url: '/rest-auth/user/',
-	                statusCode: {
-	                    403: function _() {
-	                        _reactRouter.browserHistory.push('/login');
-	                    }
-	                },
-	                success: function success(data) {
-	                    resolve(data);
-	                },
-	                error: function error(xhr, status, err) {
-	                    if (xhr.status != 403) {
-	                        reject(err);
-	                    }
-	                }
+	                url: '/rest-auth/user/'
+	            }).success(function (data) {
+	                dispatch(receiveUser(data.username, data.first_name, data.last_name, data.email));
+	                resolve(data);
+	            }).error(function (xhr, status, err) {
+	                receiveUserFailed(err);
+	                reject(err);
 	            });
-	        });
-	        return promise.then(function (result) {
-	            return dispatch(receiveUser(result.username, result.first_name, result.last_name, result.email));
-	        }, function (error) {
-	            return dispatch(receiveUserFailed(error));
 	        });
 	    };
 	}
@@ -57572,9 +57573,14 @@
 
 	var _ReadingsViewPresets2 = _interopRequireDefault(_ReadingsViewPresets);
 
+	var _mixinsLoginRequired = __webpack_require__(664);
+
+	var _mixinsLoginRequired2 = _interopRequireDefault(_mixinsLoginRequired);
+
 	var Dashboard = _react2['default'].createClass({
 	    displayName: 'Dashboard',
 
+	    mixins: [_mixinsLoginRequired2['default']],
 	    componentDidMount: function componentDidMount() {
 	        var _this = this;
 
@@ -73490,7 +73496,9 @@
 	var store = (0, _redux.createStore)(_reducersIndex2['default'], (0, _redux.applyMiddleware)(_reduxThunk2['default']));
 
 	// Load user on startup
-	store.dispatch((0, _actionsUser.fetchUser)());
+	store.dispatch((0, _actionsUser.fetchUser)()).then(function () {
+	    _reactRouter.browserHistory.push('/');
+	});
 
 	var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, store);
 
@@ -73997,6 +74005,8 @@
 
 	var _actionsPowerMeter = __webpack_require__(264);
 
+	var _actionsAuth = __webpack_require__(203);
+
 	var COLORS = ['#2196F3', '#4CAF50', '#9C27B0', '#ff9800', '#e51c23'];
 
 	function powerMeter(state, action) {
@@ -74020,15 +74030,20 @@
 	    }
 	}
 
+	var initial = {
+	    isFetching: false,
+	    error: null,
+	    powerMetersById: {}
+	};
+
 	function powerMeters(state, action) {
-	    if (state === undefined) state = {
-	        isFetching: false,
-	        error: null,
-	        powerMetersById: {}
-	    };
+	    if (state === undefined) state = initial;
 
 	    var new_state = null;
 	    switch (action.type) {
+	        case _actionsAuth.AUTH_LOGGED_OUT:
+	            return initial;
+
 	        case _actionsPowerMeter.CHANGE_SELECTED_POWER_METER:
 	            new_state = Object.assign({}, state);
 	            new_state.powerMetersById[action.id] = powerMeter(state.powerMetersById[action.id], action);
@@ -74086,6 +74101,8 @@
 
 	var _actionsReport = __webpack_require__(265);
 
+	var _actionsAuth = __webpack_require__(203);
+
 	function report(state, action) {
 	    if (state === undefined) state = {
 	        items: [],
@@ -74133,6 +74150,10 @@
 	    if (state === undefined) state = {};
 
 	    switch (action.type) {
+	        case _actionsAuth.AUTH_LOGGED_OUT:
+	            // Empty state
+	            return {};
+
 	        case _actionsReport.INVALIDATE_REPORT:
 	        case _actionsReport.FETCH_REPORT:
 	        case _actionsReport.FETCH_REPORT_SUCCESS:
@@ -74159,10 +74180,18 @@
 
 	var _actionsReportPeriod = __webpack_require__(266);
 
+	var _actionsAuth = __webpack_require__(203);
+
+	var initial = { period: 'day' };
+
 	function reportPeriod(state, action) {
-	    if (state === undefined) state = { period: 'day' };
+	    if (state === undefined) state = initial;
 
 	    switch (action.type) {
+	        case _actionsAuth.AUTH_LOGGED_OUT:
+	            // Put back to initial state
+	            return initial;
+
 	        case _actionsReportPeriod.CHANGE_REPORT_PERIOD:
 	            return Object.assign({}, state, {
 	                period: action.period
@@ -74190,14 +74219,16 @@
 
 	var _actionsAuth = __webpack_require__(203);
 
+	var initial = {
+	    username: null,
+	    firstName: null,
+	    lastName: null,
+	    email: null,
+	    isFetching: false
+	};
+
 	function auth(state, action) {
-	    if (state === undefined) state = {
-	        isFetching: false,
-	        username: null,
-	        firstName: null,
-	        lastName: null,
-	        email: null
-	    };
+	    if (state === undefined) state = initial;
 
 	    switch (action.type) {
 	        case _actionsUser.REQUEST_USER:
@@ -74215,12 +74246,7 @@
 	            });
 
 	        case _actionsAuth.AUTH_LOGGED_OUT:
-	            return Object.assign({}, state, {
-	                username: null,
-	                firstName: null,
-	                lastName: null,
-	                email: null
-	            });
+	            return initial;
 
 	        default:
 	            return state;
@@ -74438,6 +74464,32 @@
 		return init(function () {});
 	}));
 
+
+/***/ },
+/* 663 */,
+/* 664 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	var _reactRouter = __webpack_require__(205);
+
+	var LoginRequiredMixin = {
+	    componentWillMount: function componentWillMount() {
+	        var auth = this.props.auth;
+
+	        if (!auth.loggedIn) {
+	            _reactRouter.browserHistory.push('/login');
+	        }
+	    }
+	};
+
+	exports['default'] = LoginRequiredMixin;
+	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);

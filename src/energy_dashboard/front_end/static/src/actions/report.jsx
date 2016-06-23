@@ -40,6 +40,12 @@ export function fetchReportFailed(powerMeterId, error) {
 export function receiveReportsIfNeeded() {
     return function(dispatch, getState) {
         const state = getState();
+
+        // If not logged in we don't have to try
+        if( !state.auth.loggedIn ) {
+            return Promise.resolve();
+        }
+
         let stepSize = null,
             start = new Date(),
             end = new Date();

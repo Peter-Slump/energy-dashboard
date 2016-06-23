@@ -4,6 +4,8 @@ import {
     FETCH_POWER_METERS_SUCCESS,
     CHANGE_SELECTED_POWER_METER
 } from '../actions/powerMeter';
+import { AUTH_LOGGED_OUT } from '../actions/auth';
+
 
 const COLORS = [
     '#2196F3',
@@ -32,13 +34,18 @@ function powerMeter(state = {
     }
 }
 
-export default function powerMeters(state = {
+const initial = {
     isFetching: false,
     error: null,
     powerMetersById: {}
-}, action) {
+}
+
+export default function powerMeters(state=initial, action) {
     let new_state = null
     switch (action.type) {
+        case AUTH_LOGGED_OUT:
+            return initial;
+
         case CHANGE_SELECTED_POWER_METER:
             new_state = Object.assign({}, state);
             new_state.powerMetersById[action.id] = powerMeter(state.powerMetersById[action.id], action)

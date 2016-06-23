@@ -31,32 +31,21 @@ export function fetchUser() {
     return function(dispatch) {
         dispatch(requestUser());
 
-        const promise = new Promise(function(resolve, reject) {
+        return new Promise(function(resolve, reject) {
             jQuery.ajax({
                 url: `/rest-auth/user/`,
-                statusCode: {
-                    403: function() {
-                        browserHistory.push('/login');
-                    }
-                },
-                success: function(data) {
-                    resolve(data);
-                },
-                error: function(xhr, status, err) {
-                    if( xhr.status != 403 ) {
-                        reject(err);
-                    }
-                }
+            }).success(function(data) {
+                dispatch(receiveUser(
+                    data.username,
+                    data.first_name,
+                    data.last_name,
+                    data.email
+                ));
+                resolve(data);
+            }).error(function(xhr, status, err) {
+                receiveUserFailed(err)
+                reject(err);
             });
         });
-        return promise.then(
-            result => dispatch(receiveUser(
-                result.username,
-                result.first_name,
-                result.last_name,
-                result.email
-            )),
-            error => dispatch(receiveUserFailed(error))
-        );
     }
 }
