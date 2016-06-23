@@ -1,6 +1,8 @@
 import Cookie from 'js-cookie';
 import jQuery from 'jquery';
 import { browserHistory } from 'react-router';
+import { notificationAdd } from './notification';
+
 
 export const API_REQUEST = 'API_REQUEST';
 export function apiRequest(path, method, data) {
@@ -24,6 +26,7 @@ export const API_REQUEST_FAILED = 'API_REQUEST_FAILED';
 export function apiRequestFailed(xhr, status, error) {
     return {
         type: API_REQUEST_FAILED,
+        code: xhr.status,
         error,
         status
     }
@@ -50,6 +53,10 @@ export function callApi(path, method='GET', data=null) {
                 dispatch(apiRequestSuccess(data));
                 resolve(data);
             }).error(function(xhr, status, err){
+                if([400, 403].indexOf(xhr.status) == -1) {
+                    // Notify user about all errors except 400 and 403.
+                    dispatch(notificationAdd(err, 'warning', 'API Error'));
+                }
                 dispatch(apiRequestFailed(xhr, status, err));
                 reject(xhr, status, err);
             });

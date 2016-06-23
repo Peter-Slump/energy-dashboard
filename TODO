@@ -1,6 +1,3 @@
-- Global messaging system for error messages en notifications.
-- Error when login failed (400).
-
 Nice to have:
 - Update user screen.
 - Get API paths dynamic if possible

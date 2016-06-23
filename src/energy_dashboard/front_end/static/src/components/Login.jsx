@@ -12,7 +12,6 @@ import {
     Panel,
     Row
 } from 'react-bootstrap';
-import { browserHistory } from 'react-router';
 
 
 const Login = React.createClass({
@@ -22,7 +21,7 @@ const Login = React.createClass({
         this.props.authActions.login(
             ReactDom.findDOMNode(username).value,
             ReactDom.findDOMNode(password).value
-        ).then(function() { browserHistory.push('/'); });
+        );
         ReactDom.findDOMNode(loginForm).reset();
     },
     render: function(){

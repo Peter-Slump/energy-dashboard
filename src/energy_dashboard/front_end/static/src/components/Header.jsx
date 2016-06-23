@@ -2,6 +2,7 @@ import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router';
 
+
 const Header = React.createClass({
     render: function(){
         const { auth, user } = this.props;

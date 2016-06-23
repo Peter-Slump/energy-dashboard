@@ -1,5 +1,7 @@
 import { callApi } from './api';
 import { fetchUser } from './user';
+import { notificationAdd } from './notification';
+import { browserHistory } from 'react-router';
 
 export const AUTH_REQUEST_LOGIN = 'AUTH_REQUEST_LOGIN';
 export function requestLogin() {
@@ -55,10 +57,21 @@ export function login(username, password) {
             'POST',
             {username, password}
         )).then(
-            data => dispatch(loggedIn(data.key)),
-            (xhr, status, error) => dispatch(loginFailed(error))
-        ).then(
-            () => dispatch(fetchUser())
+            data => {
+                dispatch(loggedIn(data.key));
+                dispatch(fetchUser());
+                browserHistory.push('/');
+            },
+            (xhr, status, error) => {
+                dispatch(loginFailed(error))
+                if( xhr.status == 400) {
+                    dispatch(notificationAdd(
+                        xhr.responseJSON.non_field_errors,
+                        'error',
+                        'Login failed'
+                    ))
+                }
+            }
         );
     }
 }

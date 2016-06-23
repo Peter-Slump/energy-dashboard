@@ -35,7 +35,7 @@ export function changeSelectedPowerMeter(id, isSelected) {
 export function receivePowerMeters() {
     return function(dispatch, getState) {
         dispatch(fetchPowerMeters());
-        return dispatch(callApi(`/api/power-meter`)).then(
+        return dispatch(callApi(`/api/power-meter/`)).then(
             data => dispatch(fetchPowerMetersSuccess(data)),
             (xhr, status, error) => dispatch(fetchPowerMetersFailed(error))
         );

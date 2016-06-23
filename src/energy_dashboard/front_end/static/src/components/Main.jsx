@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Grid, Row } from 'react-bootstrap';
 import { Link } from 'react-router';
 import Header from './Header'
+import Notifier from './Notifier';
 
 const Main = React.createClass({
     render: function(){
@@ -28,6 +29,7 @@ const Main = React.createClass({
                         </Row>
                     </Grid>
                 </footer>
+                <Notifier alerts={this.props.notification || []}></Notifier>
             </div>
         );
     }
