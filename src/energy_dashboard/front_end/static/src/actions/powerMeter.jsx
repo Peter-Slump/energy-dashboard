@@ -1,4 +1,4 @@
-import jQuery from 'jquery';
+import { callApi } from './api';
 
 export const FETCH_POWER_METERS = 'FETCH_POWER_METERS';
 export function fetchPowerMeters() {
@@ -33,27 +33,11 @@ export function changeSelectedPowerMeter(id, isSelected) {
 }
 
 export function receivePowerMeters() {
-    return function(dispatch) {
+    return function(dispatch, getState) {
         dispatch(fetchPowerMeters());
-
-        const promise = new Promise(function(resolve, reject) {
-            jQuery.ajax({
-                url: '/api/power-meter/',
-                dataType: 'json',
-                success: function(data) {
-                    resolve(data);
-
-                },
-                error: function(xhr, status, err) {
-                    reject(err);
-
-                }
-            });
-        });
-
-        return promise.then(
-            result => dispatch(fetchPowerMetersSuccess(result)),
-            error => dispatch(fetchPowerMetersFailed(error))
+        return dispatch(callApi(`/api/power-meter/`)).then(
+            data => dispatch(fetchPowerMetersSuccess(data)),
+            (xhr, status, error) => dispatch(fetchPowerMetersFailed(error))
         );
     }
 }

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.config.prod.js",
-    "start": "webpack --colors --watch"
+    "watch": "webpack --colors --watch"
   },
   "repository": {
     "type": "git",
@@ -16,10 +16,13 @@
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.5",
     "jquery": "^2.2.4",
+    "js-cookie": "^2.1.2",
     "less-loader": "^2.2.3",
     "moment": "^2.13.0",
     "react": "^15.1.0",
+    "react-addons-css-transition-group": "^15.1.0",
     "react-bootstrap": "^0.29.4",
+    "react-bs-notifier": "^1.0.0",
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.4.1",

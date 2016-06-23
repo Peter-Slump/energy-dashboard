@@ -6,8 +6,7 @@ import { syncHistoryWithStore} from 'react-router-redux';
 // import the root reducer
 import rootReducer from './reducers/index';
 
-import { receivePowerMeters } from './actions/powerMeter';
-import { receiveReportsIfNeeded } from './actions/report';
+import { fetchUser } from './actions/user';
 
 const store = createStore(
     rootReducer,
@@ -16,9 +15,8 @@ const store = createStore(
     )
 );
 
-// Load powerMeters on startup
-store.dispatch(receivePowerMeters()).then(() => store.dispatch(receiveReportsIfNeeded()));
-
+// Load user on startup
+store.dispatch(fetchUser());
 
 export const history = syncHistoryWithStore(browserHistory, store);
 

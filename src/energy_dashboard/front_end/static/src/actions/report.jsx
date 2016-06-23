@@ -1,4 +1,4 @@
-import jQuery from 'jquery';
+import { callApi } from './api';
 
 export const INVALIDATE_REPORT = 'INVALIDATE_REPORT';
 export function invalidateReport(powerMeterId) {
@@ -102,18 +102,13 @@ function shouldReceiveReport(state, powerMeterId, stepSize, start, end) {
 
 function receiveReport(powerMeterId, stepSize, start, end) {
     return function(dispatch) {
-        // Notice a new fetch report
         dispatch(fetchReport(powerMeterId));
+        return dispatch(callApi(
+            `/api/reading-report/${powerMeterId}/${stepSize}/${start.toISOString()}/${end.toISOString()}/`
+        )).then(
+            data => dispatch(fetchReportSuccess(powerMeterId, data, start, end, stepSize)),
+            (xhr, status, error) => dispatch(fetchReportFailed(powerMeterId, error))
 
-        return jQuery.ajax({
-            url: `/api/reading-report/${powerMeterId}/${stepSize}/${start.toISOString()}/${end.toISOString()}/`,
-            dataType: 'json',
-            success: function(data) {
-                dispatch(fetchReportSuccess(powerMeterId, data, start, end, stepSize));
-            },
-            error: function(xhr, status, err) {
-                dispatch(fetchReportFailed(powerMeterId, err));
-            }
-        });
+        );
     }
 }

@@ -16,6 +16,11 @@ setup(
     long_description=README,
     package_dir={'': 'src'},
     packages=find_packages('src'),
+    extras_require={
+        'dev': [
+            'django-dynamic-fixtures',
+        ],
+    },
     setup_requires=[
         'pytest-runner'
     ],
@@ -24,16 +29,20 @@ setup(
         'djangorestframework==3.3.*',
         'gunicorn==19.4.*',
         'factory_boy',
-        'django-dynamic-fixtures',
-        'pytz==2016.4'
+        'pytz==2016.4',
+        'django-rest-auth==0.7.0',
     ],
     tests_require=[
         'pytest-django',
         'mock==2.0.*',
     ],
+    entry_points='''
+        [console_scripts]
+        energy-dashboard=energy_dashboard.commands:main
+    ''',
     url='',
     license='MIT',
-    author='Nigel Dokter',
-    author_email='nigeldokter@gmail.com',
-    description='An dashboard to keep track of your energy usage/delivery'
+    author='Peter Slump',
+    author_email='peter@yarf.nl',
+    description='A dashboard to keep track of your energy usage/delivery'
 )
