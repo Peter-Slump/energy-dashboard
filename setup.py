@@ -19,6 +19,7 @@ setup(
     extras_require={
         'dev': [
             'django-dynamic-fixtures',
+            'factory_boy',
         ],
     },
     setup_requires=[
@@ -28,17 +29,18 @@ setup(
         'Django==1.9.*',
         'djangorestframework==3.3.*',
         'gunicorn==19.4.*',
-        'factory_boy',
+
         'pytz==2016.4',
         'django-rest-auth==0.7.0',
     ],
     tests_require=[
         'pytest-django',
+        'factory_boy',
         'mock==2.0.*',
     ],
     entry_points='''
         [console_scripts]
-        energy-dashboard=energy_dashboard.commands:main
+        energy-dashboard=energy_dashboard.manage:execute
     ''',
     url='',
     license='MIT',
