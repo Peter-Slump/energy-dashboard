@@ -4,10 +4,10 @@ Energy Dashboard
 
 A dashboard to keep track of your energy usage.
 
-Installation
-============
+Quick setup
+===========
 
-1. Create virtual environment::
+1. Create virtual environment (Optional but highly recommended)::
 
   $ mkdir ~/.virtualenvs && virtualenv ~/.virtualenvs/energy-dashboard
   $ source ~/.virtualenvs/energy-dashboard/bin/activate
@@ -16,28 +16,36 @@ Installation
 
   $ pip install git+https://github.com/peter-slump/energy-dashboard
 
-3. Setup Django app::
+3. Run a quick server::
 
-  $ ./django-admin startproject energy_dashboard_project
+  $ energy-dashboard runserver --insecure
 
-4 Add the following apps to the INSTALLED_APPS list::
+Proper setup
+============
 
-    # energy_dashboard_project/energy_dashboard_project/settings.py
-    INSTALLED_APPS = [
-        ...,
-        'rest_framework',
-        'energy_dashboard.back_end',
-        'energy_dashboard.front_end'
-    ]
+1. Follow the steps of "Quick setup"
 
-5 Configure urls::
+2. Create settings file::
 
-    # energy_dashboard_project/energy_dashboard_project/settings.py
-    ROOT_URLCONF = 'energy_dashboard_project.urls'
+  $ touch settings_ed.py
 
-6. Run::
+3. Configure application::
 
-  $ ./manage.py runserver
+  # import all default settings
+  from energy_dashboard.config.defaults import *
+
+  # SECURITY WARNING: keep the secret key used in production secret!
+  SECRET_KEY = ' ** REPLACE WITH SECRET VALUE ** '
+
+  # Setup database (https://docs.djangoproject.com/en/1.9/ref/settings/#databases)
+
+3. Run application with settings from created settings file*::
+
+  $ PYTHONPATH=$PYTHONPATH:$PWD DJANGO_SETTINGS_MODULE=settings_ed energy-dashboard runserver
+
+\* example expects that command is invoked from folder where settings.py is
+created. Otherwise replace $PWD with the path where the settings.py can be
+found.
 
 Development
 ===========

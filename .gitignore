@@ -1,9 +1,9 @@
 .idea
 db.sqlite3
 *.pyc
-energy_dashboard/settings.py
 node_modules
 .cache
 .eggs
 *.egg-info
 npm-debug.log
+/settings.py
