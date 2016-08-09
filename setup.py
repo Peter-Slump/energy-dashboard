@@ -11,7 +11,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='Energy Dashboard',
+    name='energy-dashboard',
     version=VERSION,
     long_description=README,
     package_dir={'': 'src'},
@@ -20,6 +20,7 @@ setup(
         'dev': [
             'django-dynamic-fixtures',
             'factory_boy',
+            'bumpversion==0.5.3',
         ],
     },
     setup_requires=[
