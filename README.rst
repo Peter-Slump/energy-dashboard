@@ -23,7 +23,7 @@ Quick setup
 
   $ cd ed
 
-  $ energy-dashboard runserver --insecure
+  $ ./manage.py runserver
 
 Development
 ===========
