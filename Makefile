@@ -1,4 +1,6 @@
+
 install-python:
+	pip install --upgrade pip
 	pip install --upgrade setuptools
 	pip install -e .
 	pip install "file://`pwd`#egg=energy-dashboard[dev]"

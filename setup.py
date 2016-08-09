@@ -39,10 +39,6 @@ setup(
         'factory_boy',
         'mock==2.0.*',
     ],
-    entry_points='''
-        [console_scripts]
-        energy-dashboard=energy_dashboard.manage:execute
-    ''',
     url='',
     license='MIT',
     author='Peter Slump',
