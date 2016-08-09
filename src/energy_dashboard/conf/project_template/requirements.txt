@@ -1,1 +1,1 @@
-energy-dashboard==0.0.1
+git+https://github.com/peter-slump/energy-dashboard@v0.0.1#egg=energy-dashboard
