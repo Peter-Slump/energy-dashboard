@@ -1,1 +1,3 @@
 recursive-include src/energy_dashboard/conf *
+recursive-include src/energy_dashboard/front_end/templates *
+recursive-include src/energy_dashboard/front_end/static/dist *

@@ -16,6 +16,7 @@ setup(
     long_description=README,
     package_dir={'': 'src'},
     packages=find_packages('src'),
+    include_package_data=True,
     extras_require={
         'dev': [
             'django-dynamic-fixtures',
