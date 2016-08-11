@@ -15,7 +15,7 @@ Quick setup
 
 2. Install app::
 
-  $ pip install git+https://github.com/peter-slump/energy-dashboard@v0.0.5#egg=energy-dashboard
+  $ pip install git+https://github.com/peter-slump/energy-dashboard@v0.0.6#egg=energy-dashboard
 
   $ energy-dashboard install ed
 
