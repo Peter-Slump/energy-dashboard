@@ -9,7 +9,7 @@ Quick setup
 
 1. Create virtual environment (Optional but highly recommended)::
 
-  $ mkdir ~/.virtualenvs && virtualenv ~/.virtualenvs/energy-dashboard
+  $ mkdir -p ~/.virtualenvs && virtualenv ~/.virtualenvs/energy-dashboard
 
   $ source ~/.virtualenvs/energy-dashboard/bin/activate
 

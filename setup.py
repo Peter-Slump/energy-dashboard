@@ -19,7 +19,6 @@ setup(
     include_package_data=True,
     extras_require={
         'dev': [
-            'django-dynamic-fixtures',
             'factory_boy',
             'bumpversion==0.5.3',
         ],
@@ -31,7 +30,7 @@ setup(
         'Django==1.9.*',
         'djangorestframework==3.3.*',
         'gunicorn==19.4.*',
-
+        'django-dynamic-fixtures',
         'pytz==2016.4',
         'django-rest-auth==0.7.0',
     ],
