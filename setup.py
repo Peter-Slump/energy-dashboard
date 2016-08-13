@@ -33,6 +33,7 @@ setup(
         'django-dynamic-fixtures',
         'pytz==2016.4',
         'django-rest-auth==0.7.0',
+        'celery[redis]==3.1.23',
     ],
     tests_require=[
         'pytest-django',

@@ -4,6 +4,9 @@ Energy Dashboard
 
 A dashboard to keep track of your energy usage.
 
+.. image:: screenshot.png
+
+
 Quick setup
 ===========
 
@@ -28,17 +31,16 @@ Quick setup
 Development
 ===========
 
+Python
+------
+
+Setup environment::
+
+  $ make install-python
+
 Run Python tests::
 
   $ python setup.py test
-
-Build development front-end bundle::
-
-  $ npm start
-
-Build production front-end bundle::
-
-  $ npm build
 
 Install some test data. First add 'dynamic_fixtures' to the installed apps::
 
@@ -50,8 +52,13 @@ Load dummy data::
 
     $ ./manage.py load_dynamic_fixtures
 
+Front-end
+---------
 
-Screenshots
-===========
+Build development front-end bundle::
 
-.. image:: screenshot.png
+  $ npm start
+
+Build production front-end bundle::
+
+  $ npm build

@@ -43,8 +43,9 @@ INSTALLED_APPS = [
 
     'rest_auth',
 
-    'energy_dashboard.back_end',
-    'energy_dashboard.front_end'
+    'energy_dashboard.back_end.apps.EnergyDashboardBackEndAppConfig',
+    'energy_dashboard.front_end',
+    'energy_dashboard.back_end.apps.EnergyDashboardDSMRAppConfig',
 ]
 
 if DEBUG:
@@ -131,3 +132,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/{{ docs_version }}/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Celery settings
+BROKER_URL = 'redis://localhost:6379/0'
+
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
