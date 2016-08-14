@@ -84,9 +84,9 @@ class ReadingReportIterable(ValuesIterable):
 
     def __iter__(self):
         for item in super(ReadingReportIterable, self).__iter__():
-            yield ReadingReport(**item)
-            # power_meter = self.get_power_meter(item.pop('power_meter'))
-            # yield ReadingReport(power_meter=power_meter, **item)
+            # yield ReadingReport(**item)
+            power_meter = self.get_power_meter(item.pop('power_meter'))
+            yield ReadingReport(power_meter=power_meter, **item)
 
 
 class ReadingReportsQuerySet(models.QuerySet):

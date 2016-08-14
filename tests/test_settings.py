@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'energy_dashboard.back_end'
+    'energy_dashboard.back_end',
+    'energy_dashboard.dsmr',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -110,7 +111,7 @@ LOGGING = {
     'loggers': {
         'django.db.backends': {
             'handlers': ['console'],
-            'level': 'DEBUG',
+            'level': 'INFO',
             'propagate': True,
         },
     },

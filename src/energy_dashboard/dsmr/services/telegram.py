@@ -52,7 +52,7 @@ def log_consumed_electricity(user, parsed_telegram):
             user=user,
             meter_id=parsed_telegram[EQUIPMENT_IDENTIFIER].value,
             type_=DSMRPowerMeter.TYPE_CONSUMED_ELECTRICITY_DAY,
-            name=_('Consumed electricity day'),
+            name=_('Consumed electricity (day)'),
             unit=PowerMeter.UNIT_KWH
         )
 
@@ -66,7 +66,7 @@ def log_consumed_electricity(user, parsed_telegram):
             user=user,
             meter_id=parsed_telegram[EQUIPMENT_IDENTIFIER].value,
             type_=DSMRPowerMeter.TYPE_CONSUMED_ELECTRICITY_NIGHT,
-            name=_('Consumed electricity night'),
+            name=_('Consumed electricity (night)'),
             unit=PowerMeter.UNIT_KWH
         )
 
@@ -89,7 +89,7 @@ def log_produced_energy(user, parsed_telegram):
             user=user,
             meter_id=parsed_telegram[EQUIPMENT_IDENTIFIER].value,
             type_=DSMRPowerMeter.TYPE_PRODUCED_ELECTRICITY_DAY,
-            name=_('Produced electricity day'),
+            name=_('Produced electricity (day)'),
             unit=PowerMeter.UNIT_KWH
         )
 
@@ -105,13 +105,13 @@ def log_produced_energy(user, parsed_telegram):
             user=user,
             meter_id=parsed_telegram[EQUIPMENT_IDENTIFIER].value,
             type_=DSMRPowerMeter.TYPE_PRODUCED_ELECTRICITY_NIGHT,
-            name=_('Produced electricity night'),
+            name=_('Produced electricity (night)'),
             unit=PowerMeter.UNIT_KWH
         )
 
         energy_dashboard.back_end.services.add_reading(
             power_meter=power_meter.power_meter,
-            value_total=parsed_telegram[ELECTRICITY_USED_TARIFF_2].value,
+            value_total=parsed_telegram[ELECTRICITY_DELIVERED_TARIFF_2].value,
             datetime=message_datetime
         )
 
@@ -127,13 +127,11 @@ def log_consumed_gas(user, parsed_telegram):
         unit=PowerMeter.UNIT_M3
     )
 
-    if not Reading.objects.filter(power_meter=power_meter.power_meter,
-                                  datetime=reading_datetime).exists():
-        energy_dashboard.back_end.services.add_reading(
-            power_meter=power_meter.power_meter,
-            value_total=parsed_telegram[HOURLY_GAS_METER_READING].value,
-            datetime=reading_datetime
-        )
+    energy_dashboard.back_end.services.add_reading(
+        power_meter=power_meter.power_meter,
+        value_total=parsed_telegram[HOURLY_GAS_METER_READING].value,
+        datetime=reading_datetime
+    )
 
 
 def get_or_create_power_meter(user, meter_id, type_, name, unit):

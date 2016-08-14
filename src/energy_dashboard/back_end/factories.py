@@ -1,10 +1,20 @@
 from dateutil import tz
 
 import factory
+from django.contrib.auth.models import User
 
 from django.db.models.signals import post_save
 
 from energy_dashboard.back_end.models import Reading, PowerMeter
+
+
+class UserFactory(factory.DjangoModelFactory):
+
+    class Meta:
+        model = User
+
+    username = factory.Faker('user_name')
+    email = factory.Faker('email')
 
 
 class PowerMeterFactory(factory.DjangoModelFactory):
@@ -13,6 +23,7 @@ class PowerMeterFactory(factory.DjangoModelFactory):
         model = PowerMeter
 
     name = factory.Faker('word')
+    owner = factory.SubFactory(UserFactory)
 
 
 @factory.django.mute_signals(post_save)
