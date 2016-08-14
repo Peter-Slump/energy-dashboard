@@ -11,9 +11,12 @@ from django.utils.translation import ugettext as _
 
 class PowerMeter(models.Model):
 
+    UNIT_KWH = 'kwh'
+    UNIT_M3 = 'm3'
+
     UNITS = (
-        ('kwh', _('kWh')),
-        ('m3', _('m³'))
+        (UNIT_KWH, _('kWh')),
+        (UNIT_M3, _('m³'))
     )
 
     owner = models.ForeignKey('auth.User', related_name='power_meters')

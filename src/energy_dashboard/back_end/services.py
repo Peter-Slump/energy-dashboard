@@ -20,3 +20,19 @@ def reading_post_save_handler(instance, update_fields, **kwargs):
 
     next_reading.value_increment = next_reading.value_total - instance.value_total
     next_reading.save(update_fields=('value_increment',))
+
+
+def add_reading(power_meter, value_total, datetime):
+
+    try:
+        previous_reading = Reading.objects.order_by('datetime')\
+            .get(power_meter=power_meter, datetime__lt=datetime)
+    except Reading.DoesNotExist:
+        value_increment = 0
+    else:
+        value_increment = value_total - previous_reading.value_total
+
+    return Reading.objects.create(power_meter=power_meter,
+                                  value_total=value_total,
+                                  value_increment=value_increment,
+                                  datetime=datetime)
