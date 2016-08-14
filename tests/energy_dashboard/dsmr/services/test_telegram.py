@@ -11,7 +11,11 @@ from energy_dashboard.utils.mixins import MockTestCaseMixin
 import energy_dashboard.dsmr.services.telegram
 
 
-class DSMRTelegramParseTestCase(MockTestCaseMixin, TestCase):
+class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
+    """
+    To take care that the unittests makes more sense I used the whole telegram
+    service as a unit which get tested in this test case.
+    """
 
     def setUp(self):
         self.user = UserFactory()

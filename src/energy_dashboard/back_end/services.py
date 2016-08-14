@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from energy_dashboard.back_end.models import Reading
 
 
@@ -23,16 +25,24 @@ def reading_post_save_handler(instance, update_fields, **kwargs):
 
 
 def add_reading(power_meter, value_total, datetime):
+    value_total = Decimal(value_total)
 
     try:
-        previous_reading = Reading.objects.order_by('datetime')\
-            .get(power_meter=power_meter, datetime__lt=datetime)
-    except Reading.DoesNotExist:
+        previous_reading = Reading.objects\
+            .filter(
+                power_meter=power_meter,
+                datetime__lt=datetime) \
+            .order_by('-datetime')[0]
+
+    except IndexError:
         value_increment = 0
     else:
         value_increment = value_total - previous_reading.value_total
 
-    return Reading.objects.create(power_meter=power_meter,
-                                  value_total=value_total,
-                                  value_increment=value_increment,
-                                  datetime=datetime)
+    return Reading.objects.update_or_create(
+        power_meter=power_meter,
+        datetime=datetime,
+        defaults={
+            'value_total': value_total,
+            'value_increment': value_increment,
+        })
