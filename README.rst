@@ -20,13 +20,11 @@ Quick setup
 
   $ pip install git+https://github.com/peter-slump/energy-dashboard@v0.0.6#egg=energy-dashboard
 
-  $ energy-dashboard install ed
+  $ energy-dashboard install
 
 3. Run a quick server::
 
-  $ cd ed
-
-  $ ./manage.py runserver
+  $ cd energy_dashboard_project && ./manage.py runserver
 
 Development
 ===========
