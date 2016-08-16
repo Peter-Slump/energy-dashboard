@@ -14,6 +14,8 @@ class Fixture(BaseFixture):
         user = User.objects.first()
 
         PowerMeterFactory(owner=user, name='Gas', unit='m3')
-        PowerMeterFactory(owner=user, name='Consumed electricity (day)', unit='kwh')
-        PowerMeterFactory(owner=user, name='Consumed electricity (night)', unit='kwh')
+        PowerMeterFactory(owner=user, name='Consumed electricity (day)',
+                          unit='kwh')
+        PowerMeterFactory(owner=user, name='Consumed electricity (night)',
+                          unit='kwh')
         PowerMeterFactory(owner=user, name='Produced electricity', unit='kwh')

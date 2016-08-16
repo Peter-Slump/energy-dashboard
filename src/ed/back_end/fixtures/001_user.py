@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from dynamic_fixtures.fixtures.basefixture import BaseFixture
 
+
 class Fixture(BaseFixture):
 
     def load(self):

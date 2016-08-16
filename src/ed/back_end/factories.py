@@ -35,5 +35,7 @@ class ReadingFactory(factory.DjangoModelFactory):
     power_meter = factory.SubFactory(PowerMeterFactory)
     datetime = factory.Faker('date_time_between', start_date="-1y",
                              end_date="now", tzinfo=tz.gettz('UTC'))
-    value_increment = factory.Faker('pydecimal', left_digits=5, right_digits=3, positive=True)
-    value_total = factory.Faker('pydecimal', left_digits=15, right_digits=3, positive=True)
+    value_increment = factory.Faker('pydecimal', left_digits=5, right_digits=3,
+                                    positive=True)
+    value_total = factory.Faker('pydecimal', left_digits=15, right_digits=3,
+                                positive=True)

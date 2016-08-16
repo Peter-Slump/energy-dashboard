@@ -1,5 +1,16 @@
 from django.utils.translation import ugettext as _
-from dsmr_reader.obis_references import *
+from dsmr_reader.obis_references import (
+    P1_MESSAGE_HEADER,
+    P1_MESSAGE_TIMESTAMP,
+    ELECTRICITY_USED_TARIFF_1,
+    ELECTRICITY_USED_TARIFF_2,
+    ELECTRICITY_DELIVERED_TARIFF_1,
+    ELECTRICITY_DELIVERED_TARIFF_2,
+    ELECTRICITY_ACTIVE_TARIFF,
+    EQUIPMENT_IDENTIFIER,
+    EQUIPMENT_IDENTIFIER_GAS,
+    HOURLY_GAS_METER_READING,
+)
 from dsmr_reader.parsing import (
     CosemParser,
     MBusParser,
@@ -8,7 +19,7 @@ from dsmr_reader.parsing import (
 )
 from dsmr_reader.value_types import timestamp
 
-from ed.back_end.models import PowerMeter, Reading
+from ed.back_end.models import PowerMeter
 from ed.dsmr.models import DSMRPowerMeter
 
 import ed.back_end.services
@@ -21,7 +32,7 @@ TARIFF_NIGHT = 2
 SPECIFICATION = {
     P1_MESSAGE_HEADER: CosemParser(ValueParser(str)),
     P1_MESSAGE_TIMESTAMP: CosemParser(ValueParser(timestamp)),
-    ELECTRICITY_USED_TARIFF_1 : CosemParser(ValueParser(float)),
+    ELECTRICITY_USED_TARIFF_1: CosemParser(ValueParser(float)),
     ELECTRICITY_USED_TARIFF_2: CosemParser(ValueParser(float)),
     ELECTRICITY_DELIVERED_TARIFF_1: CosemParser(ValueParser(float)),
     ELECTRICITY_DELIVERED_TARIFF_2: CosemParser(ValueParser(float)),

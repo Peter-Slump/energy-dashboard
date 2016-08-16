@@ -26,7 +26,8 @@ def api_root(request, format=None):
         'auth': {
             'login': reverse('rest_login', request=request, format=format),
             'logout': reverse('rest_logout', request=request, format=format),
-            'user': reverse('rest_user_details', request=request, format=format),
+            'user': reverse('rest_user_details', request=request,
+                            format=format),
         }
     })
 

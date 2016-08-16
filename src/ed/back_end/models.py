@@ -40,8 +40,8 @@ class ReadingReport(object):
 
     @property
     def pk(self):
-        # Pretend that this "object" is saved. DRF only want to create a link to
-        # a related object (power_meter) when the primary key is set.
+        # Pretend that this "object" is saved. DRF only want to create a link
+        # to a related object (power_meter) when the primary key is set.
         return True
 
     @property

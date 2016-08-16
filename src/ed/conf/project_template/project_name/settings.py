@@ -1,3 +1,4 @@
+# flake8: noqa
 """
 Django settings for {{ project_name }} project.
 

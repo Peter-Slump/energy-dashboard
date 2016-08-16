@@ -6,4 +6,4 @@ node_modules
 .eggs
 *.egg-info
 npm-debug.log
-energy_dashboard_project
+energy_dashboard

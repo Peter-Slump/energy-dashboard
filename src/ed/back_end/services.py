@@ -5,8 +5,8 @@ from ed.back_end.models import Reading
 
 def reading_post_save_handler(instance, update_fields, **kwargs):
     """
-    Signal handler to make sure that the the value_increment of the next reading
-    is updated when required.
+    Signal handler to make sure that the the value_increment of the next
+    reading is updated when required.
     :param instance:
     :param update_fields:
     """
@@ -14,14 +14,14 @@ def reading_post_save_handler(instance, update_fields, **kwargs):
         return
 
     try:
-        next_reading = Reading.objects.filter(power_meter=instance.power_meter,
-                                              datetime__gt=instance.datetime)\
-            .order_by('-datetime')[0]
+        next_ = Reading.objects.filter(power_meter=instance.power_meter,
+                                       datetime__gt=instance.datetime)\
+                               .order_by('-datetime')[0]
     except IndexError:
         return
 
-    next_reading.value_increment = next_reading.value_total - instance.value_total
-    next_reading.save(update_fields=('value_increment',))
+    next_.value_increment = next_.value_total - instance.value_total
+    next_.save(update_fields=('value_increment',))
 
 
 def add_reading(power_meter, value_total, datetime):
