@@ -10,7 +10,7 @@ RUN pip install -U setuptools wheel
 #
 RUN pip install git+https://github.com/ndokter/dsmr_reader.git#egg=dsmr_reader
 
-RUN pip install git+https://github.com/peter-slump/energy-dashboard@v0.0.8#egg=energy-dashboard
+RUN pip install git+https://github.com/peter-slump/energy-dashboard@v0.0.9#egg=energy-dashboard
 
 RUN energy-dashboard install
 
