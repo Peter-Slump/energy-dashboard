@@ -23,5 +23,6 @@ class Command(BaseCommand):
         super(Command, self).add_arguments(parser=parser)
 
         parser.set_defaults(**{
+            'extension': 'py,conf',
             'template': path.join(energy_dashboard.__path__[0], 'conf',
                                   'project_template')})
