@@ -10,7 +10,7 @@ RUN pip install -U setuptools wheel
 # Temporary until dsmr_reader is in PyPi
 RUN pip install git+https://github.com/ndokter/dsmr_reader.git#egg=dsmr_reader
 
-RUN pip install git+https://github.com/peter-slump/energy-dashboard@v0.0.11#egg=energy-dashboard
+RUN pip install git+https://github.com/peter-slump/energy-dashboard@v0.0.12#egg=energy-dashboard
 
 RUN energy-dashboard install
 
