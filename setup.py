@@ -35,6 +35,7 @@ setup(
         'django-rest-auth==0.7.0',
         'celery[redis]==3.1.23',
         'django-supervisor==0.3.4',
+        'gunicorn==19.4.5',
         # 'git+https://github.com/ndokter/dsmr_reader.git#egg=dsmr_reader',
     ],
     tests_require=[
