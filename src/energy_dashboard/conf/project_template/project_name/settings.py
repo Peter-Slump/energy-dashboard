@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 
     'energy_dashboard.back_end.apps.EnergyDashboardBackEndAppConfig',
     'energy_dashboard.front_end',
-    'energy_dashboard.back_end.apps.EnergyDashboardDSMRAppConfig',
+    'energy_dashboard.dsmr.apps.EnergyDashboardDSMRAppConfig',
 ]
 
 if DEBUG:

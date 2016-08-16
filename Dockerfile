@@ -8,4 +8,4 @@ RUN pip install git+https://github.com/peter-slump/energy-dashboard@v0.0.7#egg=e
 
 RUN energy-dashboard install
 
-RUN cd energy_dashboard_project && ./manage.py runserver
+CMD cd energy_dashboard_project && ./manage.py runserver
