@@ -26,7 +26,7 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
             '',
             '1-3:0.2.8(42)',
             '0-0:1.0.0(160807223449S)',
-            '0-0:96.1.1(4530303331303033323235303634323136)',
+            '0-0:96.1.1(123456789)',
             '1-0:1.8.1(000352.211*kWh)',
             '1-0:1.8.2(000422.343*kWh)',
             '1-0:2.8.1(000236.452*kWh)',
@@ -46,7 +46,7 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
             '1-0:22.7.0(00.000*kW)',
             '0-1:24.1.0(003)',
             '0-1:24.1.0(003)',
-            '0-1:96.1.0(4730303332353631323631393538393136)',
+            '0-1:96.1.0(987654321)',
             '0-1:24.2.1(160807220000S)(00185.015*m3)',
             '!82DB'
         ]
@@ -64,21 +64,21 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
             power_meter__owner=self.user,
             power_meter__unit='m3',
             power_meter__name='Consumed gas',
-            meter_id='4730303332353631323631393538393136',
+            meter_id='987654321',
             type='consumed-gas'
         )
         qs_electricity_consumed = DSMRPowerMeter.objects.filter(
             power_meter__owner=self.user,
             power_meter__unit='kwh',
             power_meter__name='Consumed electricity (day)',
-            meter_id='4530303331303033323235303634323136',
+            meter_id='123456789',
             type='consumed-electricity-day'
         )
         qs_electricity_produced = DSMRPowerMeter.objects.filter(
             power_meter__owner=self.user,
             power_meter__unit='kwh',
             power_meter__name='Produced electricity (day)',
-            meter_id='4530303331303033323235303634323136',
+            meter_id='123456789',
             type='produced-electricity-day'
         )
 
@@ -105,14 +105,14 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
             power_meter__owner=self.user,
             power_meter__unit='kwh',
             power_meter__name='Consumed electricity (night)',
-            meter_id='4530303331303033323235303634323136',
+            meter_id='123456789',
             type='consumed-electricity-night'
         )
         qs_electricity_produced = DSMRPowerMeter.objects.filter(
             power_meter__owner=self.user,
             power_meter__unit='kwh',
             power_meter__name='Produced electricity (night)',
-            meter_id='4530303331303033323235303634323136',
+            meter_id='123456789',
             type='produced-electricity-night'
         )
 
@@ -144,17 +144,17 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
         # Test called for consumed electricity day
         ced_meter = DSMRPowerMeter.objects.get(
             power_meter__owner=self.user,
-            meter_id='4530303331303033323235303634323136',
+            meter_id='123456789',
             type='consumed-electricity-day'
         )
         ped_meter = DSMRPowerMeter.objects.get(
             power_meter__owner=self.user,
-            meter_id='4530303331303033323235303634323136',
+            meter_id='123456789',
             type='produced-electricity-day'
         )
         g_meter = DSMRPowerMeter.objects.get(
             power_meter__owner=self.user,
-            meter_id='4730303332353631323631393538393136',
+            meter_id='987654321',
             type='consumed-gas'
         )
         self.add_reading_mock.assert_has_calls([
@@ -192,12 +192,12 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
         # Test called for consumed electricity night
         ced_meter = DSMRPowerMeter.objects.get(
             power_meter__owner=self.user,
-            meter_id='4530303331303033323235303634323136',
+            meter_id='123456789',
             type='consumed-electricity-night'
         )
         ped_meter = DSMRPowerMeter.objects.get(
             power_meter__owner=self.user,
-            meter_id='4530303331303033323235303634323136',
+            meter_id='123456789',
             type='produced-electricity-night'
         )
         self.add_reading_mock.assert_has_calls([
@@ -222,7 +222,7 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
             power_meter__owner=self.user,
             power_meter__unit='kwh',
             power_meter__name='Produced electricity (day)',
-            meter_id='4530303331303033323235303634323136',
+            meter_id='123456789',
             type='produced-electricity-day'
         )
 
@@ -256,7 +256,7 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
             power_meter__owner=self.user,
             power_meter__unit='kwh',
             power_meter__name='Produced electricity (night)',
-            meter_id='4530303331303033323235303634323136',
+            meter_id='123456789',
             type='produced-electricity-night'
         )
 

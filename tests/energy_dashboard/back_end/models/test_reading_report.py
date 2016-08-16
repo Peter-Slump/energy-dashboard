@@ -59,7 +59,7 @@ class BackEndModelReadingReportTestCase(TestCase):
         self.assertIsInstance(item, ReadingReport)
         self.assertEqual(item.datetime,
                          dateparse.parse_datetime('2016-05-19 21:05:00'))
-        self.assertEqual(item.power_meter, self.power_meter)
+        self.assertEqual(item.power_meter, self.power_meter.pk)
         self.assertEqual(item.value_increment__sum, sum(range_minute_5))
 
         # 2016-05-19 22:00:00
@@ -67,7 +67,7 @@ class BackEndModelReadingReportTestCase(TestCase):
         self.assertIsInstance(item, ReadingReport)
         self.assertEqual(item.datetime,
                          dateparse.parse_datetime('2016-05-19 21:06:00'))
-        self.assertEqual(item.power_meter, self.power_meter)
+        self.assertEqual(item.power_meter, self.power_meter.pk)
         self.assertEqual(item.value_increment__sum, sum(range_minute_6))
 
     def test_report_hourly(self):
@@ -94,7 +94,7 @@ class BackEndModelReadingReportTestCase(TestCase):
         self.assertIsInstance(item, ReadingReport)
         self.assertEqual(item.datetime,
                          dateparse.parse_datetime('2016-05-19 21:00:00'))
-        self.assertEqual(item.power_meter, self.power_meter)
+        self.assertEqual(item.power_meter, self.power_meter.pk)
         self.assertEqual(item.value_increment__sum, sum(range_hour_21))
 
         # 2016-05-19 22:00:00
@@ -102,7 +102,7 @@ class BackEndModelReadingReportTestCase(TestCase):
         self.assertIsInstance(item, ReadingReport)
         self.assertEqual(item.datetime,
                          dateparse.parse_datetime('2016-05-19 22:00:00'))
-        self.assertEqual(item.power_meter, self.power_meter)
+        self.assertEqual(item.power_meter, self.power_meter.pk)
         self.assertEqual(item.value_increment__sum, sum(range_hour_22))
 
     def test_report_daily(self):
@@ -129,7 +129,7 @@ class BackEndModelReadingReportTestCase(TestCase):
         self.assertIsInstance(item, ReadingReport)
         self.assertEqual(item.datetime,
                          dateparse.parse_datetime('2016-05-03 00:00:00'))
-        self.assertEqual(item.power_meter, self.power_meter)
+        self.assertEqual(item.power_meter, self.power_meter.pk)
         self.assertEqual(item.value_increment__sum, sum(range_day_3))
 
         # 2016-05-04 00:00:00
@@ -137,7 +137,7 @@ class BackEndModelReadingReportTestCase(TestCase):
         self.assertIsInstance(item, ReadingReport)
         self.assertEqual(item.datetime,
                          dateparse.parse_datetime('2016-05-04 00:00:00'))
-        self.assertEqual(item.power_meter, self.power_meter)
+        self.assertEqual(item.power_meter, self.power_meter.pk)
         self.assertEqual(item.value_increment__sum, sum(range_day_4))
 
     def test_report_monthly(self):
@@ -164,7 +164,7 @@ class BackEndModelReadingReportTestCase(TestCase):
         self.assertIsInstance(item, ReadingReport)
         self.assertEqual(item.datetime,
                          dateparse.parse_datetime('2016-01-01 00:00:00'))
-        self.assertEqual(item.power_meter, self.power_meter)
+        self.assertEqual(item.power_meter, self.power_meter.pk)
         self.assertEqual(item.value_increment__sum, sum(range_month_1))
 
         # 2016-02-01 00:00:00
@@ -172,7 +172,7 @@ class BackEndModelReadingReportTestCase(TestCase):
         self.assertIsInstance(item, ReadingReport)
         self.assertEqual(item.datetime,
                          dateparse.parse_datetime('2016-02-01 00:00:00'))
-        self.assertEqual(item.power_meter, self.power_meter)
+        self.assertEqual(item.power_meter, self.power_meter.pk)
         self.assertEqual(item.value_increment__sum, sum(range_month_2))
 
     def test_report_yearly(self):
@@ -199,7 +199,7 @@ class BackEndModelReadingReportTestCase(TestCase):
         self.assertIsInstance(item, ReadingReport)
         self.assertEqual(item.datetime,
                          dateparse.parse_datetime('2015-01-01 00:00:00'))
-        self.assertEqual(item.power_meter, self.power_meter)
+        self.assertEqual(item.power_meter, self.power_meter.pk)
         self.assertEqual(item.value_increment__sum, sum(range_year_2015))
 
         # 2016-01-01 00:00:00
@@ -207,5 +207,5 @@ class BackEndModelReadingReportTestCase(TestCase):
         self.assertIsInstance(item, ReadingReport)
         self.assertEqual(item.datetime,
                          dateparse.parse_datetime('2016-01-01 00:00:00'))
-        self.assertEqual(item.power_meter, self.power_meter)
+        self.assertEqual(item.power_meter, self.power_meter.pk)
         self.assertEqual(item.value_increment__sum, sum(range_year_2016))
