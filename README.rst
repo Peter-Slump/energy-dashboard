@@ -24,7 +24,7 @@ Quick setup
 
 3. Run a quick server::
 
-  $ cd energy_dashboard_project && ./manage.py runserver
+  $ cd energy_dashboard && ./manage.py runserver
 
 Development
 ===========
@@ -42,7 +42,7 @@ Run Python tests::
 
 Install some test data. First add 'dynamic_fixtures' to the installed apps::
 
-    # energy_dashboard_project/energy_dashboard_project/settings.py
+    # energy_dashboard/energy_dashboard/settings.py
     if DEBUG:
         INSTALLED_APPS = INSTALLED_APPS + ['dynamic_fixtures']
 

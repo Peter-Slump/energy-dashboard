@@ -1,4 +1,4 @@
-from energy_dashboard_project.settings import *
+from energy_dashboard.settings import *
 
 DEBUG = False
 

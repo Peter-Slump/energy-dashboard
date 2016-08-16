@@ -45,7 +45,7 @@ setup(
     ],
     entry_points="""
         [console_scripts]
-        energy-dashboard=energy_dashboard.bin.energy_dashboard:execute_from_command_line
+        energy-dashboard=ed.bin.energy_dashboard:execute_from_command_line
     """,
     url='',
     license='MIT',
