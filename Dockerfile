@@ -16,7 +16,7 @@ RUN mkdir -p /static
 
 RUN energy-dashboard install
 
-ADD settings_docker.py energy_dashboard/energy_dashboard/
+ADD docker_files/settings_docker.py energy_dashboard/energy_dashboard/
 
 ENV DJANGO_SETTINGS_MODULE energy_dashboard.settings_docker
 
