@@ -7,6 +7,17 @@ A dashboard to keep track of your energy usage.
 .. image:: screenshot.png
 
 
+Docker compose setup
+====================
+
+1. Install app
+
+  $ git clone git+https://github.com/peter-slump/energy-dashboard@v0.0.12
+  $ docker-compose up
+
+2. Visit 127.0.0.1:8080
+
+
 Quick setup
 ===========
 
@@ -22,7 +33,7 @@ Quick setup
 
   $ energy-dashboard install
 
-3. Run a quick server::
+3. Run server::
 
   $ cd energy_dashboard && ./manage.py runserver
 
@@ -39,12 +50,6 @@ Setup environment::
 Run Python tests::
 
   $ python setup.py test
-
-Install some test data. First add 'dynamic_fixtures' to the installed apps::
-
-    # energy_dashboard/energy_dashboard/settings.py
-    if DEBUG:
-        INSTALLED_APPS = INSTALLED_APPS + ['dynamic_fixtures']
 
 Load dummy data::
 

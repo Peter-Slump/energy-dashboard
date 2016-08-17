@@ -1,7 +1,7 @@
 var path = require('path'),
     webpack = require('webpack');
 
-var staticsFolder = "src/energy_dashboard/front_end/static",
+var staticsFolder = "src/ed/front_end/static",
     distFolder = staticsFolder + "/dist";
 
 module.exports = {

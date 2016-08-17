@@ -21,6 +21,6 @@ ADD settings_docker.py energy_dashboard/energy_dashboard/
 ENV DJANGO_SETTINGS_MODULE energy_dashboard.settings_docker
 
 CMD cd energy_dashboard \
-    && ./manage.py collectstatic --noinput -c \
+    && ./manage.py collectstatic --noinput \
     && ./manage.py migrate \
     && ./manage.py supervisor
