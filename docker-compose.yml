@@ -1,0 +1,33 @@
+version: '2'
+services:
+  energy-dashboard:
+    build: .
+    volumes:
+    - staticsvolume01:/static
+    links:
+    - redis
+    - postgres
+  redis:
+    image: redis:3.2-alpine
+    command: redis-server --appendonly yes
+    volumes:
+    - redisvolume01:/data
+  postgres:
+    image: postgres:9.5
+    volumes:
+    - postgresvolume01:/var/lib/postgresql/data
+  nginx:
+    image: nginx:1.10-alpine
+    ports:
+    - "8080:80"
+    links:
+    - energy-dashboard
+    volumes:
+    - staticsvolume01:/usr/share/nginx/html:ro
+    - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    - ./uwsgi_params:/etc/nginx/uwsgi_params:ro
+
+volumes:
+  staticsvolume01: {}
+  redisvolume01: {}
+  postgresvolume01: {}
