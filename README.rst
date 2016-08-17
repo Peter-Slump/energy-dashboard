@@ -10,12 +10,20 @@ A dashboard to keep track of your energy usage.
 Docker compose setup
 ====================
 
-1. Install app
+1. Install app::
 
   $ git clone git+https://github.com/peter-slump/energy-dashboard@v0.0.13
   $ docker-compose up
 
-2. Visit 127.0.0.1:8080
+2. Create superuser::
+
+  $ docker exec -it energydashboard_energy-dashboard_1 ./energy_dashboard/manage.py createsuperuser
+
+3. Visit the admin http://127.0.0.1:8080/admin/::
+
+  $ Log in and create some power meters.
+
+4. Visit the dashboard http://127.0.0.1:8080/
 
 
 Quick setup
