@@ -12,7 +12,7 @@ Docker compose setup
 
 1. Install app
 
-  $ git clone git+https://github.com/peter-slump/energy-dashboard@v0.0.12
+  $ git clone git+https://github.com/peter-slump/energy-dashboard@v0.0.13
   $ docker-compose up
 
 2. Visit 127.0.0.1:8080
@@ -29,7 +29,7 @@ Quick setup
 
 2. Install app::
 
-  $ pip install git+https://github.com/peter-slump/energy-dashboard@v0.0.12#egg=energy-dashboard
+  $ pip install git+https://github.com/peter-slump/energy-dashboard@v0.0.13#egg=energy-dashboard
 
   $ energy-dashboard install
 
