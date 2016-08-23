@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 
 from datetime import datetime
 
+from pytz import UTC
+
 from django.db import models
 from django.db.models.aggregates import Sum
 from django.db.models.query import ValuesIterable
@@ -60,7 +62,8 @@ class ReadingReport(object):
             day=self._values.get('day', 1),
             hour=self._values.get('hour', 0),
             minute=self._values.get('minute', 0),
-            second=0
+            second=0,
+            tzinfo=UTC
         )
 
 
@@ -109,7 +112,7 @@ class ReadingReportsQuerySet(models.QuerySet):
 
     def _report(self, *args):
         qs = self\
-            .order_by(*args or [] + ['power_meter'])\
+            .order_by(*args or [] + ['power_meter', 'datetime'])\
             .values('power_meter', *args) \
             .annotate(Sum('value_increment'))
         qs._iterable_class = ReadingReportIterable
