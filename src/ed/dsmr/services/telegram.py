@@ -1,5 +1,5 @@
 from django.utils.translation import ugettext as _
-from dsmr_reader.obis_references import (
+from dsmr_parser.obis_references import (
     P1_MESSAGE_HEADER,
     P1_MESSAGE_TIMESTAMP,
     ELECTRICITY_USED_TARIFF_1,
@@ -11,13 +11,13 @@ from dsmr_reader.obis_references import (
     EQUIPMENT_IDENTIFIER_GAS,
     HOURLY_GAS_METER_READING,
 )
-from dsmr_reader.parsing import (
+from dsmr_parser.parsers import (
     CosemParser,
     MBusParser,
     TelegramParser,
     ValueParser,
 )
-from dsmr_reader.value_types import timestamp
+from dsmr_parser.value_types import timestamp
 
 from ed.back_end.models import PowerMeter
 from ed.dsmr.models import DSMRPowerMeter

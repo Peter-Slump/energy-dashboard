@@ -22,6 +22,9 @@ setup(
             'factory_boy',
             'bumpversion==0.5.3',
         ],
+        'postgres': [
+            'psycopg2',
+        ]
     },
     setup_requires=[
         'pytest-runner'
@@ -31,13 +34,12 @@ setup(
         'djangorestframework==3.3.*',
         'gunicorn==19.4.*',
         'django-dynamic-fixtures',
-        'pytz==2016.4',
+        'pytz==2016.*',
         'django-rest-auth==0.7.0',
         'celery[redis]==3.1.23',
         'django-supervisor==0.3.4',
         'gunicorn==19.4.5',
-        'psycopg2',
-        # 'git+https://github.com/ndokter/dsmr_reader.git#egg=dsmr_reader',
+        'dsmr-parser',
     ],
     tests_require=[
         'pytest-django',

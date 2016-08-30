@@ -4,6 +4,7 @@ services:
     build: .
     volumes:
     - staticsvolume01:/static
+    - .:/code
     links:
     - redis
     - postgres
