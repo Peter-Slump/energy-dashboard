@@ -12,7 +12,7 @@ Docker compose setup
 
 1. Install app::
 
-  $ git clone git+https://github.com/peter-slump/energy-dashboard@v0.0.13
+  $ git clone git+https://github.com/peter-slump/energy-dashboard@v0.0.14
   $ docker-compose up
 
 2. Create superuser::
@@ -37,7 +37,7 @@ Quick setup
 
 2. Install app::
 
-  $ pip install git+https://github.com/peter-slump/energy-dashboard@v0.0.13#egg=energy-dashboard
+  $ pip install git+https://github.com/peter-slump/energy-dashboard@v0.0.14#egg=energy-dashboard
 
   $ energy-dashboard install
 
