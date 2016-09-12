@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React from 'react';
 import {
     Button,
@@ -16,8 +17,85 @@ var ReadingsViewPresets = React.createClass({
         reportPeriodActions.changeReportPeriod(e.target.value);
         reportActions.receiveReportsIfNeeded();
     },
+    handleOffsetClick: function(e) {
+        const {reportPeriodActions, reportActions} = this.props;
+        reportPeriodActions.changeReportPeriodOffset(parseInt(e.target.value));
+        reportActions.receiveReportsIfNeeded();
+    },
     render: function() {
         const { reportPeriod } = this.props;
+        const { period, offset } = reportPeriod;
+
+        let offsetLabel = '';
+        let now = moment();
+
+        switch (period) {
+            case 'year':
+                switch (offset) {
+                    case 0:
+                        offsetLabel = 'This year';
+                        break;
+                    case -1:
+                        offsetLabel = 'Last year';
+                        break;
+                    default:
+                        now.add(offset, 'years');
+                        offsetLabel = now.format('YYYY');
+                }
+                break;
+
+                case 'month':
+                    switch (offset) {
+                        case 0:
+                            offsetLabel = 'This month';
+                            break;
+                        case -1:
+                            offsetLabel = 'Last month';
+                            break;
+                        default:
+                            now.add(offset, 'months');
+                            offsetLabel = now.format(offset > -12 ? 'MMMM' : 'MMM YYYY');
+                    }
+                    break;
+
+                    case 'week':
+                        switch (offset) {
+                            case 0:
+                                offsetLabel = 'This week';
+                                break;
+                            case -1:
+                                offsetLabel = 'Last week';
+                                break;
+                            default:
+                                now.add(offset, 'weeks');
+                                offsetLabel = now.format(offset > -52 ? '[Week:] w' : '[Week:] w YYYY');
+                        }
+                        break;
+
+                    case 'day':
+                        switch (offset) {
+                            case 0:
+                                offsetLabel = 'Today';
+                                break;
+                            case -1:
+                                offsetLabel = 'Yesterday';
+                                break;
+                            case -2:
+                            case -3:
+                            case -4:
+                            case -5:
+                            case -6:
+                                now.add(offset, 'days');
+                                offsetLabel = now.format('[Last] dddd');
+                                break;
+                            default:
+                                now.add(offset, 'days');
+                                offsetLabel = now.format(offset > -365 ? 'MMMM Do' : 'MMMM Do YYYY');
+                        }
+                        break;
+            default:
+                offsetLabel = 'Unknown';
+        }
         return (
             <ButtonToolbar className="row-bottom-spacing">
                 <ButtonGroup>
@@ -26,23 +104,17 @@ var ReadingsViewPresets = React.createClass({
                     <Button active={reportPeriod.period == 'week'} value={'week'} onClick={this.handleClick}>Week</Button>
                     <Button active={reportPeriod.period == 'day'} value={'day'} onClick={this.handleClick}>Day</Button>
                 </ButtonGroup>
-                {/*
                 <Col xs={3} md={3}>
-                    <InputGroup>
-                        <InputGroup.Button>
-                            <Button>
-                                <Glyphicon glyph="chevron-left" />
-                            </Button>
-                        </InputGroup.Button>
-                        <FormControl disabled type="text" />
-                        <InputGroup.Button>
-                            <Button>
-                                <Glyphicon glyph="chevron-right" />
-                            </Button>
-                        </InputGroup.Button>
-                    </InputGroup>
+                    <ButtonGroup>
+                        <Button value="-1" onClick={this.handleOffsetClick}>
+                            <Glyphicon glyph="chevron-left" />
+                        </Button>
+                        <Button value="1" onClick={this.handleOffsetClick}>
+                            <Glyphicon glyph="chevron-right" />
+                        </Button>
+                        <Button disabled>{offsetLabel}</Button>
+                    </ButtonGroup>
                 </Col>
-                */}
             </ButtonToolbar>
         );
     }

@@ -1,4 +1,5 @@
 import { callApi } from './api';
+import moment from 'moment';
 
 export const INVALIDATE_REPORT = 'INVALIDATE_REPORT';
 export function invalidateReport(powerMeterId) {
@@ -40,39 +41,39 @@ export function fetchReportFailed(powerMeterId, error) {
 export function receiveReportsIfNeeded() {
     return function(dispatch, getState) {
         const state = getState();
+        let offset = state.reportPeriod.offset;
         let stepSize = null,
-            start = new Date(),
-            end = new Date();
-        start.setSeconds(0, 0);
-        end.setSeconds(0, 0);
+            start = moment().set({'hour': 0, 'minute': 0, 'second': 0, 'millisecond': 0}),
+            end = moment().set({'hour': 0, 'minute': 0, 'second': 0, 'millisecond': 0});
 
         switch (state.reportPeriod.period) {
             case 'day':
-                start.setDate(start.getDate() - 1); // Yesterday
+                start.add(offset, 'days');
+                end.add(offset + 1, 'days');
                 stepSize = 'minute';
                 break;
             case 'week':
-                start.setDate(start.getDate() - 7); // Last week
-                start.setMinutes(0);
-                end.setMinutes(0);
+                start.day(0);
+                end.day(0);
+                start.add(offset, 'weeks');
+                end.add(offset + 1, 'weeks');
                 stepSize = 'hour';
                 break;
             case 'month':
-                start.setMonth(start.getMonth() - 1); // Last month
-                start.setHours(0, 0, 0, 0);
-                end.setHours(0, 0, 0, 0);
+                start.date(1);
+                end.date(1);
+                start.add(offset, 'months');
+                end.add(offset + 1, 'months');
                 stepSize = 'day';
                 break;
             case 'year':
-                start.setFullYear(start.getFullYear() - 1); // Last year
-                start.setHours(0, 0, 0, 0);
-                end.setHours(0, 0, 0, 0);
-                start.setDate(1);
-                end.setDate(1);
+                start.set({'date': 1, 'month': 0});
+                end.set({'date': 1, 'month': 0});
+                start.add(offset, 'years');
+                end.add(offset + 1, 'years');
                 stepSize = 'month';
                 break;
         }
-
         Promise.all(
             Object.keys(state.powerMeter.powerMetersById).map(function(id){
                 if (shouldReceiveReport(state, id, stepSize, start, end)){
@@ -94,7 +95,7 @@ function shouldReceiveReport(state, powerMeterId, stepSize, start, end) {
     const report = state.report[powerMeterId];
     if (!report) {
         return true;
-    } else if ( report.stepSize == stepSize || report.start == start || report.end == end ) {
+    } else if ( report.stepSize == stepSize && report.start == start && report.end == end ) {
         return false;
     }
     return true;
