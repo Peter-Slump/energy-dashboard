@@ -17,11 +17,19 @@ var ChartWrapper = React.createClass({
 
             plotData.push({
                 data: report[powerMeterId].items.map(function(item){
-                    return [new Date(item.datetime), parseFloat(item.value_increment)]
+                    let value = parseFloat(item.value_increment)
+                    if(currentPowerMeter.data.unit == 'kwh') {
+                        if(report[powerMeterId].stepSize == 'minute') {
+                            // Calculate to watt average
+                            value = (value * 1000) * 60
+                        }
+                    }
+                    return [new Date(item.datetime), value]
                 }),
                 color: currentPowerMeter.color,
                 shadowSize: 0,
                 label: currentPowerMeter.data.name,
+                unit: currentPowerMeter.data.unit,
                 // stack: true,
                 lines: {
                     lineWidth: 2,

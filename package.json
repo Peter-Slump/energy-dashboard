@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.config.prod.js",
-    "watch": "webpack --colors --watch"
+    "start": "webpack --colors --watch --config=webpack.config.js"
   },
   "repository": {
     "type": "git",

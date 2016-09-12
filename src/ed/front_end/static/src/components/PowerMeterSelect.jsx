@@ -17,7 +17,6 @@ var PowerMeterSelect = React.createClass({
                         Object.keys(powerMeters).map((key) =>
                             <Checkbox checked={powerMeters[key].isSelected} key={powerMeters[key].data.id} value={powerMeters[key].data.id} onChange={this.handleChange}>
                                 {powerMeters[key].data.name}
-                                <span className="text-muted">({powerMeters[key].data.unit})</span>
                             </Checkbox>)
                     }
                 </FormGroup>

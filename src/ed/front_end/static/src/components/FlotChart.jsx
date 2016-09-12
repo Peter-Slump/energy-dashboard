@@ -13,11 +13,11 @@ let numberWithCommas = function(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
-let buildTooltipHandler = function(dataSets) {
+let buildTooltipHandler = function(dataSets, stepSize) {
     return function(_l, xval, _y, flotItem) {
         let {series, dataIndex} = flotItem;
         let time = series.data[dataIndex][0];
-        let yval;
+        let yval, unitLabel;
         let content = '<div class="panel panel-primary"><div class="panel-heading"><h3 class="panel-title">';
         content += getTime(time, series.xaxis.options.minTickSize[1]);
         content += '</h3></div><div class="panel-body">';
@@ -26,8 +26,27 @@ let buildTooltipHandler = function(dataSets) {
                 return item[0].valueOf() == time.valueOf();
             });
             yval = yval === undefined ? '-' : numberWithCommas(yval[1]);
+            switch (dataSets[i].unit) {
+                case 'm3':
+                    unitLabel = 'm³'
+                    break;
+                case 'kwh':
+                    if(stepSize == 'minute') {
+                        unitLabel = 'Watts';
+                    } else {
+                        unitLabel = 'kWh' ;
+                    }
+                    break;
+                default:
+                    unitLabel = '';
+                    break;
+            }
             content += '<strong style="color:' + dataSets[i].color + '">'
-            content += dataSets[i].label + ':</strong> ' + yval + '<br>';
+            content += dataSets[i].label + ':</strong> ' + yval;
+            if( yval != '-' ) {
+                content += ' <span class="text-muted">' + unitLabel  + '</span>';
+            }
+            content += '<br>';
         }
         content += '</div></div>';
         return content;
@@ -85,6 +104,7 @@ const FlotChart = React.createClass({
     let plotOptions = {
       xaxis: {
         mode: 'time',
+        timezone: 'browser',
         minTickSize: [1, this.props.stepSize],
         min: this.props.start,
         max: this.props.end,
@@ -92,12 +112,12 @@ const FlotChart = React.createClass({
       },
       yaxis: {
         min: 0,
-        minTickSize: 0.01,
+        minTickSize: 0.001,
         color: '#666666',
       },
       tooltip: true,
       tooltipOpts: {
-        content: buildTooltipHandler(series),
+        content: buildTooltipHandler(series, this.props.stepSize),
         defaultTheme: false
       },
       grid: {
