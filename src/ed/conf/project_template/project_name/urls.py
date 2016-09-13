@@ -17,10 +17,13 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from ed.back_end.api.authentication import LogoutView
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/dsmr', include('ed.dsmr.api.urls')),
     url(r'^api/', include('ed.back_end.api.urls')),
+    url(r'^rest-auth/logout/$', LogoutView.as_view(), name='rest_logout'),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^rest-auth/', include('rest_auth.urls')),
     url(r'', include('ed.front_end.urls'))
