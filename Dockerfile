@@ -9,7 +9,7 @@ RUN mkdir -p /code
 RUN pip install -U pip
 RUN pip install -U setuptools wheel
 
-#RUN pip install git+https://github.com/peter-slump/energy-dashboard@v0.0.17#egg=energy-dashboard
+#RUN pip install git+https://github.com/peter-slump/energy-dashboard@v0.0.18#egg=energy-dashboard
 ADD . /code
 RUN pip install -e /code
 
