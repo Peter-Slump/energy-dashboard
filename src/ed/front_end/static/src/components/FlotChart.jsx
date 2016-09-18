@@ -5,7 +5,6 @@ import moment from 'moment';
 
 // we need flot and the various plugins
 require('flot');
-require('flot/jquery.flot.stack');
 require('flot/jquery.flot.time');
 require('flot-tooltip/jquery.flot.tooltip');
 
@@ -76,78 +75,94 @@ let getTime = function(time, stepSize) {
 }
 
 const FlotChart = React.createClass({
-  propTypes: {
-    plotData: React.PropTypes.array,
-    style: React.PropTypes.object
-  },
+    propTypes: {
+        plotData: React.PropTypes.array,
+        style: React.PropTypes.object
+    },
 
-  componentDidMount() {
-    this.renderChart();
-    jQuery(window).resize(this.renderChart);
-  },
+    componentDidMount() {
+        this.renderChart();
+        jQuery(window).resize(this.renderChart);
+    },
 
-  shouldComponentUpdate(nextProps, nextState) {
-    // TODO(dcramer): improve logic here
-    return nextProps.plotData.length > 0;
-  },
+    componentDidUpdate() {
+        this.renderChart();
+    },
 
-  componentDidUpdate() {
-    this.renderChart();
-  },
+    componentWillUnmount() {
+        jQuery(window).unbind('resize', this.renderChart);
+    },
 
-  componentWillUnmount() {
-    jQuery(window).unbind('resize', this.renderChart);
-  },
+    renderChart(options) {
+        let series = this.props.plotData;
+        let stepSize = this.props.stepSize
+        let plotOptions = {
+            xaxis: {
+                mode: 'time',
+                timezone: 'browser',
+                minTickSize: [1, this.props.stepSize],
+                min: this.props.start,
+                max: this.props.end,
+                color: '#666666',
+            },
+            yaxis: {
+                min: 0,
+                minTickSize: 0.001,
+                tickDecimals: 3,
+                color: '#222222',
+            },
+            yaxes: [
+                {
+                    // Watt/kWh
+                    position: 'left',
+                    tickFormatter: function(v, axis) {
+                        if(stepSize == 'minute'){
+                            return v.toFixed(0) + ' W';
+                        } else {
+                            return v.toFixed(axis.tickDecimals) + ' kWh';
+                        }
+                    }
+                },
+                {
+                    // m3
+                    position: 'right',
+                    tickFormatter: function(v, axis) {
+                        return v.toFixed(axis.tickDecimals) + ' m³'
+                    }
+                },
+            ],
+            tooltip: true,
+            tooltipOpts: {
+                content: buildTooltipHandler(series, this.props.stepSize),
+                defaultTheme: false
+            },
+            grid: {
+                show: true,
+                hoverable: true,
+                backgroundColor: '#FFFFFF',
+                borderColor: '#DDDDDD',
+                borderWidth: 1,
+                color: '#666666',
+                tickColor: '#DDDDDD'
+            },
+            hoverable: false,
+            legend: {
+                noColumns: series.length,
+                position: 'nw'
+            },
+        };
+        let chart = ReactDOM.findDOMNode(this.refs.chartNode);
+        jQuery.plot(chart, series, plotOptions);
+    },
 
-  renderChart(options) {
-    let series = this.props.plotData;
-    let plotOptions = {
-      xaxis: {
-        mode: 'time',
-        timezone: 'browser',
-        minTickSize: [1, this.props.stepSize],
-        min: this.props.start,
-        max: this.props.end,
-        color: '#666666',
-      },
-      yaxis: {
-        min: 0,
-        minTickSize: 0.001,
-        color: '#666666',
-      },
-      tooltip: true,
-      tooltipOpts: {
-        content: buildTooltipHandler(series, this.props.stepSize),
-        defaultTheme: false
-      },
-      grid: {
-        show: true,
-        hoverable: true,
-        backgroundColor: '#FFFFFF',
-        borderColor: '#DDDDDD',
-        borderWidth: 1,
-        color: '#666666',
-        tickColor: '#DDDDDD'
-      },
-      hoverable: false,
-      legend: {
-        noColumns: series.length,
-        position: 'nw'
-      },
-      lines: {show: false, steps: false},
-    };
-    let chart = ReactDOM.findDOMNode(this.refs.chartNode);
-    jQuery.plot(chart, series, plotOptions);
-  },
-
-  render() {
-    return (
-      <figure
-        className={this.props.className || 'chart'}
-        style={this.props.style}
-        ref="chartNode" />
-    );
-  }
+    render() {
+        return (
+            <figure
+                className={this.props.className || 'chart'}
+                style={this.props.style}
+                ref="chartNode" />
+        );
+    }
 });
 
 export default FlotChart;

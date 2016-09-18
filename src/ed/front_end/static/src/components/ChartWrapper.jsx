@@ -26,15 +26,18 @@ var ChartWrapper = React.createClass({
                     }
                     return [new Date(item.datetime), value]
                 }),
+                yaxis: currentPowerMeter.data.unit == 'kwh' ? 1 : 2,
                 color: currentPowerMeter.color,
                 shadowSize: 0,
                 label: currentPowerMeter.data.name,
                 unit: currentPowerMeter.data.unit,
-                // stack: true,
                 lines: {
+                    zero: false,
                     lineWidth: 2,
                     show: true,
-                    fill: true
+                    fill: true,
+                    steps: false
+
                 }
             });
             start = report[powerMeterId].start;
