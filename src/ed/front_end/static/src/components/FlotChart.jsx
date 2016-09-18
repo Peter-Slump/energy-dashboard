@@ -134,7 +134,7 @@ const FlotChart = React.createClass({
         noColumns: series.length,
         position: 'nw'
       },
-      lines: {show: false},
+      lines: {show: false, steps: false},
     };
     let chart = ReactDOM.findDOMNode(this.refs.chartNode);
     jQuery.plot(chart, series, plotOptions);

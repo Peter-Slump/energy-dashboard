@@ -2,13 +2,13 @@ import moment from 'moment';
 import React from 'react';
 import {
     Button,
-    ButtonToolbar,
     ButtonGroup,
     Clearfix,
     Col,
     FormControl,
     Glyphicon,
-    InputGroup
+    InputGroup,
+    Row
 } from 'react-bootstrap';
 
 var ReadingsViewPresets = React.createClass({
@@ -19,7 +19,7 @@ var ReadingsViewPresets = React.createClass({
     },
     handleOffsetClick: function(e) {
         const {reportPeriodActions, reportActions} = this.props;
-        reportPeriodActions.changeReportPeriodOffset(parseInt(e.target.value));
+        reportPeriodActions.changeReportPeriodOffset(parseInt(e.currentTarget.value));
         reportActions.receiveReportsIfNeeded();
     },
     render: function() {
@@ -28,7 +28,6 @@ var ReadingsViewPresets = React.createClass({
 
         let offsetLabel = '';
         let now = moment();
-
         switch (period) {
             case 'year':
                 switch (offset) {
@@ -97,25 +96,27 @@ var ReadingsViewPresets = React.createClass({
                 offsetLabel = 'Unknown';
         }
         return (
-            <ButtonToolbar className="row-bottom-spacing">
-                <ButtonGroup>
-                    <Button active={reportPeriod.period == 'year'} value={'year'} onClick={this.handleClick}>Year</Button>
-                    <Button active={reportPeriod.period == 'month'} value={'month'} onClick={this.handleClick}>Month</Button>
-                    <Button active={reportPeriod.period == 'week'} value={'week'} onClick={this.handleClick}>Week</Button>
-                    <Button active={reportPeriod.period == 'day'} value={'day'} onClick={this.handleClick}>Day</Button>
-                </ButtonGroup>
-                <Col xs={3} md={3}>
+            <Row>
+                <Col xs={12} md={4} className="row-bottom-spacing">
                     <ButtonGroup>
-                        <Button value="-1" onClick={this.handleOffsetClick}>
+                        <Button active={reportPeriod.period == 'year'} value={'year'} onClick={this.handleClick}>Year</Button>
+                        <Button active={reportPeriod.period == 'month'} value={'month'} onClick={this.handleClick}>Month</Button>
+                        <Button active={reportPeriod.period == 'week'} value={'week'} onClick={this.handleClick}>Week</Button>
+                        <Button active={reportPeriod.period == 'day'} value={'day'} onClick={this.handleClick}>Day</Button>
+                    </ButtonGroup>
+                </Col>
+                <Col xs={12} md={4} className="row-bottom-spacing">
+                    <ButtonGroup>
+                        <Button value={-1} onClick={this.handleOffsetClick}>
                             <Glyphicon glyph="chevron-left" />
                         </Button>
-                        <Button value="1" onClick={this.handleOffsetClick}>
+                        <Button value={1} onClick={this.handleOffsetClick}>
                             <Glyphicon glyph="chevron-right" />
                         </Button>
                         <Button disabled>{offsetLabel}</Button>
                     </ButtonGroup>
                 </Col>
-            </ButtonToolbar>
+            </Row>
         );
     }
 });
