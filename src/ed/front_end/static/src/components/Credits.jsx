@@ -5,7 +5,7 @@ import {
     PageHeader,
     Row
 } from 'react-bootstrap';
-
+import { t as _ } from '../i18n';
 
 const Credits = React.createClass({
     render: function(){
@@ -14,9 +14,9 @@ const Credits = React.createClass({
                 <Row>
                     <Col md={12}>
                         <PageHeader>
-                            Credits
+                            {_('Credits')}
                         </PageHeader>
-                        <p>This project is made possible with the following tools</p>
+                        <p>{_('This project is made possible with the following tools')}</p>
 
                         <h4>Back-end</h4>
                         <a href="https://www.djangoproject.com/">Django project</a>

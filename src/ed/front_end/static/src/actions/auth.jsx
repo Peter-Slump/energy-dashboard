@@ -2,6 +2,7 @@ import { callApi } from './api';
 import { fetchUser } from './user';
 import { notificationAdd } from './notification';
 import { browserHistory } from 'react-router';
+import { t as _ } from '../i18n';
 
 export const AUTH_REQUEST_LOGIN = 'AUTH_REQUEST_LOGIN';
 export function requestLogin() {
@@ -49,7 +50,7 @@ export function logout() {
                 dispatch(notificationAdd(
                     data.success,
                     'info',
-                    'Logged out'
+                    _('Logged out')
                 ))
             }
         );
@@ -75,7 +76,7 @@ export function login(username, password) {
                     dispatch(notificationAdd(
                         xhr.responseJSON.non_field_errors,
                         'error',
-                        'Login failed'
+                        _('Login failed')
                     ))
                 }
             }

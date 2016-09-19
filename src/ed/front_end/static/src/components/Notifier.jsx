@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { t as _ } from '../i18n';
 
 var AlertsNotifier = React.createClass({
 	propTypes: {
@@ -52,7 +53,7 @@ var AlertsNotifier = React.createClass({
 
 						return (
 							<div className={css} key={i}>
-								<button type="button" className="close" title="Dismiss" onClick={this.dismiss.bind(this, item)}>&times;</button>
+								<button type="button" className="close" title={_('Dismiss')} onClick={this.dismiss.bind(this, item)}>&times;</button>
 								{headline}{item.message}
 							</div>
 						);

@@ -12,6 +12,7 @@ import {
     Panel,
     Row
 } from 'react-bootstrap';
+import { t as _ } from '../i18n';
 
 
 const Login = React.createClass({
@@ -31,25 +32,25 @@ const Login = React.createClass({
                     <Col xsOffset={3} xs={6} mdOffset={3} md={6}>
                         <Panel>
                             <h4>
-                                Authenticate
+                                {_('Authenticate')}
                             </h4>
                             <Form horizontal ref="loginForm" onSubmit={this.handleSubmit}>
                                 <FormGroup controlId="formHorizontalEmail">
                                     <Col sm={12}>
-                                        <FormControl type="text" ref="username" placeholder="Username" />
+                                        <FormControl type="text" ref="username" placeholder={_('Username')} />
                                     </Col>
                                 </FormGroup>
 
                                 <FormGroup controlId="formHorizontalPassword">
                                     <Col sm={12}>
-                                        <FormControl type="password" ref="password" placeholder="Password" />
+                                        <FormControl type="password" ref="password" placeholder={_('Password')} />
                                     </Col>
                                 </FormGroup>
 
                                 <FormGroup>
                                     <Col sm={12}>
                                         <Button type="submit">
-                                            Login
+                                            {_('Login')}
                                         </Button>
                                     </Col>
                                 </FormGroup>

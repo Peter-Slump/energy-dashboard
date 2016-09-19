@@ -4,8 +4,30 @@ var path = require('path'),
 var staticsFolder = "src/ed/front_end/static",
     distFolder = staticsFolder + "/dist";
 
+var entry = {
+    'bundle': 'src/EnergyDashboard',
+    'vendor': [
+        'bootswatch/paper/bootstrap.min.css',
+        'flot',
+        'flot/jquery.flot.time',
+        'flot-tooltip/jquery.flot.tooltip',
+        'jquery',
+        'js-cookie',
+        'moment',
+        'react',
+        'react-addons-css-transition-group',
+        'react-bootstrap',
+        'react-dom',
+        'react-redux',
+        'react-router',
+        'react-router-redux',
+        'redux-thunk',
+        'redux',
+    ]
+}
+
 module.exports = {
-    entry: ['src/EnergyDashboard'],
+    entry: entry,
     context: path.join(__dirname, staticsFolder),
     module: {
         loaders: [
@@ -20,9 +42,12 @@ module.exports = {
             { test: /\.(woff|woff2)$/, loader:"url?prefix=font/&limit=5000" },
             { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
             { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
-            { test: /\.less$/, loader: "style!css!less" }
+            { test: /\.less$/, loader: "style!css!less" },
+            {
+                test: /\.po$/,
+                loader: 'po-catalog-loader',
+            },
         ],
-
     },
     resolve: {
         alias: {
@@ -33,6 +58,9 @@ module.exports = {
         extensions: ['', '.js', '.jsx', '.json']
     },
     plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+          names: ['vendor'] // For splitting up into two bundles
+        }),
         new webpack.ProvidePlugin({
             // Make jQuery available in all files (no need to "import jQuery from 'jquery'")
             $: 'jquery',
@@ -43,6 +71,6 @@ module.exports = {
         path: distFolder,  // Folder to put the resulting .js file
         contentBase: distFolder,  // Path to store statics (font-files etc.)
         publicPath: '/static/dist/',  // Public path to retrieve statics (font-files etc.)
-        filename: 'bundle.js',
+        filename: '[name].js',
     }
 }

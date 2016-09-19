@@ -10,6 +10,7 @@ import {
     InputGroup,
     Row
 } from 'react-bootstrap';
+import { t as _ } from '../i18n';
 
 var ReadingsViewPresets = React.createClass({
     handleClick: function(e){
@@ -32,10 +33,10 @@ var ReadingsViewPresets = React.createClass({
             case 'year':
                 switch (offset) {
                     case 0:
-                        offsetLabel = 'This year';
+                        offsetLabel = _('This year');
                         break;
                     case -1:
-                        offsetLabel = 'Last year';
+                        offsetLabel = _('Last year');
                         break;
                     default:
                         now.add(offset, 'years');
@@ -46,10 +47,10 @@ var ReadingsViewPresets = React.createClass({
                 case 'month':
                     switch (offset) {
                         case 0:
-                            offsetLabel = 'This month';
+                            offsetLabel = _('This month');
                             break;
                         case -1:
-                            offsetLabel = 'Last month';
+                            offsetLabel = _('Last month');
                             break;
                         default:
                             now.add(offset, 'months');
@@ -60,24 +61,24 @@ var ReadingsViewPresets = React.createClass({
                     case 'week':
                         switch (offset) {
                             case 0:
-                                offsetLabel = 'This week';
+                                offsetLabel = _('This week');
                                 break;
                             case -1:
-                                offsetLabel = 'Last week';
+                                offsetLabel = _('Last week');
                                 break;
                             default:
                                 now.add(offset, 'weeks');
-                                offsetLabel = now.format(offset > -52 ? '[Week:] w' : '[Week:] w YYYY');
+                                offsetLabel = now.format(offset > -52 ? '['+_('Week:')+'] w' : '['+_('Week:')+'] w YYYY');
                         }
                         break;
 
                     case 'day':
                         switch (offset) {
                             case 0:
-                                offsetLabel = 'Today';
+                                offsetLabel = _('Today');
                                 break;
                             case -1:
-                                offsetLabel = 'Yesterday';
+                                offsetLabel = _('Yesterday');
                                 break;
                             case -2:
                             case -3:
@@ -85,7 +86,7 @@ var ReadingsViewPresets = React.createClass({
                             case -5:
                             case -6:
                                 now.add(offset, 'days');
-                                offsetLabel = now.format('[Last] dddd');
+                                offsetLabel = now.format('['+ _('Last') +'] dddd');
                                 break;
                             default:
                                 now.add(offset, 'days');
@@ -93,16 +94,16 @@ var ReadingsViewPresets = React.createClass({
                         }
                         break;
             default:
-                offsetLabel = 'Unknown';
+                offsetLabel = _('Unknown');
         }
         return (
             <Row>
                 <Col xs={12} md={4} className="row-bottom-spacing">
                     <ButtonGroup>
-                        <Button active={reportPeriod.period == 'year'} value={'year'} onClick={this.handleClick}>Year</Button>
-                        <Button active={reportPeriod.period == 'month'} value={'month'} onClick={this.handleClick}>Month</Button>
-                        <Button active={reportPeriod.period == 'week'} value={'week'} onClick={this.handleClick}>Week</Button>
-                        <Button active={reportPeriod.period == 'day'} value={'day'} onClick={this.handleClick}>Day</Button>
+                        <Button active={reportPeriod.period == 'year'} value={'year'} onClick={this.handleClick}>{_('Year')}</Button>
+                        <Button active={reportPeriod.period == 'month'} value={'month'} onClick={this.handleClick}>{_('Month')}</Button>
+                        <Button active={reportPeriod.period == 'week'} value={'week'} onClick={this.handleClick}>{_('Week')}</Button>
+                        <Button active={reportPeriod.period == 'day'} value={'day'} onClick={this.handleClick}>{_('Day')}</Button>
                     </ButtonGroup>
                 </Col>
                 <Col xs={12} md={4} className="row-bottom-spacing">
