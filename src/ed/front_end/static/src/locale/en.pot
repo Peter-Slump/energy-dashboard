@@ -129,3 +129,13 @@ msgstr ""
 msgid "Dismiss"
 msgstr ""
 
+#: src/ed/front_end/static/src/components/Header.jsx 14:31
+msgid "Signed in as %s %s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/ed/front_end/static/src/components/Header.jsx 16:31
+msgid "Signed in as %s"
+msgstr[0] ""
+msgstr[1] ""
+

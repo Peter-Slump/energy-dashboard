@@ -23,7 +23,9 @@ const Header = React.createClass({
             <Navbar>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <Link to="/">{_('Energy Dashboard')}</Link>
+                        <Link to="/">
+                            <img alt={_('Energy Dashboard')} title={_('Energy Dashboard')} src="static/image/logo.png" />
+                        </Link>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>

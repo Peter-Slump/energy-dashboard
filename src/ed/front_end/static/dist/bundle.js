@@ -114,7 +114,7 @@ webpackJsonp([0],{
 
 
 	// module
-	exports.push([module.id, ".row-bottom-spacing {\n  margin-bottom: 20px;\n}\n.alert-notifier-container {\n  position: fixed;\n  top: 20px;\n  right: 20px;\n  width: 250px;\n  padding: 5px;\n  z-index: 9999;\n}\n.alert-notifier-container .alert-enter {\n  opacity: 0.01;\n  transition: opacity 0.25s ease-in;\n}\n.alert-notifier-container .alert-enter.alert-enter-active {\n  opacity: 1;\n}\n.alert-notifier-container .alert-leave {\n  opacity: 1;\n  transition: opacity 0.25s ease-in;\n}\n.alert-notifier-container .alert-leave.alert-leave-active {\n  opacity: 0.01;\n}\nfooter {\n  margin: 5em 0;\n}\nfooter li {\n  float: left;\n  margin-bottom: 1.5em;\n  margin-right: 1.5em;\n}\nfooter p {\n  clear: left;\n  margin-bottom: 0;\n}\n", ""]);
+	exports.push([module.id, ".row-bottom-spacing {\n  margin-bottom: 20px;\n}\n.navbar-brand img {\n  width: 25px;\n}\n.alert-notifier-container {\n  position: fixed;\n  top: 20px;\n  right: 20px;\n  width: 250px;\n  padding: 5px;\n  z-index: 9999;\n}\n.alert-notifier-container .alert-enter {\n  opacity: 0.01;\n  transition: opacity 0.25s ease-in;\n}\n.alert-notifier-container .alert-enter.alert-enter-active {\n  opacity: 1;\n}\n.alert-notifier-container .alert-leave {\n  opacity: 1;\n  transition: opacity 0.25s ease-in;\n}\n.alert-notifier-container .alert-leave.alert-leave-active {\n  opacity: 0.01;\n}\nfooter {\n  margin: 5em 0;\n}\nfooter li {\n  float: left;\n  margin-bottom: 1.5em;\n  margin-right: 1.5em;\n}\nfooter p {\n  clear: left;\n  margin-bottom: 0;\n}\n", ""]);
 
 	// exports
 
@@ -1951,7 +1951,7 @@ webpackJsonp([0],{
 	            signedInLine = (0, _i18n.t)('Not logged in');
 	        }
 
-	        return _react2['default'].createElement(_reactBootstrap.Navbar, null, _react2['default'].createElement(_reactBootstrap.Navbar.Header, null, _react2['default'].createElement(_reactBootstrap.Navbar.Brand, null, _react2['default'].createElement(_reactRouter.Link, { to: '/' }, (0, _i18n.t)('Energy Dashboard'))), _react2['default'].createElement(_reactBootstrap.Navbar.Toggle, null)), _react2['default'].createElement(_reactBootstrap.Navbar.Collapse, null, _react2['default'].createElement(_reactBootstrap.Nav, { pullRight: true }, _react2['default'].createElement(_reactBootstrap.Navbar.Text, null, signedInLine, '(', _react2['default'].createElement(_reactRouter.Link, { to: auth.loggedIn ? '/logout' : '/login' }, auth.loggedIn ? (0, _i18n.t)('Logout') : (0, _i18n.t)('Login')), ')'))));
+	        return _react2['default'].createElement(_reactBootstrap.Navbar, null, _react2['default'].createElement(_reactBootstrap.Navbar.Header, null, _react2['default'].createElement(_reactBootstrap.Navbar.Brand, null, _react2['default'].createElement(_reactRouter.Link, { to: '/' }, _react2['default'].createElement('img', { alt: (0, _i18n.t)('Energy Dashboard'), title: (0, _i18n.t)('Energy Dashboard'), src: 'static/image/logo.png' }))), _react2['default'].createElement(_reactBootstrap.Navbar.Toggle, null)), _react2['default'].createElement(_reactBootstrap.Navbar.Collapse, null, _react2['default'].createElement(_reactBootstrap.Nav, { pullRight: true }, _react2['default'].createElement(_reactBootstrap.Navbar.Text, null, signedInLine, '(', _react2['default'].createElement(_reactRouter.Link, { to: auth.loggedIn ? '/logout' : '/login' }, auth.loggedIn ? (0, _i18n.t)('Logout') : (0, _i18n.t)('Login')), ')'))));
 	    }
 	});
 
