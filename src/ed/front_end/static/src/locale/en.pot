@@ -139,3 +139,11 @@ msgid "Signed in as %s"
 msgstr[0] ""
 msgstr[1] ""
 
+#: src/ed/front_end/static/src/components/LanguageSelect.jsx 13:76
+msgid "Dutch"
+msgstr ""
+
+#: src/ed/front_end/static/src/components/LanguageSelect.jsx 14:76
+msgid "English"
+msgstr ""
+

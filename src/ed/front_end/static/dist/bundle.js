@@ -29,19 +29,19 @@ webpackJsonp([0],{
 
 	var _componentsApp2 = _interopRequireDefault(_componentsApp);
 
-	var _componentsCredits = __webpack_require__(650);
+	var _componentsCredits = __webpack_require__(651);
 
 	var _componentsCredits2 = _interopRequireDefault(_componentsCredits);
 
-	var _componentsDashboard = __webpack_require__(651);
+	var _componentsDashboard = __webpack_require__(652);
 
 	var _componentsDashboard2 = _interopRequireDefault(_componentsDashboard);
 
-	var _componentsLogin = __webpack_require__(660);
+	var _componentsLogin = __webpack_require__(661);
 
 	var _componentsLogin2 = _interopRequireDefault(_componentsLogin);
 
-	var _componentsLogout = __webpack_require__(661);
+	var _componentsLogout = __webpack_require__(662);
 
 	var _componentsLogout2 = _interopRequireDefault(_componentsLogout);
 
@@ -53,7 +53,7 @@ webpackJsonp([0],{
 
 	var _reactRedux = __webpack_require__(193);
 
-	var _store = __webpack_require__(662);
+	var _store = __webpack_require__(663);
 
 	var _store2 = _interopRequireDefault(_store);
 
@@ -114,7 +114,7 @@ webpackJsonp([0],{
 
 
 	// module
-	exports.push([module.id, ".row-bottom-spacing {\n  margin-bottom: 20px;\n}\n.navbar-brand img {\n  width: 25px;\n}\n.alert-notifier-container {\n  position: fixed;\n  top: 20px;\n  right: 20px;\n  width: 250px;\n  padding: 5px;\n  z-index: 9999;\n}\n.alert-notifier-container .alert-enter {\n  opacity: 0.01;\n  transition: opacity 0.25s ease-in;\n}\n.alert-notifier-container .alert-enter.alert-enter-active {\n  opacity: 1;\n}\n.alert-notifier-container .alert-leave {\n  opacity: 1;\n  transition: opacity 0.25s ease-in;\n}\n.alert-notifier-container .alert-leave.alert-leave-active {\n  opacity: 0.01;\n}\nfooter {\n  margin: 5em 0;\n}\nfooter li {\n  float: left;\n  margin-bottom: 1.5em;\n  margin-right: 1.5em;\n}\nfooter p {\n  clear: left;\n  margin-bottom: 0;\n}\n", ""]);
+	exports.push([module.id, ".row-bottom-spacing {\n  margin-bottom: 20px;\n}\n.language-select ul.dropdown-menu {\n  min-width: auto;\n}\n.navbar-brand img {\n  width: 25px;\n}\n.navbar-text {\n  margin-left: 1em;\n}\n.alert-notifier-container {\n  position: fixed;\n  top: 20px;\n  right: 20px;\n  width: 250px;\n  padding: 5px;\n  z-index: 9999;\n}\n.alert-notifier-container .alert-enter {\n  opacity: 0.01;\n  transition: opacity 0.25s ease-in;\n}\n.alert-notifier-container .alert-enter.alert-enter-active {\n  opacity: 1;\n}\n.alert-notifier-container .alert-leave {\n  opacity: 1;\n  transition: opacity 0.25s ease-in;\n}\n.alert-notifier-container .alert-leave.alert-leave-active {\n  opacity: 0.01;\n}\nfooter {\n  margin: 5em 0;\n}\nfooter li {\n  float: left;\n  margin-bottom: 1.5em;\n  margin-right: 1.5em;\n}\nfooter p {\n  clear: left;\n  margin-bottom: 0;\n}\n", ""]);
 
 	// exports
 
@@ -1888,7 +1888,7 @@ webpackJsonp([0],{
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _Notifier = __webpack_require__(642);
+	var _Notifier = __webpack_require__(643);
 
 	var _Notifier2 = _interopRequireDefault(_Notifier);
 
@@ -1930,6 +1930,10 @@ webpackJsonp([0],{
 
 	var _i18n = __webpack_require__(267);
 
+	var _LanguageSelect = __webpack_require__(642);
+
+	var _LanguageSelect2 = _interopRequireDefault(_LanguageSelect);
+
 	var Header = _react2['default'].createClass({
 	    displayName: 'Header',
 
@@ -1951,7 +1955,7 @@ webpackJsonp([0],{
 	            signedInLine = (0, _i18n.t)('Not logged in');
 	        }
 
-	        return _react2['default'].createElement(_reactBootstrap.Navbar, null, _react2['default'].createElement(_reactBootstrap.Navbar.Header, null, _react2['default'].createElement(_reactBootstrap.Navbar.Brand, null, _react2['default'].createElement(_reactRouter.Link, { to: '/' }, _react2['default'].createElement('img', { alt: (0, _i18n.t)('Energy Dashboard'), title: (0, _i18n.t)('Energy Dashboard'), src: 'static/image/logo.png' }))), _react2['default'].createElement(_reactBootstrap.Navbar.Toggle, null)), _react2['default'].createElement(_reactBootstrap.Navbar.Collapse, null, _react2['default'].createElement(_reactBootstrap.Nav, { pullRight: true }, _react2['default'].createElement(_reactBootstrap.Navbar.Text, null, signedInLine, '(', _react2['default'].createElement(_reactRouter.Link, { to: auth.loggedIn ? '/logout' : '/login' }, auth.loggedIn ? (0, _i18n.t)('Logout') : (0, _i18n.t)('Login')), ')'))));
+	        return _react2['default'].createElement(_reactBootstrap.Navbar, null, _react2['default'].createElement(_reactBootstrap.Navbar.Header, null, _react2['default'].createElement(_reactBootstrap.Navbar.Brand, null, _react2['default'].createElement(_reactRouter.Link, { to: '/' }, _react2['default'].createElement('img', { alt: (0, _i18n.t)('Energy Dashboard'), title: (0, _i18n.t)('Energy Dashboard'), src: 'static/image/logo.png' }))), _react2['default'].createElement(_reactBootstrap.Navbar.Toggle, null)), _react2['default'].createElement(_reactBootstrap.Navbar.Collapse, null, _react2['default'].createElement(_reactBootstrap.Nav, { pullRight: true }, _react2['default'].createElement(_LanguageSelect2['default'], null), _react2['default'].createElement(_reactBootstrap.Navbar.Text, null, signedInLine), _react2['default'].createElement(_reactBootstrap.NavItem, { to: auth.loggedIn ? '/logout' : '/login' }, auth.loggedIn ? (0, _i18n.t)('Logout') : (0, _i18n.t)('Login')))));
 	    }
 	});
 
@@ -1965,6 +1969,40 @@ webpackJsonp([0],{
 
 	'use strict';
 
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(378);
+
+	var _i18n = __webpack_require__(267);
+
+	var LanguageSelect = _react2['default'].createClass({
+	    displayName: 'LanguageSelect',
+
+	    render: function render() {
+	        return _react2['default'].createElement(_reactBootstrap.Dropdown, { componentClass: 'li', className: 'language-select' }, _react2['default'].createElement(_reactBootstrap.Dropdown.Toggle, { useAnchor: true }, _react2['default'].createElement('img', { src: 'static/image/flags/24x24/NL.png', title: (0, _i18n.t)('Dutch') })), _react2['default'].createElement(_reactBootstrap.Dropdown.Menu, null, _react2['default'].createElement(_reactBootstrap.MenuItem, null, _react2['default'].createElement('img', { src: 'static/image/flags/24x24/NL.png', title: (0, _i18n.t)('Dutch') })), _react2['default'].createElement(_reactBootstrap.MenuItem, null, _react2['default'].createElement('img', { src: 'static/image/flags/24x24/GB.png', title: (0, _i18n.t)('English') }))));
+	    }
+	});
+
+	exports['default'] = LanguageSelect;
+	module.exports = exports['default'];
+
+/***/ },
+
+/***/ 643:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	function _interopRequireDefault(obj) {
 		return obj && obj.__esModule ? obj : { 'default': obj };
 	}
@@ -1973,7 +2011,7 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactAddonsCssTransitionGroup = __webpack_require__(643);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(644);
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
@@ -2036,7 +2074,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 650:
+/***/ 651:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2070,7 +2108,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 651:
+/***/ 652:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2089,19 +2127,19 @@ webpackJsonp([0],{
 
 	var _reactBootstrap = __webpack_require__(378);
 
-	var _ChartWrapper = __webpack_require__(652);
+	var _ChartWrapper = __webpack_require__(653);
 
 	var _ChartWrapper2 = _interopRequireDefault(_ChartWrapper);
 
-	var _PowerMeterSelect = __webpack_require__(657);
+	var _PowerMeterSelect = __webpack_require__(658);
 
 	var _PowerMeterSelect2 = _interopRequireDefault(_PowerMeterSelect);
 
-	var _ReadingsViewPresets = __webpack_require__(658);
+	var _ReadingsViewPresets = __webpack_require__(659);
 
 	var _ReadingsViewPresets2 = _interopRequireDefault(_ReadingsViewPresets);
 
-	var _mixinsLoginRequired = __webpack_require__(659);
+	var _mixinsLoginRequired = __webpack_require__(660);
 
 	var _mixinsLoginRequired2 = _interopRequireDefault(_mixinsLoginRequired);
 
@@ -2117,7 +2155,7 @@ webpackJsonp([0],{
 	        });
 	    },
 	    render: function render() {
-	        return _react2['default'].createElement(_reactBootstrap.Grid, { fluid: false }, _react2['default'].createElement(_reactBootstrap.Row, null, _react2['default'].createElement(_reactBootstrap.Col, { xs: 12, md: 12 }, _react2['default'].createElement(_reactBootstrap.Panel, null, _react2['default'].createElement(_ReadingsViewPresets2['default'], this.props), _react2['default'].createElement(_reactBootstrap.Clearfix, null), _react2['default'].createElement(_ChartWrapper2['default'], this.props), _react2['default'].createElement(_PowerMeterSelect2['default'], this.props)))));
+	        return _react2['default'].createElement(_reactBootstrap.Grid, { fluid: true }, _react2['default'].createElement(_reactBootstrap.Row, null, _react2['default'].createElement(_reactBootstrap.Col, { xs: 12, md: 12 }, _react2['default'].createElement(_reactBootstrap.Panel, null, _react2['default'].createElement(_ReadingsViewPresets2['default'], this.props), _react2['default'].createElement(_reactBootstrap.Clearfix, null), _react2['default'].createElement(_ChartWrapper2['default'], this.props), _react2['default'].createElement(_PowerMeterSelect2['default'], this.props)))));
 	    }
 	});
 
@@ -2126,7 +2164,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 652:
+/***/ 653:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2147,7 +2185,7 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _FlotChart = __webpack_require__(653);
+	var _FlotChart = __webpack_require__(654);
 
 	var _FlotChart2 = _interopRequireDefault(_FlotChart);
 
@@ -2207,7 +2245,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 653:
+/***/ 654:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2237,9 +2275,9 @@ webpackJsonp([0],{
 	var _moment2 = _interopRequireDefault(_moment);
 
 	// we need flot and the various plugins
-	__webpack_require__(654);
 	__webpack_require__(655);
 	__webpack_require__(656);
+	__webpack_require__(657);
 
 	var numberWithCommas = function numberWithCommas(x) {
 	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -2403,7 +2441,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 657:
+/***/ 658:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2448,7 +2486,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 658:
+/***/ 659:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2575,7 +2613,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 659:
+/***/ 660:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2601,7 +2639,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 660:
+/***/ 661:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2640,7 +2678,7 @@ webpackJsonp([0],{
 	        _reactDom2['default'].findDOMNode(loginForm).reset();
 	    },
 	    render: function render() {
-	        return _react2['default'].createElement(_reactBootstrap.Grid, { fluid: false }, _react2['default'].createElement(_reactBootstrap.Row, null, _react2['default'].createElement(_reactBootstrap.Col, { xsOffset: 3, xs: 6, mdOffset: 3, md: 6 }, _react2['default'].createElement(_reactBootstrap.Panel, null, _react2['default'].createElement('h4', null, (0, _i18n.t)('Authenticate')), _react2['default'].createElement(_reactBootstrap.Form, { horizontal: true, ref: 'loginForm', onSubmit: this.handleSubmit }, _react2['default'].createElement(_reactBootstrap.FormGroup, { controlId: 'formHorizontalEmail' }, _react2['default'].createElement(_reactBootstrap.Col, { sm: 12 }, _react2['default'].createElement(_reactBootstrap.FormControl, { type: 'text', ref: 'username', placeholder: (0, _i18n.t)('Username') }))), _react2['default'].createElement(_reactBootstrap.FormGroup, { controlId: 'formHorizontalPassword' }, _react2['default'].createElement(_reactBootstrap.Col, { sm: 12 }, _react2['default'].createElement(_reactBootstrap.FormControl, { type: 'password', ref: 'password', placeholder: (0, _i18n.t)('Password') }))), _react2['default'].createElement(_reactBootstrap.FormGroup, null, _react2['default'].createElement(_reactBootstrap.Col, { sm: 12 }, _react2['default'].createElement(_reactBootstrap.Button, { type: 'submit' }, (0, _i18n.t)('Login')))))))));
+	        return _react2['default'].createElement(_reactBootstrap.Grid, { fluid: true }, _react2['default'].createElement(_reactBootstrap.Row, null, _react2['default'].createElement(_reactBootstrap.Col, { xsOffset: 3, xsOffset: 0, xs: 12, mdOffset: 3, md: 6 }, _react2['default'].createElement(_reactBootstrap.Panel, null, _react2['default'].createElement('h4', null, (0, _i18n.t)('Authenticate')), _react2['default'].createElement(_reactBootstrap.Form, { horizontal: true, ref: 'loginForm', onSubmit: this.handleSubmit }, _react2['default'].createElement(_reactBootstrap.FormGroup, { controlId: 'formHorizontalEmail' }, _react2['default'].createElement(_reactBootstrap.Col, { sm: 12 }, _react2['default'].createElement(_reactBootstrap.FormControl, { type: 'text', ref: 'username', placeholder: (0, _i18n.t)('Username') }))), _react2['default'].createElement(_reactBootstrap.FormGroup, { controlId: 'formHorizontalPassword' }, _react2['default'].createElement(_reactBootstrap.Col, { sm: 12 }, _react2['default'].createElement(_reactBootstrap.FormControl, { type: 'password', ref: 'password', placeholder: (0, _i18n.t)('Password') }))), _react2['default'].createElement(_reactBootstrap.FormGroup, null, _react2['default'].createElement(_reactBootstrap.Col, { sm: 12 }, _react2['default'].createElement(_reactBootstrap.Button, { type: 'submit' }, (0, _i18n.t)('Login')))))))));
 	    }
 	});
 
@@ -2649,7 +2687,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 661:
+/***/ 662:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2690,7 +2728,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 662:
+/***/ 663:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2705,17 +2743,17 @@ webpackJsonp([0],{
 
 	var _redux = __webpack_require__(180);
 
-	var _reduxThunk = __webpack_require__(663);
+	var _reduxThunk = __webpack_require__(664);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
 	var _reactRouter = __webpack_require__(205);
 
-	var _reactRouterRedux = __webpack_require__(664);
+	var _reactRouterRedux = __webpack_require__(665);
 
 	// import the root reducer
 
-	var _reducersIndex = __webpack_require__(669);
+	var _reducersIndex = __webpack_require__(670);
 
 	var _reducersIndex2 = _interopRequireDefault(_reducersIndex);
 
@@ -2733,7 +2771,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 669:
+/***/ 670:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2748,35 +2786,35 @@ webpackJsonp([0],{
 
 	var _redux = __webpack_require__(180);
 
-	var _reactRouterRedux = __webpack_require__(664);
+	var _reactRouterRedux = __webpack_require__(665);
 
 	// Import other reducers
 
-	var _api = __webpack_require__(670);
+	var _api = __webpack_require__(671);
 
 	var _api2 = _interopRequireDefault(_api);
 
-	var _auth = __webpack_require__(671);
+	var _auth = __webpack_require__(672);
 
 	var _auth2 = _interopRequireDefault(_auth);
 
-	var _notification = __webpack_require__(672);
+	var _notification = __webpack_require__(673);
 
 	var _notification2 = _interopRequireDefault(_notification);
 
-	var _powerMeter = __webpack_require__(673);
+	var _powerMeter = __webpack_require__(674);
 
 	var _powerMeter2 = _interopRequireDefault(_powerMeter);
 
-	var _report = __webpack_require__(674);
+	var _report = __webpack_require__(675);
 
 	var _report2 = _interopRequireDefault(_report);
 
-	var _reportPeriod = __webpack_require__(675);
+	var _reportPeriod = __webpack_require__(676);
 
 	var _reportPeriod2 = _interopRequireDefault(_reportPeriod);
 
-	var _user = __webpack_require__(676);
+	var _user = __webpack_require__(677);
 
 	var _user2 = _interopRequireDefault(_user);
 
@@ -2797,7 +2835,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 670:
+/***/ 671:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2845,7 +2883,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 671:
+/***/ 672:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2892,7 +2930,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 672:
+/***/ 673:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2925,7 +2963,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 673:
+/***/ 674:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3010,7 +3048,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 674:
+/***/ 675:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3036,7 +3074,7 @@ webpackJsonp([0],{
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _store = __webpack_require__(662);
+	var _store = __webpack_require__(663);
 
 	var _store2 = _interopRequireDefault(_store);
 
@@ -3110,7 +3148,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 675:
+/***/ 676:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3156,7 +3194,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 676:
+/***/ 677:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

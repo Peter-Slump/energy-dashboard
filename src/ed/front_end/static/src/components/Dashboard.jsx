@@ -15,7 +15,7 @@ const Dashboard = React.createClass({
     },
     render: function() {
         return (
-            <Grid fluid={false}>
+            <Grid fluid={true}>
                 <Row>
                     <Col xs={12} md={12}>
                         <Panel>

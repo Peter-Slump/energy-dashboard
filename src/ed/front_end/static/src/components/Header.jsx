@@ -1,7 +1,8 @@
 import React from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router';
 import { t as _ } from '../i18n';
+import LanguageSelect from './LanguageSelect';
 
 const Header = React.createClass({
     render: function(){
@@ -31,10 +32,11 @@ const Header = React.createClass({
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav pullRight>
-                        <Navbar.Text>
-                            {signedInLine}
-                            (<Link to={auth.loggedIn ? '/logout' : '/login' }>{auth.loggedIn ? _('Logout') : _('Login') }</Link>)
-                        </Navbar.Text>
+                        <LanguageSelect />
+                        <Navbar.Text>{signedInLine}</Navbar.Text>
+                        <NavItem to={ auth.loggedIn ? '/logout' : '/login' }>
+                            { auth.loggedIn ? _('Logout') : _('Login') }
+                        </NavItem>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
