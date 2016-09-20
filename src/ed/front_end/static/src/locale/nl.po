@@ -1,8 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: Peter Slump\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-09-20 00:38+0200\n"
+"PO-Revision-Date: 2016-09-20 21:04+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -15,98 +16,129 @@ msgstr ""
 "X-Poedit-KeywordsList: t;tn:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 
-msgid "Energy Dashboard"
-msgstr "Energie Dashboard"
-
-msgid "Signed in as %s %s"
-msgstr "Ingelogd als %s %s"
-
-msgid "Signed in as %s"
-msgstr "Ingelogd als %s"
-
-msgid "Logout"
-msgstr "Uitloggen"
-
-msgid "Login"
-msgstr "Inloggen"
-
-msgid "Not logged in"
-msgstr "Niet ingelogt"
-
-msgid "Fetching..."
-msgstr "Ophalen..."
-
+#: src/ed/front_end/static/src/components/Credits.jsx 17:29
 msgid "Credits"
 msgstr "Credits"
 
+#: src/ed/front_end/static/src/components/Credits.jsx 19:28
 msgid "This project is made possible with the following tools"
 msgstr "Dit project is mede mogelijk gemaakt door de volgende hulpmiddelen"
 
-msgid "Authenticate"
-msgstr "Aanmelden"
-
-msgid "Password"
-msgstr "Wachtwoord"
-
-msgid "Username"
-msgstr "Gebruikersnaam"
-
+#: src/ed/front_end/static/src/components/Logout.jsx 17:28
 msgid "Logging you out..."
 msgstr "Je wordt uitgelogt"
 
-msgid "Created by"
-msgstr "Gemaakt door"
+#: src/ed/front_end/static/src/components/Login.jsx 35:33
+msgid "Authenticate"
+msgstr "Aanmelden"
 
-msgid "Dismiss"
-msgstr "Negeren"
+#: src/ed/front_end/static/src/components/Login.jsx 40:93
+msgid "Username"
+msgstr "Gebruikersnaam"
 
-msgid "Last"
-msgstr "Afgelopen"
+#: src/ed/front_end/static/src/components/Login.jsx 46:97
+msgid "Password"
+msgstr "Wachtwoord"
 
-msgid "Yesterday"
-msgstr "Gisteren"
+#: src/ed/front_end/static/src/components/Login.jsx 53:45
+msgid "Login"
+msgstr "Inloggen"
 
-msgid "Today"
-msgstr "Vandaag"
-
-msgid "Last week"
-msgstr "Vorige week"
-
-msgid "This week"
-msgstr "Deze week"
-
-msgid "Last month"
-msgstr "Afgelopen maand"
-
-msgid "This month"
-msgstr "Deze maand"
-
-msgid "Last year"
-msgstr "Afgelopen jaar"
-
-msgid "This year"
-msgstr "Dit jaar"
-
-msgid "Week:"
-msgstr "Week:"
-
-msgid "Unknown"
-msgstr "Onbekend"
-
-msgid "Year"
-msgstr "Jaar"
-
-msgid "Month"
-msgstr "Maand"
-
-msgid "Week"
-msgstr "Week"
-
-msgid "Day"
-msgstr "Dag"
-
+#: src/ed/front_end/static/src/actions/auth.jsx 53:20
 msgid "Logged out"
 msgstr "Uitgelogt"
 
+#: src/ed/front_end/static/src/actions/auth.jsx 79:24
 msgid "Login failed"
 msgstr "Login niet gelukt"
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 36:38
+msgid "This year"
+msgstr "Dit jaar"
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 39:38
+msgid "Last year"
+msgstr "Afgelopen jaar"
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 50:42
+msgid "This month"
+msgstr "Deze maand"
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 53:42
+msgid "Last month"
+msgstr "Afgelopen maand"
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 64:46
+msgid "This week"
+msgstr "Deze week"
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 67:46
+msgid "Last week"
+msgstr "Vorige week"
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 71:76
+msgid "Week:"
+msgstr "Week:"
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 78:46
+msgid "Today"
+msgstr "Vandaag"
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 81:46
+msgid "Yesterday"
+msgstr "Gisteren"
+
+#. Translators: related to time as in: "Last friday".
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 89:62
+msgid "Last"
+msgstr "Afgelopen"
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 97:30
+msgid "Unknown"
+msgstr "Onbekend"
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 103:114
+msgid "Year"
+msgstr "Jaar"
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 104:116
+msgid "Month"
+msgstr "Maand"
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 105:114
+msgid "Week"
+msgstr "Week"
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 106:112
+msgid "Day"
+msgstr "Dag"
+
+#: src/ed/front_end/static/src/components/Main.jsx 27:33
+msgid "Created by"
+msgstr "Gemaakt door"
+
+#: src/ed/front_end/static/src/components/Header.jsx 12:30
+msgid "Fetching..."
+msgstr "Ophalen..."
+
+#: src/ed/front_end/static/src/components/Header.jsx 19:27
+msgid "Not logged in"
+msgstr "Niet ingelogt"
+
+#: src/ed/front_end/static/src/components/Header.jsx 26:38
+msgid "Energy Dashboard"
+msgstr "Energie Dashboard"
+
+#: src/ed/front_end/static/src/components/Header.jsx 34:95
+msgid "Logout"
+msgstr "Uitloggen"
+
+#: src/ed/front_end/static/src/components/Notifier.jsx 56:55
+msgid "Dismiss"
+msgstr "Negeren"
+
+#~ msgid "Signed in as %s %s"
+#~ msgstr "Ingelogd als %s %s"
+
+#~ msgid "Signed in as %s"
+#~ msgstr "Ingelogd als %s"

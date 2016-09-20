@@ -1615,7 +1615,7 @@ webpackJsonp([0],{
 /***/ 270:
 /***/ function(module, exports) {
 
-	module.exports = {"Energy Dashboard":["Energie Dashboard"],"Signed in as %s %s":["Ingelogd als %s %s"],"Signed in as %s":["Ingelogd als %s"],"Logout":["Uitloggen"],"Login":["Inloggen"],"Not logged in":["Niet ingelogt"],"Fetching...":["Ophalen..."],"Credits":["Credits"],"This project is made possible with the following tools":["Dit project is mede mogelijk gemaakt door de volgende hulpmiddelen"],"Authenticate":["Aanmelden"],"Password":["Wachtwoord"],"Username":["Gebruikersnaam"],"Logging you out...":["Je wordt uitgelogt"],"Created by":["Gemaakt door"],"Dismiss":["Negeren"],"Last":["Afgelopen"],"Yesterday":["Gisteren"],"Today":["Vandaag"],"Last week":["Vorige week"],"This week":["Deze week"],"Last month":["Afgelopen maand"],"This month":["Deze maand"],"Last year":["Afgelopen jaar"],"This year":["Dit jaar"],"Week:":["Week:"],"Unknown":["Onbekend"],"Year":["Jaar"],"Month":["Maand"],"Week":["Week"],"Day":["Dag"],"Logged out":["Uitgelogt"],"Login failed":["Login niet gelukt"],"":{"domain":"messages","plural_forms":"nplurals=2; plural=(n != 1);","lang":"nl"}};
+	module.exports = {"Credits":["Credits"],"This project is made possible with the following tools":["Dit project is mede mogelijk gemaakt door de volgende hulpmiddelen"],"Logging you out...":["Je wordt uitgelogt"],"Authenticate":["Aanmelden"],"Username":["Gebruikersnaam"],"Password":["Wachtwoord"],"Login":["Inloggen"],"Logged out":["Uitgelogt"],"Login failed":["Login niet gelukt"],"This year":["Dit jaar"],"Last year":["Afgelopen jaar"],"This month":["Deze maand"],"Last month":["Afgelopen maand"],"This week":["Deze week"],"Last week":["Vorige week"],"Week:":["Week:"],"Today":["Vandaag"],"Yesterday":["Gisteren"],"Last":["Afgelopen"],"Unknown":["Onbekend"],"Year":["Jaar"],"Month":["Maand"],"Week":["Week"],"Day":["Dag"],"Created by":["Gemaakt door"],"Fetching...":["Ophalen..."],"Not logged in":["Niet ingelogt"],"Energy Dashboard":["Energie Dashboard"],"Logout":["Uitloggen"],"Dismiss":["Negeren"],"":{"domain":"messages","plural_forms":"nplurals=2; plural=(n != 1);","lang":"nl"}};
 
 /***/ },
 
@@ -2192,7 +2192,6 @@ webpackJsonp([0],{
 	                    show: true,
 	                    fill: true,
 	                    steps: false
-
 	                }
 	            });
 	            start = report[powerMeterId].start;
@@ -2592,7 +2591,7 @@ webpackJsonp([0],{
 	        var auth = this.props.auth;
 
 	        if (!auth.loggedIn) {
-	            //            browserHistory.push('/login');
+	            _reactRouter.browserHistory.push('/login');
 	        }
 	    }
 	};
@@ -2832,9 +2831,9 @@ webpackJsonp([0],{
 	            var state = Object.assign({}, state, {
 	                currentRequests: state.currentRequests - 1
 	            });
-	            //            if( action.code != 403 ){
-	            state.errors.push(action.error);
-	            //            }
+	            if (action.code != 403) {
+	                state.errors.push(action.error);
+	            }
 	            return state;
 
 	        default:

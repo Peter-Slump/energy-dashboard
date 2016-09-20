@@ -37,7 +37,6 @@ var ChartWrapper = React.createClass({
                     show: true,
                     fill: true,
                     steps: false
-
                 }
             });
             start = report[powerMeterId].start;
