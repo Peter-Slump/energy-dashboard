@@ -5,8 +5,7 @@ import {
 export default function notification(state=[], action) {
     switch (action.type) {
         case NOTIFICATION_ADD:
-            return [
-                ...state,
+            return state + [
                 {
                     message: action.message,
                     type: action.level,

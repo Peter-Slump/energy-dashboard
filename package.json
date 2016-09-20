@@ -15,6 +15,7 @@
     "bootswatch": "github:thomaspark/bootswatch#v3.3.6+2",
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.5",
+    "gettext-loader": "^0.2.2",
     "gettext-parser": "^1.2.0",
     "jed": "^1.1.1",
     "jquery": "^2.2.4",

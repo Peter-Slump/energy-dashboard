@@ -2,7 +2,7 @@ import {
     API_SHOWN_ERROR_INDEX,
     API_REQUEST,
     API_REQUEST_SUCCESS,
-    API_REQUEST_FAILED,
+    API_REQUEST_FAILED
 } from '../actions/api';
 
 export default function api(state={

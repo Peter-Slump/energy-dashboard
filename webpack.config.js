@@ -44,6 +44,14 @@ module.exports = {
             { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
             { test: /\.less$/, loader: "style!css!less" },
             {
+                test: /\.jsx?$/,
+                exclude: [
+                    /node_modules/,
+                    /vendor/
+                ],
+                loaders: ['babel', 'gettext-loader']
+            },
+            {
                 test: /\.po$/,
                 loader: 'po-catalog-loader',
             },

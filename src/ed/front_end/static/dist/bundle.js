@@ -5,7 +5,9 @@ webpackJsonp([0],{
 
 	'use strict';
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
 	var _react = __webpack_require__(1);
 
@@ -71,22 +73,7 @@ webpackJsonp([0],{
 	});
 
 	// Initialize the router
-	var router = _react2['default'].createElement(
-	    _reactRedux.Provider,
-	    { store: _store2['default'] },
-	    _react2['default'].createElement(
-	        _reactRouter.Router,
-	        { history: _store.history },
-	        _react2['default'].createElement(
-	            _reactRouter.Route,
-	            { path: '/', component: _componentsApp2['default'] },
-	            _react2['default'].createElement(_reactRouter.IndexRoute, { component: _componentsDashboard2['default'] }),
-	            _react2['default'].createElement(_reactRouter.Route, { path: '/login', component: _componentsLogin2['default'] }),
-	            _react2['default'].createElement(_reactRouter.Route, { path: '/logout', component: _componentsLogout2['default'] }),
-	            _react2['default'].createElement(_reactRouter.Route, { path: '/credits', component: _componentsCredits2['default'] })
-	        )
-	    )
-	);
+	var router = _react2['default'].createElement(_reactRedux.Provider, { store: _store2['default'] }, _react2['default'].createElement(_reactRouter.Router, { history: _store.history }, _react2['default'].createElement(_reactRouter.Route, { path: '/', component: _componentsApp2['default'] }, _react2['default'].createElement(_reactRouter.IndexRoute, { component: _componentsDashboard2['default'] }), _react2['default'].createElement(_reactRouter.Route, { path: '/login', component: _componentsLogin2['default'] }), _react2['default'].createElement(_reactRouter.Route, { path: '/logout', component: _componentsLogout2['default'] }), _react2['default'].createElement(_reactRouter.Route, { path: '/credits', component: _componentsCredits2['default'] }))));
 
 	(0, _reactDom.render)(router, document.getElementById('root'));
 
@@ -143,9 +130,21 @@ webpackJsonp([0],{
 	    value: true
 	});
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+	function _interopRequireWildcard(obj) {
+	    if (obj && obj.__esModule) {
+	        return obj;
+	    } else {
+	        var newObj = {};if (obj != null) {
+	            for (var key in obj) {
+	                if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+	            }
+	        }newObj['default'] = obj;return newObj;
+	    }
+	}
 
 	var _redux = __webpack_require__(180);
 
@@ -163,15 +162,15 @@ webpackJsonp([0],{
 
 	var notificationActions = _interopRequireWildcard(_actionsNotification);
 
-	var _actionsPowerMeter = __webpack_require__(267);
+	var _actionsPowerMeter = __webpack_require__(271);
 
 	var powerMeterActions = _interopRequireWildcard(_actionsPowerMeter);
 
-	var _actionsReport = __webpack_require__(268);
+	var _actionsReport = __webpack_require__(272);
 
 	var reportActions = _interopRequireWildcard(_actionsReport);
 
-	var _actionsReportPeriod = __webpack_require__(372);
+	var _actionsReportPeriod = __webpack_require__(376);
 
 	var reportPeriodActions = _interopRequireWildcard(_actionsReportPeriod);
 
@@ -179,7 +178,7 @@ webpackJsonp([0],{
 
 	var userActions = _interopRequireWildcard(_actionsUser);
 
-	var _Main = __webpack_require__(373);
+	var _Main = __webpack_require__(377);
 
 	var _Main2 = _interopRequireDefault(_Main);
 
@@ -229,7 +228,9 @@ webpackJsonp([0],{
 	exports.apiRequestFailed = apiRequestFailed;
 	exports.callApi = callApi;
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
 	var _jsCookie = __webpack_require__(203);
 
@@ -366,7 +367,7 @@ webpackJsonp([0],{
 
 	var _reactRouter = __webpack_require__(205);
 
-	var _i18n = __webpack_require__(638);
+	var _i18n = __webpack_require__(267);
 
 	var AUTH_REQUEST_LOGIN = 'AUTH_REQUEST_LOGIN';
 	exports.AUTH_REQUEST_LOGIN = AUTH_REQUEST_LOGIN;
@@ -498,442 +499,17 @@ webpackJsonp([0],{
 	Object.defineProperty(exports, '__esModule', {
 	    value: true
 	});
-	exports.fetchPowerMeters = fetchPowerMeters;
-	exports.fetchPowerMetersSuccess = fetchPowerMetersSuccess;
-	exports.fetchPowerMetersFailed = fetchPowerMetersFailed;
-	exports.changeSelectedPowerMeter = changeSelectedPowerMeter;
-	exports.receivePowerMeters = receivePowerMeters;
 
-	var _api = __webpack_require__(202);
-
-	var FETCH_POWER_METERS = 'FETCH_POWER_METERS';
-	exports.FETCH_POWER_METERS = FETCH_POWER_METERS;
-
-	function fetchPowerMeters() {
-	    return {
-	        type: FETCH_POWER_METERS
-	    };
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
-	var FETCH_POWER_METERS_SUCCESS = 'FETCH_POWER_METERS_SUCCESS';
-	exports.FETCH_POWER_METERS_SUCCESS = FETCH_POWER_METERS_SUCCESS;
-
-	function fetchPowerMetersSuccess(powerMeters) {
-	    return {
-	        type: FETCH_POWER_METERS_SUCCESS,
-	        powerMeters: powerMeters
-	    };
-	}
-
-	var FETCH_POWER_METERS_FAILED = 'FETCH_POWER_METERS_FAILED';
-	exports.FETCH_POWER_METERS_FAILED = FETCH_POWER_METERS_FAILED;
-
-	function fetchPowerMetersFailed(error) {
-	    return {
-	        type: FETCH_POWER_METERS_FAILED,
-	        error: error
-	    };
-	}
-
-	var CHANGE_SELECTED_POWER_METER = 'CHANGE_SELECTED_POWER_METER';
-	exports.CHANGE_SELECTED_POWER_METER = CHANGE_SELECTED_POWER_METER;
-
-	function changeSelectedPowerMeter(id, isSelected) {
-	    return {
-	        type: CHANGE_SELECTED_POWER_METER,
-	        id: id,
-	        isSelected: isSelected
-	    };
-	}
-
-	function receivePowerMeters() {
-	    return function (dispatch, getState) {
-	        dispatch(fetchPowerMeters());
-	        return dispatch((0, _api.callApi)('/api/power-meter/')).then(function (data) {
-	            return dispatch(fetchPowerMetersSuccess(data));
-	        }, function (xhr, status, error) {
-	            return dispatch(fetchPowerMetersFailed(error));
-	        });
-	    };
-	}
-
-/***/ },
-
-/***/ 268:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-	exports.invalidateReport = invalidateReport;
-	exports.fetchReport = fetchReport;
-	exports.fetchReportSuccess = fetchReportSuccess;
-	exports.fetchReportFailed = fetchReportFailed;
-	exports.receiveReportsIfNeeded = receiveReportsIfNeeded;
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _api = __webpack_require__(202);
-
-	var _moment = __webpack_require__(269);
-
-	var _moment2 = _interopRequireDefault(_moment);
-
-	var INVALIDATE_REPORT = 'INVALIDATE_REPORT';
-	exports.INVALIDATE_REPORT = INVALIDATE_REPORT;
-
-	function invalidateReport(powerMeterId) {
-	    return {
-	        type: INVALIDATE_REPORT,
-	        powerMeterId: powerMeterId
-	    };
-	}
-
-	var FETCH_REPORT = 'FETCH_REPORT';
-	exports.FETCH_REPORT = FETCH_REPORT;
-
-	function fetchReport(powerMeterId) {
-	    return {
-	        type: FETCH_REPORT,
-	        powerMeterId: powerMeterId
-	    };
-	}
-
-	var FETCH_REPORT_SUCCESS = 'FETCH_REPORT_SUCCESS';
-	exports.FETCH_REPORT_SUCCESS = FETCH_REPORT_SUCCESS;
-
-	function fetchReportSuccess(powerMeterId, report, start, end, stepSize) {
-	    return {
-	        type: FETCH_REPORT_SUCCESS,
-	        powerMeterId: powerMeterId,
-	        report: report,
-	        start: start,
-	        end: end,
-	        stepSize: stepSize
-	    };
-	}
-
-	var FETCH_REPORT_FAILED = 'FETCH_REPORT_FAILED';
-	exports.FETCH_REPORT_FAILED = FETCH_REPORT_FAILED;
-
-	function fetchReportFailed(powerMeterId, error) {
-	    return {
-	        type: FETCH_REPORT_FAILED,
-	        powerMeterId: powerMeterId,
-	        error: error
-	    };
-	}
-
-	function receiveReportsIfNeeded() {
-	    return function (dispatch, getState) {
-	        var state = getState();
-	        var offset = state.reportPeriod.offset;
-	        var stepSize = null,
-	            start = (0, _moment2['default'])().set({ 'hour': 0, 'minute': 0, 'second': 0, 'millisecond': 0 }),
-	            end = (0, _moment2['default'])().set({ 'hour': 0, 'minute': 0, 'second': 0, 'millisecond': 0 });
-
-	        switch (state.reportPeriod.period) {
-	            case 'day':
-	                start.add(offset, 'days');
-	                end.add(offset + 1, 'days');
-	                stepSize = 'minute';
-	                break;
-	            case 'week':
-	                start.day(0);
-	                end.day(0);
-	                start.add(offset, 'weeks');
-	                end.add(offset + 1, 'weeks');
-	                stepSize = 'hour';
-	                break;
-	            case 'month':
-	                start.date(1);
-	                end.date(1);
-	                start.add(offset, 'months');
-	                end.add(offset + 1, 'months');
-	                stepSize = 'day';
-	                break;
-	            case 'year':
-	                start.set({ 'date': 1, 'month': 0 });
-	                end.set({ 'date': 1, 'month': 0 });
-	                start.add(offset, 'years');
-	                end.add(offset + 1, 'years');
-	                stepSize = 'month';
-	                break;
-	        }
-	        Promise.all(Object.keys(state.powerMeter.powerMetersById).map(function (id) {
-	            if (shouldReceiveReport(state, id, stepSize, start, end)) {
-	                return dispatch(receiveReport(id, stepSize, start, end));
-	            } else {
-	                return Promise.resolve();
-	            }
-	        }));
-	    };
-	}
-
-	function shouldReceiveReport(state, powerMeterId, stepSize, start, end) {
-	    var powerMeter = state.powerMeter.powerMetersById[powerMeterId];
-	    if (!powerMeter || !powerMeter.isSelected) {
-	        return false;
-	    }
-
-	    var report = state.report[powerMeterId];
-	    if (!report) {
-	        return true;
-	    } else if (report.stepSize == stepSize && report.start == start && report.end == end) {
-	        return false;
-	    }
-	    return true;
-	}
-
-	function receiveReport(powerMeterId, stepSize, start, end) {
-	    return function (dispatch) {
-	        dispatch(fetchReport(powerMeterId));
-	        return dispatch((0, _api.callApi)('/api/reading-report/' + powerMeterId + '/' + stepSize + '/' + start.toISOString() + '/' + end.toISOString() + '/')).then(function (data) {
-	            return dispatch(fetchReportSuccess(powerMeterId, data, start, end, stepSize));
-	        }, function (xhr, status, error) {
-	            return dispatch(fetchReportFailed(powerMeterId, error));
-	        });
-	    };
-	}
-
-/***/ },
-
-/***/ 372:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-	exports.changeReportPeriod = changeReportPeriod;
-	exports.changeReportPeriodOffset = changeReportPeriodOffset;
-	var CHANGE_REPORT_PERIOD = 'CHANGE_REPORT_PERIOD';
-	exports.CHANGE_REPORT_PERIOD = CHANGE_REPORT_PERIOD;
-	var CHANGE_REPORT_PERIOD_OFFSET = 'CHANGE_REPORT_PERIOD_OFFSET';
-
-	exports.CHANGE_REPORT_PERIOD_OFFSET = CHANGE_REPORT_PERIOD_OFFSET;
-
-	function changeReportPeriod(period) {
-	    return {
-	        type: CHANGE_REPORT_PERIOD,
-	        period: period
-	    };
-	}
-
-	function changeReportPeriodOffset(delta) {
-	    return {
-	        type: CHANGE_REPORT_PERIOD_OFFSET,
-	        delta: delta
-	    };
-	}
-
-/***/ },
-
-/***/ 373:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactBootstrap = __webpack_require__(374);
-
-	var _reactRouter = __webpack_require__(205);
-
-	var _Header = __webpack_require__(637);
-
-	var _Header2 = _interopRequireDefault(_Header);
-
-	var _Notifier = __webpack_require__(642);
-
-	var _Notifier2 = _interopRequireDefault(_Notifier);
-
-	var _i18n = __webpack_require__(638);
-
-	var Main = _react2['default'].createClass({
-	    displayName: 'Main',
-
-	    render: function render() {
-	        return _react2['default'].createElement(
-	            'div',
-	            null,
-	            _react2['default'].createElement(_Header2['default'], this.props),
-	            _react2['default'].cloneElement(this.props.children, this.props),
-	            _react2['default'].createElement(
-	                'footer',
-	                null,
-	                _react2['default'].createElement(
-	                    _reactBootstrap.Grid,
-	                    { fluid: false },
-	                    _react2['default'].createElement(
-	                        _reactBootstrap.Row,
-	                        null,
-	                        _react2['default'].createElement(
-	                            _reactBootstrap.Col,
-	                            { md: 12 },
-	                            _react2['default'].createElement(
-	                                'ul',
-	                                { className: 'list-unstyled' },
-	                                _react2['default'].createElement(
-	                                    'li',
-	                                    null,
-	                                    _react2['default'].createElement(
-	                                        _reactRouter.Link,
-	                                        { to: '/credits' },
-	                                        (0, _i18n.t)('Credits')
-	                                    )
-	                                ),
-	                                _react2['default'].createElement(
-	                                    'li',
-	                                    null,
-	                                    _react2['default'].createElement(
-	                                        'a',
-	                                        { href: 'https://github.com/Peter-Slump/energy-dashboard' },
-	                                        'Github'
-	                                    )
-	                                )
-	                            ),
-	                            _react2['default'].createElement(
-	                                'p',
-	                                null,
-	                                (0, _i18n.t)('Created by'),
-	                                ' ',
-	                                _react2['default'].createElement(
-	                                    'a',
-	                                    { href: 'http://peter-slump.nl/' },
-	                                    'Peter Slump'
-	                                )
-	                            )
-	                        )
-	                    )
-	                )
-	            ),
-	            _react2['default'].createElement(_Notifier2['default'], { alerts: this.props.notification || [] })
-	        );
-	    }
-	});
-
-	exports['default'] = Main;
-	module.exports = exports['default'];
-
-/***/ },
-
-/***/ 637:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactBootstrap = __webpack_require__(374);
-
-	var _reactRouter = __webpack_require__(205);
-
-	var _i18n = __webpack_require__(638);
-
-	var Header = _react2['default'].createClass({
-	    displayName: 'Header',
-
-	    render: function render() {
-	        var _props = this.props;
-	        var auth = _props.auth;
-	        var user = _props.user;
-
-	        var signedInLine = '';
-	        if (auth.loggedIn) {
-	            if (user.isFetching) {
-	                signedInLine = (0, _i18n.t)('Fetching...');
-	            } else if (user.firstName || user.lastName) {
-	                signedInLine = (0, _i18n.t)('Signed in as %s %s', user.firstName, user.lastName);
-	            } else {
-	                signedInLine = (0, _i18n.t)('Signed in as %s', user.username);
-	            }
-	        } else {
-	            signedInLine = (0, _i18n.t)('Not logged in');
-	        }
-
-	        return _react2['default'].createElement(
-	            _reactBootstrap.Navbar,
-	            null,
-	            _react2['default'].createElement(
-	                _reactBootstrap.Navbar.Header,
-	                null,
-	                _react2['default'].createElement(
-	                    _reactBootstrap.Navbar.Brand,
-	                    null,
-	                    _react2['default'].createElement(
-	                        _reactRouter.Link,
-	                        { to: '/' },
-	                        (0, _i18n.t)('Energy Dashboard')
-	                    )
-	                ),
-	                _react2['default'].createElement(_reactBootstrap.Navbar.Toggle, null)
-	            ),
-	            _react2['default'].createElement(
-	                _reactBootstrap.Navbar.Collapse,
-	                null,
-	                _react2['default'].createElement(
-	                    _reactBootstrap.Nav,
-	                    { pullRight: true },
-	                    _react2['default'].createElement(
-	                        _reactBootstrap.Navbar.Text,
-	                        null,
-	                        signedInLine,
-	                        '(',
-	                        _react2['default'].createElement(
-	                            _reactRouter.Link,
-	                            { to: auth.loggedIn ? '/logout' : '/login' },
-	                            auth.loggedIn ? (0, _i18n.t)('Logout') : (0, _i18n.t)('Login')
-	                        ),
-	                        ')'
-	                    )
-	                )
-	            )
-	        );
-	    }
-	});
-
-	exports['default'] = Header;
-	module.exports = exports['default'];
-
-/***/ },
-
-/***/ 638:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _jed = __webpack_require__(639);
+	var _jed = __webpack_require__(268);
 
 	var _jed2 = _interopRequireDefault(_jed);
 
 	function getTranslations(locale) {
-	    return __webpack_require__(640)("./" + locale + '.po');
+	    return __webpack_require__(269)("./" + locale + '.po');
 	}
 
 	var i18n = null;
@@ -980,7 +556,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 639:
+/***/ 268:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -2014,11 +1590,11 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 640:
+/***/ 269:
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./nl.po": 641
+		"./nl.po": 270
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -2031,15 +1607,356 @@ webpackJsonp([0],{
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 640;
+	webpackContext.id = 269;
 
 
 /***/ },
 
-/***/ 641:
+/***/ 270:
 /***/ function(module, exports) {
 
 	module.exports = {"Energy Dashboard":["Energie Dashboard"],"Signed in as %s %s":["Ingelogd als %s %s"],"Signed in as %s":["Ingelogd als %s"],"Logout":["Uitloggen"],"Login":["Inloggen"],"Not logged in":["Niet ingelogt"],"Fetching...":["Ophalen..."],"Credits":["Credits"],"This project is made possible with the following tools":["Dit project is mede mogelijk gemaakt door de volgende hulpmiddelen"],"Authenticate":["Aanmelden"],"Password":["Wachtwoord"],"Username":["Gebruikersnaam"],"Logging you out...":["Je wordt uitgelogt"],"Created by":["Gemaakt door"],"Dismiss":["Negeren"],"Last":["Afgelopen"],"Yesterday":["Gisteren"],"Today":["Vandaag"],"Last week":["Vorige week"],"This week":["Deze week"],"Last month":["Afgelopen maand"],"This month":["Deze maand"],"Last year":["Afgelopen jaar"],"This year":["Dit jaar"],"Week:":["Week:"],"Unknown":["Onbekend"],"Year":["Jaar"],"Month":["Maand"],"Week":["Week"],"Day":["Dag"],"Logged out":["Uitgelogt"],"Login failed":["Login niet gelukt"],"":{"domain":"messages","plural_forms":"nplurals=2; plural=(n != 1);","lang":"nl"}};
+
+/***/ },
+
+/***/ 271:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports.fetchPowerMeters = fetchPowerMeters;
+	exports.fetchPowerMetersSuccess = fetchPowerMetersSuccess;
+	exports.fetchPowerMetersFailed = fetchPowerMetersFailed;
+	exports.changeSelectedPowerMeter = changeSelectedPowerMeter;
+	exports.receivePowerMeters = receivePowerMeters;
+
+	var _api = __webpack_require__(202);
+
+	var FETCH_POWER_METERS = 'FETCH_POWER_METERS';
+	exports.FETCH_POWER_METERS = FETCH_POWER_METERS;
+
+	function fetchPowerMeters() {
+	    return {
+	        type: FETCH_POWER_METERS
+	    };
+	}
+
+	var FETCH_POWER_METERS_SUCCESS = 'FETCH_POWER_METERS_SUCCESS';
+	exports.FETCH_POWER_METERS_SUCCESS = FETCH_POWER_METERS_SUCCESS;
+
+	function fetchPowerMetersSuccess(powerMeters) {
+	    return {
+	        type: FETCH_POWER_METERS_SUCCESS,
+	        powerMeters: powerMeters
+	    };
+	}
+
+	var FETCH_POWER_METERS_FAILED = 'FETCH_POWER_METERS_FAILED';
+	exports.FETCH_POWER_METERS_FAILED = FETCH_POWER_METERS_FAILED;
+
+	function fetchPowerMetersFailed(error) {
+	    return {
+	        type: FETCH_POWER_METERS_FAILED,
+	        error: error
+	    };
+	}
+
+	var CHANGE_SELECTED_POWER_METER = 'CHANGE_SELECTED_POWER_METER';
+	exports.CHANGE_SELECTED_POWER_METER = CHANGE_SELECTED_POWER_METER;
+
+	function changeSelectedPowerMeter(id, isSelected) {
+	    return {
+	        type: CHANGE_SELECTED_POWER_METER,
+	        id: id,
+	        isSelected: isSelected
+	    };
+	}
+
+	function receivePowerMeters() {
+	    return function (dispatch, getState) {
+	        dispatch(fetchPowerMeters());
+	        return dispatch((0, _api.callApi)('/api/power-meter/')).then(function (data) {
+	            return dispatch(fetchPowerMetersSuccess(data));
+	        }, function (xhr, status, error) {
+	            return dispatch(fetchPowerMetersFailed(error));
+	        });
+	    };
+	}
+
+/***/ },
+
+/***/ 272:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports.invalidateReport = invalidateReport;
+	exports.fetchReport = fetchReport;
+	exports.fetchReportSuccess = fetchReportSuccess;
+	exports.fetchReportFailed = fetchReportFailed;
+	exports.receiveReportsIfNeeded = receiveReportsIfNeeded;
+
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
+
+	var _api = __webpack_require__(202);
+
+	var _moment = __webpack_require__(273);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
+	var INVALIDATE_REPORT = 'INVALIDATE_REPORT';
+	exports.INVALIDATE_REPORT = INVALIDATE_REPORT;
+
+	function invalidateReport(powerMeterId) {
+	    return {
+	        type: INVALIDATE_REPORT,
+	        powerMeterId: powerMeterId
+	    };
+	}
+
+	var FETCH_REPORT = 'FETCH_REPORT';
+	exports.FETCH_REPORT = FETCH_REPORT;
+
+	function fetchReport(powerMeterId) {
+	    return {
+	        type: FETCH_REPORT,
+	        powerMeterId: powerMeterId
+	    };
+	}
+
+	var FETCH_REPORT_SUCCESS = 'FETCH_REPORT_SUCCESS';
+	exports.FETCH_REPORT_SUCCESS = FETCH_REPORT_SUCCESS;
+
+	function fetchReportSuccess(powerMeterId, report, start, end, stepSize) {
+	    return {
+	        type: FETCH_REPORT_SUCCESS,
+	        powerMeterId: powerMeterId,
+	        report: report,
+	        start: start,
+	        end: end,
+	        stepSize: stepSize
+	    };
+	}
+
+	var FETCH_REPORT_FAILED = 'FETCH_REPORT_FAILED';
+	exports.FETCH_REPORT_FAILED = FETCH_REPORT_FAILED;
+
+	function fetchReportFailed(powerMeterId, error) {
+	    return {
+	        type: FETCH_REPORT_FAILED,
+	        powerMeterId: powerMeterId,
+	        error: error
+	    };
+	}
+
+	function receiveReportsIfNeeded() {
+	    return function (dispatch, getState) {
+	        var state = getState();
+	        var offset = state.reportPeriod.offset;
+	        var stepSize = null,
+	            start = (0, _moment2['default'])().set({ 'hour': 0, 'minute': 0, 'second': 0, 'millisecond': 0 }),
+	            end = (0, _moment2['default'])().set({ 'hour': 0, 'minute': 0, 'second': 0, 'millisecond': 0 });
+
+	        switch (state.reportPeriod.period) {
+	            case 'day':
+	                start.add(offset, 'days');
+	                end.add(offset + 1, 'days');
+	                stepSize = 'minute';
+	                break;
+	            case 'week':
+	                start.day(0);
+	                end.day(0);
+	                start.add(offset, 'weeks');
+	                end.add(offset + 1, 'weeks');
+	                stepSize = 'hour';
+	                break;
+	            case 'month':
+	                start.date(1);
+	                end.date(1);
+	                start.add(offset, 'months');
+	                end.add(offset + 1, 'months');
+	                stepSize = 'day';
+	                break;
+	            case 'year':
+	                start.set({ 'date': 1, 'month': 0 });
+	                end.set({ 'date': 1, 'month': 0 });
+	                start.add(offset, 'years');
+	                end.add(offset + 1, 'years');
+	                stepSize = 'month';
+	                break;
+	        }
+	        Promise.all(Object.keys(state.powerMeter.powerMetersById).map(function (id) {
+	            if (shouldReceiveReport(state, id, stepSize, start, end)) {
+	                return dispatch(receiveReport(id, stepSize, start, end));
+	            } else {
+	                return Promise.resolve();
+	            }
+	        }));
+	    };
+	}
+
+	function shouldReceiveReport(state, powerMeterId, stepSize, start, end) {
+	    var powerMeter = state.powerMeter.powerMetersById[powerMeterId];
+	    if (!powerMeter || !powerMeter.isSelected) {
+	        return false;
+	    }
+
+	    var report = state.report[powerMeterId];
+	    if (!report) {
+	        return true;
+	    } else if (report.stepSize == stepSize && report.start == start && report.end == end) {
+	        return false;
+	    }
+	    return true;
+	}
+
+	function receiveReport(powerMeterId, stepSize, start, end) {
+	    return function (dispatch) {
+	        dispatch(fetchReport(powerMeterId));
+	        return dispatch((0, _api.callApi)('/api/reading-report/' + powerMeterId + '/' + stepSize + '/' + start.toISOString() + '/' + end.toISOString() + '/')).then(function (data) {
+	            return dispatch(fetchReportSuccess(powerMeterId, data, start, end, stepSize));
+	        }, function (xhr, status, error) {
+	            return dispatch(fetchReportFailed(powerMeterId, error));
+	        });
+	    };
+	}
+
+/***/ },
+
+/***/ 376:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	exports.changeReportPeriod = changeReportPeriod;
+	exports.changeReportPeriodOffset = changeReportPeriodOffset;
+	var CHANGE_REPORT_PERIOD = 'CHANGE_REPORT_PERIOD';
+	exports.CHANGE_REPORT_PERIOD = CHANGE_REPORT_PERIOD;
+	var CHANGE_REPORT_PERIOD_OFFSET = 'CHANGE_REPORT_PERIOD_OFFSET';
+
+	exports.CHANGE_REPORT_PERIOD_OFFSET = CHANGE_REPORT_PERIOD_OFFSET;
+
+	function changeReportPeriod(period) {
+	    return {
+	        type: CHANGE_REPORT_PERIOD,
+	        period: period
+	    };
+	}
+
+	function changeReportPeriodOffset(delta) {
+	    return {
+	        type: CHANGE_REPORT_PERIOD_OFFSET,
+	        delta: delta
+	    };
+	}
+
+/***/ },
+
+/***/ 377:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(378);
+
+	var _reactRouter = __webpack_require__(205);
+
+	var _Header = __webpack_require__(641);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
+	var _Notifier = __webpack_require__(642);
+
+	var _Notifier2 = _interopRequireDefault(_Notifier);
+
+	var _i18n = __webpack_require__(267);
+
+	var Main = _react2['default'].createClass({
+	    displayName: 'Main',
+
+	    render: function render() {
+	        return _react2['default'].createElement('div', null, _react2['default'].createElement(_Header2['default'], this.props), _react2['default'].cloneElement(this.props.children, this.props), _react2['default'].createElement('footer', null, _react2['default'].createElement(_reactBootstrap.Grid, { fluid: false }, _react2['default'].createElement(_reactBootstrap.Row, null, _react2['default'].createElement(_reactBootstrap.Col, { md: 12 }, _react2['default'].createElement('ul', { className: 'list-unstyled' }, _react2['default'].createElement('li', null, _react2['default'].createElement(_reactRouter.Link, { to: '/credits' }, (0, _i18n.t)('Credits'))), _react2['default'].createElement('li', null, _react2['default'].createElement('a', { href: 'https://github.com/Peter-Slump/energy-dashboard' }, 'Github'))), _react2['default'].createElement('p', null, (0, _i18n.t)('Created by'), ' ', _react2['default'].createElement('a', { href: 'http://peter-slump.nl/' }, 'Peter Slump')))))), _react2['default'].createElement(_Notifier2['default'], { alerts: this.props.notification || [] }));
+	    }
+	});
+
+	exports['default'] = Main;
+	module.exports = exports['default'];
+
+/***/ },
+
+/***/ 641:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactBootstrap = __webpack_require__(378);
+
+	var _reactRouter = __webpack_require__(205);
+
+	var _i18n = __webpack_require__(267);
+
+	var Header = _react2['default'].createClass({
+	    displayName: 'Header',
+
+	    render: function render() {
+	        var _props = this.props;
+	        var auth = _props.auth;
+	        var user = _props.user;
+
+	        var signedInLine = '';
+	        if (auth.loggedIn) {
+	            if (user.isFetching) {
+	                signedInLine = (0, _i18n.t)('Fetching...');
+	            } else if (user.firstName || user.lastName) {
+	                signedInLine = (0, _i18n.t)('Signed in as %s %s', user.firstName, user.lastName);
+	            } else {
+	                signedInLine = (0, _i18n.t)('Signed in as %s', user.username);
+	            }
+	        } else {
+	            signedInLine = (0, _i18n.t)('Not logged in');
+	        }
+
+	        return _react2['default'].createElement(_reactBootstrap.Navbar, null, _react2['default'].createElement(_reactBootstrap.Navbar.Header, null, _react2['default'].createElement(_reactBootstrap.Navbar.Brand, null, _react2['default'].createElement(_reactRouter.Link, { to: '/' }, (0, _i18n.t)('Energy Dashboard'))), _react2['default'].createElement(_reactBootstrap.Navbar.Toggle, null)), _react2['default'].createElement(_reactBootstrap.Navbar.Collapse, null, _react2['default'].createElement(_reactBootstrap.Nav, { pullRight: true }, _react2['default'].createElement(_reactBootstrap.Navbar.Text, null, signedInLine, '(', _react2['default'].createElement(_reactRouter.Link, { to: auth.loggedIn ? '/logout' : '/login' }, auth.loggedIn ? (0, _i18n.t)('Logout') : (0, _i18n.t)('Login')), ')'))));
+	    }
+	});
+
+	exports['default'] = Header;
+	module.exports = exports['default'];
 
 /***/ },
 
@@ -2048,7 +1965,9 @@ webpackJsonp([0],{
 
 	'use strict';
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) {
+		return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
 	var _react = __webpack_require__(1);
 
@@ -2058,7 +1977,7 @@ webpackJsonp([0],{
 
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
-	var _i18n = __webpack_require__(638);
+	var _i18n = __webpack_require__(267);
 
 	var AlertsNotifier = _react2['default'].createClass({
 		displayName: 'AlertsNotifier',
@@ -2098,42 +2017,18 @@ webpackJsonp([0],{
 			}
 
 			i = -1;
-			return _react2['default'].createElement(
-				'div',
-				{ className: 'alert-notifier-container' },
-				_react2['default'].createElement(
-					_reactAddonsCssTransitionGroup2['default'],
-					{ transitionName: 'alert', transitionEnterTimeout: enterTimeout, transitionLeaveTimeout: exitTimeout },
-					alerts.map((function (item) {
-						i++;
+			return _react2['default'].createElement('div', { className: 'alert-notifier-container' }, _react2['default'].createElement(_reactAddonsCssTransitionGroup2['default'], { transitionName: 'alert', transitionEnterTimeout: enterTimeout, transitionLeaveTimeout: exitTimeout }, alerts.map((function (item) {
+				i++;
 
-						if (["success", "info", "warning", "danger"].indexOf(item.type) < 0) {
-							item.type = "info";
-						}
+				if (["success", "info", "warning", "danger"].indexOf(item.type) < 0) {
+					item.type = "info";
+				}
 
-						var css = "alert alert-dismissible alert-" + item.type;
-						var headline = item.headline ? _react2['default'].createElement(
-							'strong',
-							null,
-							item.headline,
-							' ',
-							_react2['default'].createElement('br', null)
-						) : null;
+				var css = "alert alert-dismissible alert-" + item.type;
+				var headline = item.headline ? _react2['default'].createElement('strong', null, item.headline, ' ', _react2['default'].createElement('br', null)) : null;
 
-						return _react2['default'].createElement(
-							'div',
-							{ className: css, key: i },
-							_react2['default'].createElement(
-								'button',
-								{ type: 'button', className: 'close', title: (0, _i18n.t)('Dismiss'), onClick: this.dismiss.bind(this, item) },
-								'×'
-							),
-							headline,
-							item.message
-						);
-					}).bind(this))
-				)
-			);
+				return _react2['default'].createElement('div', { className: css, key: i }, _react2['default'].createElement('button', { type: 'button', className: 'close', title: (0, _i18n.t)('Dismiss'), onClick: this.dismiss.bind(this, item) }, '×'), headline, item.message);
+			}).bind(this))));
 		}
 	});
 
@@ -2150,102 +2045,23 @@ webpackJsonp([0],{
 	    value: true
 	});
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactBootstrap = __webpack_require__(374);
+	var _reactBootstrap = __webpack_require__(378);
 
-	var _i18n = __webpack_require__(638);
+	var _i18n = __webpack_require__(267);
 
 	var Credits = _react2['default'].createClass({
 	    displayName: 'Credits',
 
 	    render: function render() {
-	        return _react2['default'].createElement(
-	            _reactBootstrap.Grid,
-	            { fluid: false },
-	            _react2['default'].createElement(
-	                _reactBootstrap.Row,
-	                null,
-	                _react2['default'].createElement(
-	                    _reactBootstrap.Col,
-	                    { md: 12 },
-	                    _react2['default'].createElement(
-	                        _reactBootstrap.PageHeader,
-	                        null,
-	                        (0, _i18n.t)('Credits')
-	                    ),
-	                    _react2['default'].createElement(
-	                        'p',
-	                        null,
-	                        (0, _i18n.t)('This project is made possible with the following tools')
-	                    ),
-	                    _react2['default'].createElement(
-	                        'h4',
-	                        null,
-	                        'Back-end'
-	                    ),
-	                    _react2['default'].createElement(
-	                        'a',
-	                        { href: 'https://www.djangoproject.com/' },
-	                        'Django project'
-	                    ),
-	                    _react2['default'].createElement('br', null),
-	                    _react2['default'].createElement(
-	                        'a',
-	                        { href: 'http://www.django-rest-framework.org/' },
-	                        'Django Rest Framework'
-	                    ),
-	                    _react2['default'].createElement(
-	                        'h4',
-	                        null,
-	                        'Front-end'
-	                    ),
-	                    _react2['default'].createElement(
-	                        'a',
-	                        { href: 'https://facebook.github.io/react/' },
-	                        'React'
-	                    ),
-	                    _react2['default'].createElement('br', null),
-	                    _react2['default'].createElement(
-	                        'a',
-	                        { href: 'https://react-bootstrap.github.io/' },
-	                        'React Bootstrap'
-	                    ),
-	                    _react2['default'].createElement('br', null),
-	                    _react2['default'].createElement(
-	                        'a',
-	                        { href: 'http://redux.js.org' },
-	                        'React Redux'
-	                    ),
-	                    _react2['default'].createElement('br', null),
-	                    _react2['default'].createElement(
-	                        'a',
-	                        { href: 'https://github.com/reactjs/react-router' },
-	                        'React Router'
-	                    ),
-	                    _react2['default'].createElement(
-	                        'h4',
-	                        null,
-	                        'Styling'
-	                    ),
-	                    _react2['default'].createElement(
-	                        'a',
-	                        { href: 'https://getboostrap.com/' },
-	                        'Twitter Bootstrap'
-	                    ),
-	                    _react2['default'].createElement('br', null),
-	                    _react2['default'].createElement(
-	                        'a',
-	                        { href: 'https://bootswatch.com/paper/' },
-	                        'Bootswatch Paper theme'
-	                    )
-	                )
-	            )
-	        );
+	        return _react2['default'].createElement(_reactBootstrap.Grid, { fluid: false }, _react2['default'].createElement(_reactBootstrap.Row, null, _react2['default'].createElement(_reactBootstrap.Col, { md: 12 }, _react2['default'].createElement(_reactBootstrap.PageHeader, null, (0, _i18n.t)('Credits')), _react2['default'].createElement('p', null, (0, _i18n.t)('This project is made possible with the following tools')), _react2['default'].createElement('h4', null, 'Back-end'), _react2['default'].createElement('a', { href: 'https://www.djangoproject.com/' }, 'Django project'), _react2['default'].createElement('br', null), _react2['default'].createElement('a', { href: 'http://www.django-rest-framework.org/' }, 'Django Rest Framework'), _react2['default'].createElement('h4', null, 'Front-end'), _react2['default'].createElement('a', { href: 'https://facebook.github.io/react/' }, 'React'), _react2['default'].createElement('br', null), _react2['default'].createElement('a', { href: 'https://react-bootstrap.github.io/' }, 'React Bootstrap'), _react2['default'].createElement('br', null), _react2['default'].createElement('a', { href: 'http://redux.js.org' }, 'React Redux'), _react2['default'].createElement('br', null), _react2['default'].createElement('a', { href: 'https://github.com/reactjs/react-router' }, 'React Router'), _react2['default'].createElement('h4', null, 'Styling'), _react2['default'].createElement('a', { href: 'https://getboostrap.com/' }, 'Twitter Bootstrap'), _react2['default'].createElement('br', null), _react2['default'].createElement('a', { href: 'https://bootswatch.com/paper/' }, 'Bootswatch Paper theme'))));
 	    }
 	});
 
@@ -2263,13 +2079,15 @@ webpackJsonp([0],{
 	    value: true
 	});
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactBootstrap = __webpack_require__(374);
+	var _reactBootstrap = __webpack_require__(378);
 
 	var _ChartWrapper = __webpack_require__(652);
 
@@ -2299,26 +2117,7 @@ webpackJsonp([0],{
 	        });
 	    },
 	    render: function render() {
-	        return _react2['default'].createElement(
-	            _reactBootstrap.Grid,
-	            { fluid: false },
-	            _react2['default'].createElement(
-	                _reactBootstrap.Row,
-	                null,
-	                _react2['default'].createElement(
-	                    _reactBootstrap.Col,
-	                    { xs: 12, md: 12 },
-	                    _react2['default'].createElement(
-	                        _reactBootstrap.Panel,
-	                        null,
-	                        _react2['default'].createElement(_ReadingsViewPresets2['default'], this.props),
-	                        _react2['default'].createElement(_reactBootstrap.Clearfix, null),
-	                        _react2['default'].createElement(_ChartWrapper2['default'], this.props),
-	                        _react2['default'].createElement(_PowerMeterSelect2['default'], this.props)
-	                    )
-	                )
-	            )
-	        );
+	        return _react2['default'].createElement(_reactBootstrap.Grid, { fluid: false }, _react2['default'].createElement(_reactBootstrap.Row, null, _react2['default'].createElement(_reactBootstrap.Col, { xs: 12, md: 12 }, _react2['default'].createElement(_reactBootstrap.Panel, null, _react2['default'].createElement(_ReadingsViewPresets2['default'], this.props), _react2['default'].createElement(_reactBootstrap.Clearfix, null), _react2['default'].createElement(_ChartWrapper2['default'], this.props), _react2['default'].createElement(_PowerMeterSelect2['default'], this.props)))));
 	    }
 	});
 
@@ -2336,7 +2135,9 @@ webpackJsonp([0],{
 	    value: true
 	});
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
 	var _jquery = __webpack_require__(204);
 
@@ -2416,7 +2217,9 @@ webpackJsonp([0],{
 	    value: true
 	});
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
 	var _react = __webpack_require__(1);
 
@@ -2430,7 +2233,7 @@ webpackJsonp([0],{
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _moment = __webpack_require__(269);
+	var _moment = __webpack_require__(273);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -2610,13 +2413,15 @@ webpackJsonp([0],{
 	    value: true
 	});
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactBootstrap = __webpack_require__(374);
+	var _reactBootstrap = __webpack_require__(378);
 
 	var PowerMeterSelect = _react2['default'].createClass({
 	    displayName: 'PowerMeterSelect',
@@ -2633,21 +2438,9 @@ webpackJsonp([0],{
 	        var _this = this;
 
 	        var powerMeters = this.props.powerMeter.powerMetersById;
-	        return _react2['default'].createElement(
-	            _reactBootstrap.Form,
-	            { componentClass: 'fieldset', inline: true },
-	            _react2['default'].createElement(
-	                _reactBootstrap.FormGroup,
-	                null,
-	                Object.keys(powerMeters).map(function (key) {
-	                    return _react2['default'].createElement(
-	                        _reactBootstrap.Checkbox,
-	                        { checked: powerMeters[key].isSelected, key: powerMeters[key].data.id, value: powerMeters[key].data.id, onChange: _this.handleChange },
-	                        powerMeters[key].data.name
-	                    );
-	                })
-	            )
-	        );
+	        return _react2['default'].createElement(_reactBootstrap.Form, { componentClass: 'fieldset', inline: true }, _react2['default'].createElement(_reactBootstrap.FormGroup, null, Object.keys(powerMeters).map(function (key) {
+	            return _react2['default'].createElement(_reactBootstrap.Checkbox, { checked: powerMeters[key].isSelected, key: powerMeters[key].data.id, value: powerMeters[key].data.id, onChange: _this.handleChange }, powerMeters[key].data.name);
+	        })));
 	    }
 	});
 
@@ -2665,9 +2458,11 @@ webpackJsonp([0],{
 	    value: true
 	});
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
-	var _moment = __webpack_require__(269);
+	var _moment = __webpack_require__(273);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -2675,9 +2470,9 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactBootstrap = __webpack_require__(374);
+	var _reactBootstrap = __webpack_require__(378);
 
-	var _i18n = __webpack_require__(638);
+	var _i18n = __webpack_require__(267);
 
 	var ReadingsViewPresets = _react2['default'].createClass({
 	    displayName: 'ReadingsViewPresets',
@@ -2772,61 +2567,7 @@ webpackJsonp([0],{
 	            default:
 	                offsetLabel = (0, _i18n.t)('Unknown');
 	        }
-	        return _react2['default'].createElement(
-	            _reactBootstrap.Row,
-	            null,
-	            _react2['default'].createElement(
-	                _reactBootstrap.Col,
-	                { xs: 12, md: 4, className: 'row-bottom-spacing' },
-	                _react2['default'].createElement(
-	                    _reactBootstrap.ButtonGroup,
-	                    null,
-	                    _react2['default'].createElement(
-	                        _reactBootstrap.Button,
-	                        { active: reportPeriod.period == 'year', value: 'year', onClick: this.handleClick },
-	                        (0, _i18n.t)('Year')
-	                    ),
-	                    _react2['default'].createElement(
-	                        _reactBootstrap.Button,
-	                        { active: reportPeriod.period == 'month', value: 'month', onClick: this.handleClick },
-	                        (0, _i18n.t)('Month')
-	                    ),
-	                    _react2['default'].createElement(
-	                        _reactBootstrap.Button,
-	                        { active: reportPeriod.period == 'week', value: 'week', onClick: this.handleClick },
-	                        (0, _i18n.t)('Week')
-	                    ),
-	                    _react2['default'].createElement(
-	                        _reactBootstrap.Button,
-	                        { active: reportPeriod.period == 'day', value: 'day', onClick: this.handleClick },
-	                        (0, _i18n.t)('Day')
-	                    )
-	                )
-	            ),
-	            _react2['default'].createElement(
-	                _reactBootstrap.Col,
-	                { xs: 12, md: 4, className: 'row-bottom-spacing' },
-	                _react2['default'].createElement(
-	                    _reactBootstrap.ButtonGroup,
-	                    null,
-	                    _react2['default'].createElement(
-	                        _reactBootstrap.Button,
-	                        { value: -1, onClick: this.handleOffsetClick },
-	                        _react2['default'].createElement(_reactBootstrap.Glyphicon, { glyph: 'chevron-left' })
-	                    ),
-	                    _react2['default'].createElement(
-	                        _reactBootstrap.Button,
-	                        { value: 1, onClick: this.handleOffsetClick },
-	                        _react2['default'].createElement(_reactBootstrap.Glyphicon, { glyph: 'chevron-right' })
-	                    ),
-	                    _react2['default'].createElement(
-	                        _reactBootstrap.Button,
-	                        { disabled: true },
-	                        offsetLabel
-	                    )
-	                )
-	            )
-	        );
+	        return _react2['default'].createElement(_reactBootstrap.Row, null, _react2['default'].createElement(_reactBootstrap.Col, { xs: 12, md: 4, className: 'row-bottom-spacing' }, _react2['default'].createElement(_reactBootstrap.ButtonGroup, null, _react2['default'].createElement(_reactBootstrap.Button, { active: reportPeriod.period == 'year', value: 'year', onClick: this.handleClick }, (0, _i18n.t)('Year')), _react2['default'].createElement(_reactBootstrap.Button, { active: reportPeriod.period == 'month', value: 'month', onClick: this.handleClick }, (0, _i18n.t)('Month')), _react2['default'].createElement(_reactBootstrap.Button, { active: reportPeriod.period == 'week', value: 'week', onClick: this.handleClick }, (0, _i18n.t)('Week')), _react2['default'].createElement(_reactBootstrap.Button, { active: reportPeriod.period == 'day', value: 'day', onClick: this.handleClick }, (0, _i18n.t)('Day')))), _react2['default'].createElement(_reactBootstrap.Col, { xs: 12, md: 4, className: 'row-bottom-spacing' }, _react2['default'].createElement(_reactBootstrap.ButtonGroup, null, _react2['default'].createElement(_reactBootstrap.Button, { value: -1, onClick: this.handleOffsetClick }, _react2['default'].createElement(_reactBootstrap.Glyphicon, { glyph: 'chevron-left' })), _react2['default'].createElement(_reactBootstrap.Button, { value: 1, onClick: this.handleOffsetClick }, _react2['default'].createElement(_reactBootstrap.Glyphicon, { glyph: 'chevron-right' })), _react2['default'].createElement(_reactBootstrap.Button, { disabled: true }, offsetLabel))));
 	    }
 	});
 
@@ -2870,7 +2611,9 @@ webpackJsonp([0],{
 	    value: true
 	});
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
 	var _react = __webpack_require__(1);
 
@@ -2880,9 +2623,9 @@ webpackJsonp([0],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _reactBootstrap = __webpack_require__(374);
+	var _reactBootstrap = __webpack_require__(378);
 
-	var _i18n = __webpack_require__(638);
+	var _i18n = __webpack_require__(267);
 
 	var Login = _react2['default'].createClass({
 	    displayName: 'Login',
@@ -2898,62 +2641,7 @@ webpackJsonp([0],{
 	        _reactDom2['default'].findDOMNode(loginForm).reset();
 	    },
 	    render: function render() {
-	        return _react2['default'].createElement(
-	            _reactBootstrap.Grid,
-	            { fluid: false },
-	            _react2['default'].createElement(
-	                _reactBootstrap.Row,
-	                null,
-	                _react2['default'].createElement(
-	                    _reactBootstrap.Col,
-	                    { xsOffset: 3, xs: 6, mdOffset: 3, md: 6 },
-	                    _react2['default'].createElement(
-	                        _reactBootstrap.Panel,
-	                        null,
-	                        _react2['default'].createElement(
-	                            'h4',
-	                            null,
-	                            (0, _i18n.t)('Authenticate')
-	                        ),
-	                        _react2['default'].createElement(
-	                            _reactBootstrap.Form,
-	                            { horizontal: true, ref: 'loginForm', onSubmit: this.handleSubmit },
-	                            _react2['default'].createElement(
-	                                _reactBootstrap.FormGroup,
-	                                { controlId: 'formHorizontalEmail' },
-	                                _react2['default'].createElement(
-	                                    _reactBootstrap.Col,
-	                                    { sm: 12 },
-	                                    _react2['default'].createElement(_reactBootstrap.FormControl, { type: 'text', ref: 'username', placeholder: (0, _i18n.t)('Username') })
-	                                )
-	                            ),
-	                            _react2['default'].createElement(
-	                                _reactBootstrap.FormGroup,
-	                                { controlId: 'formHorizontalPassword' },
-	                                _react2['default'].createElement(
-	                                    _reactBootstrap.Col,
-	                                    { sm: 12 },
-	                                    _react2['default'].createElement(_reactBootstrap.FormControl, { type: 'password', ref: 'password', placeholder: (0, _i18n.t)('Password') })
-	                                )
-	                            ),
-	                            _react2['default'].createElement(
-	                                _reactBootstrap.FormGroup,
-	                                null,
-	                                _react2['default'].createElement(
-	                                    _reactBootstrap.Col,
-	                                    { sm: 12 },
-	                                    _react2['default'].createElement(
-	                                        _reactBootstrap.Button,
-	                                        { type: 'submit' },
-	                                        (0, _i18n.t)('Login')
-	                                    )
-	                                )
-	                            )
-	                        )
-	                    )
-	                )
-	            )
-	        );
+	        return _react2['default'].createElement(_reactBootstrap.Grid, { fluid: false }, _react2['default'].createElement(_reactBootstrap.Row, null, _react2['default'].createElement(_reactBootstrap.Col, { xsOffset: 3, xs: 6, mdOffset: 3, md: 6 }, _react2['default'].createElement(_reactBootstrap.Panel, null, _react2['default'].createElement('h4', null, (0, _i18n.t)('Authenticate')), _react2['default'].createElement(_reactBootstrap.Form, { horizontal: true, ref: 'loginForm', onSubmit: this.handleSubmit }, _react2['default'].createElement(_reactBootstrap.FormGroup, { controlId: 'formHorizontalEmail' }, _react2['default'].createElement(_reactBootstrap.Col, { sm: 12 }, _react2['default'].createElement(_reactBootstrap.FormControl, { type: 'text', ref: 'username', placeholder: (0, _i18n.t)('Username') }))), _react2['default'].createElement(_reactBootstrap.FormGroup, { controlId: 'formHorizontalPassword' }, _react2['default'].createElement(_reactBootstrap.Col, { sm: 12 }, _react2['default'].createElement(_reactBootstrap.FormControl, { type: 'password', ref: 'password', placeholder: (0, _i18n.t)('Password') }))), _react2['default'].createElement(_reactBootstrap.FormGroup, null, _react2['default'].createElement(_reactBootstrap.Col, { sm: 12 }, _react2['default'].createElement(_reactBootstrap.Button, { type: 'submit' }, (0, _i18n.t)('Login')))))))));
 	    }
 	});
 
@@ -2971,17 +2659,19 @@ webpackJsonp([0],{
 	    value: true
 	});
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactBootstrap = __webpack_require__(374);
+	var _reactBootstrap = __webpack_require__(378);
 
 	var _reactRouter = __webpack_require__(205);
 
-	var _i18n = __webpack_require__(638);
+	var _i18n = __webpack_require__(267);
 
 	var Logout = _react2['default'].createClass({
 	    displayName: 'Logout',
@@ -2992,23 +2682,7 @@ webpackJsonp([0],{
 	        });
 	    },
 	    render: function render() {
-	        return _react2['default'].createElement(
-	            _reactBootstrap.Grid,
-	            { fluid: false },
-	            _react2['default'].createElement(
-	                _reactBootstrap.Row,
-	                null,
-	                _react2['default'].createElement(
-	                    _reactBootstrap.Col,
-	                    { md: 12 },
-	                    _react2['default'].createElement(
-	                        'p',
-	                        null,
-	                        (0, _i18n.t)('Logging you out...')
-	                    )
-	                )
-	            )
-	        );
+	        return _react2['default'].createElement(_reactBootstrap.Grid, { fluid: false }, _react2['default'].createElement(_reactBootstrap.Row, null, _react2['default'].createElement(_reactBootstrap.Col, { md: 12 }, _react2['default'].createElement('p', null, (0, _i18n.t)('Logging you out...')))));
 	    }
 	});
 
@@ -3026,7 +2700,9 @@ webpackJsonp([0],{
 	    value: true
 	});
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
 	var _redux = __webpack_require__(180);
 
@@ -3067,7 +2743,9 @@ webpackJsonp([0],{
 	    value: true
 	});
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
 	var _redux = __webpack_require__(180);
 
@@ -3225,8 +2903,6 @@ webpackJsonp([0],{
 	});
 	exports['default'] = notification;
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
-
 	var _actionsNotification = __webpack_require__(264);
 
 	function notification(state, action) {
@@ -3234,12 +2910,12 @@ webpackJsonp([0],{
 
 	    switch (action.type) {
 	        case _actionsNotification.NOTIFICATION_ADD:
-	            return [].concat(_toConsumableArray(state), [{
+	            return state + [{
 	                message: action.message,
 	                type: action.level,
 	                headline: action.headline,
 	                timeout: action.timeout
-	            }]);
+	            }];
 
 	        default:
 	            return state;
@@ -3260,7 +2936,7 @@ webpackJsonp([0],{
 	});
 	exports['default'] = powerMeters;
 
-	var _actionsPowerMeter = __webpack_require__(267);
+	var _actionsPowerMeter = __webpack_require__(271);
 
 	var _actionsAuth = __webpack_require__(265);
 
@@ -3345,9 +3021,17 @@ webpackJsonp([0],{
 	});
 	exports['default'] = reports;
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { 'default': obj };
+	}
 
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	function _defineProperty(obj, key, value) {
+	    if (key in obj) {
+	        Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });
+	    } else {
+	        obj[key] = value;
+	    }return obj;
+	}
 
 	var _jquery = __webpack_require__(204);
 
@@ -3357,7 +3041,7 @@ webpackJsonp([0],{
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _actionsReport = __webpack_require__(268);
+	var _actionsReport = __webpack_require__(272);
 
 	var _actionsAuth = __webpack_require__(265);
 
@@ -3437,7 +3121,7 @@ webpackJsonp([0],{
 	});
 	exports['default'] = reportPeriod;
 
-	var _actionsReportPeriod = __webpack_require__(372);
+	var _actionsReportPeriod = __webpack_require__(376);
 
 	var _actionsAuth = __webpack_require__(265);
 

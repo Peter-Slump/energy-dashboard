@@ -1,6 +1,6 @@
 import {
     REQUEST_USER,
-    RECEIVE_USER,
+    RECEIVE_USER
 } from '../actions/user';
 import { AUTH_LOGGED_OUT } from '../actions/auth';
 

@@ -1,0 +1,144 @@
+"Project-Id-Version : 1233"
+"Report-Msgid-Bugs-To : Peter Slump"
+"Last-Translator : Peter Slump"
+"Language-Team : "
+"Language : en"
+"Plural-Forms : nplurals=2; plural=(n != 1);"
+"MIME-Version : 1.0"
+"Content-Type : text/plain; charset=UTF-8"
+"Content-Transfer-Encoding : 8bit"
+
+#: src/ed/front_end/static/src/components/Credits.jsx 17:29
+msgid "Credits"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/Credits.jsx 19:28
+msgid "This project is made possible with the following tools"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/Logout.jsx 17:28
+msgid "Logging you out..."
+msgtr ""
+
+#: src/ed/front_end/static/src/components/Login.jsx 35:33
+msgid "Authenticate"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/Login.jsx 40:93
+msgid "Username"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/Login.jsx 46:97
+msgid "Password"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/Login.jsx 53:45
+msgid "Login"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/Main.jsx 27:33
+msgid "Created by"
+msgtr ""
+
+#: src/ed/front_end/static/src/actions/auth.jsx 53:20
+msgid "Logged out"
+msgtr ""
+
+#: src/ed/front_end/static/src/actions/auth.jsx 79:24
+msgid "Login failed"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 36:38
+msgid "This year"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 39:38
+msgid "Last year"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 50:42
+msgid "This month"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 53:42
+msgid "Last month"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 64:46
+msgid "This week"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 67:46
+msgid "Last week"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 71:76
+msgid "Week:"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 71:76
+msgid "Week:"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 78:46
+msgid "Today"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 81:46
+msgid "Yesterday"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 89:62
+msgid "Last"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 97:30
+msgid "Unknown"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 103:114
+msgid "Year"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 104:116
+msgid "Month"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 105:114
+msgid "Week"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 106:112
+msgid "Day"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/Header.jsx 12:30
+msgid "Fetching..."
+msgtr ""
+
+#: src/ed/front_end/static/src/components/Header.jsx 14:31
+msgid "Signed in as %s %s"
+msgtr[0] ""
+msgtr[1] ""
+
+#: src/ed/front_end/static/src/components/Header.jsx 16:31
+msgid "Signed in as %s"
+msgtr[0] ""
+msgtr[1] ""
+
+#: src/ed/front_end/static/src/components/Header.jsx 19:27
+msgid "Not logged in"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/Header.jsx 26:38
+msgid "Energy Dashboard"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/Header.jsx 34:95
+msgid "Logout"
+msgtr ""
+
+#: src/ed/front_end/static/src/components/Notifier.jsx 56:55
+msgid "Dismiss"
+msgtr ""
+
