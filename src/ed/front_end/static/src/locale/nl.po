@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: Peter Slump\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-09-21 22:20+0200\n"
+"PO-Revision-Date: 2016-09-22 00:37+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -152,3 +152,30 @@ msgstr "Nederlands"
 #: src/ed/front_end/static/src/components/LanguageSelect.jsx 14:76
 msgid "English"
 msgstr "Engels"
+
+#: src/ed/front_end/static/src/components/FlotChart.jsx 37:36
+msgid "kWh"
+msgstr "kWh"
+
+#: src/ed/front_end/static/src/components/FlotChart.jsx 35:36
+msgid "Watt"
+msgstr "Watt"
+
+#. Translators: Short notation of Watt
+#. Translators: Please mention the whitespace before the text
+#: src/ed/front_end/static/src/components/FlotChart.jsx 122:50
+msgid " W"
+msgstr "W"
+
+#. Translators: Please mention the whitespace before the text
+#: src/ed/front_end/static/src/components/FlotChart.jsx 124:66
+msgid " kWh"
+msgstr " kWh"
+
+#. Translators: Please mention the whitespace before the text
+#: src/ed/front_end/static/src/components/FlotChart.jsx 132:62
+msgid " m³"
+msgstr " m³"
+
+#~ msgid "Watts"
+#~ msgstr "Watts"

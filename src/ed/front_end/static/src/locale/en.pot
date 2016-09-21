@@ -82,7 +82,7 @@ msgstr ""
 msgid "Yesterday"
 msgstr ""
 
-#. Translators: related to time as in: "Last friday".
+#. Related to time as in: "Last friday".
 #: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 89:62
 msgid "Last"
 msgstr ""
@@ -145,5 +145,29 @@ msgstr ""
 
 #: src/ed/front_end/static/src/components/LanguageSelect.jsx 14:76
 msgid "English"
+msgstr ""
+
+#: src/ed/front_end/static/src/components/FlotChart.jsx 37:36
+msgid "kWh"
+msgstr ""
+
+#: src/ed/front_end/static/src/components/FlotChart.jsx 35:36
+msgid "Watt"
+msgstr ""
+
+#. Short notation of Watt
+#. Please mention the whitespace before the text
+#: src/ed/front_end/static/src/components/FlotChart.jsx 122:50
+msgid " W"
+msgstr ""
+
+#. Please mention the whitespace before the text
+#: src/ed/front_end/static/src/components/FlotChart.jsx 124:66
+msgid " kWh"
+msgstr ""
+
+#. Please mention the whitespace before the text
+#: src/ed/front_end/static/src/components/FlotChart.jsx 132:62
+msgid " m³"
 msgstr ""
 

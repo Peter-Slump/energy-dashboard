@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import jQuery from 'jquery';
 import moment from 'moment';
+import { t as _ } from '../i18n';
 
 // we need flot and the various plugins
 require('flot');
@@ -31,9 +32,9 @@ let buildTooltipHandler = function(dataSets, stepSize) {
                     break;
                 case 'kwh':
                     if(stepSize == 'minute') {
-                        unitLabel = 'Watts';
+                        unitLabel = _('Watt');
                     } else {
-                        unitLabel = 'kWh' ;
+                        unitLabel = _('kWh');
                     }
                     break;
                 default:
@@ -118,9 +119,9 @@ const FlotChart = React.createClass({
                     position: 'left',
                     tickFormatter: function(v, axis) {
                         if(stepSize == 'minute'){
-                            return v.toFixed(0) + ' W';
+                            return v.toFixed(0) + _(' W');
                         } else {
-                            return v.toFixed(axis.tickDecimals) + ' kWh';
+                            return v.toFixed(axis.tickDecimals) + _(' kWh');
                         }
                     }
                 },
@@ -128,7 +129,7 @@ const FlotChart = React.createClass({
                     // m3
                     position: 'right',
                     tickFormatter: function(v, axis) {
-                        return v.toFixed(axis.tickDecimals) + ' m³'
+                        return v.toFixed(axis.tickDecimals) + _(' m³')
                     }
                 },
             ],

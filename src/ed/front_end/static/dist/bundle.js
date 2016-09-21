@@ -582,7 +582,7 @@ webpackJsonp([0],{
 /***/ 271:
 /***/ function(module, exports) {
 
-	module.exports = {"Credits":["Credits"],"This project is made possible with the following tools":["Dit project is mede mogelijk gemaakt door de volgende hulpmiddelen"],"Logging you out...":["Je wordt uitgelogt"],"Authenticate":["Aanmelden"],"Username":["Gebruikersnaam"],"Password":["Wachtwoord"],"Login":["Inloggen"],"Logged out":["Uitgelogt"],"Login failed":["Login niet gelukt"],"This year":["Dit jaar"],"Last year":["Afgelopen jaar"],"This month":["Deze maand"],"Last month":["Afgelopen maand"],"This week":["Deze week"],"Last week":["Vorige week"],"Week:":["Week:"],"Today":["Vandaag"],"Yesterday":["Gisteren"],"Last":["Afgelopen"],"Unknown":["Onbekend"],"Year":["Jaar"],"Month":["Maand"],"Week":["Week"],"Day":["Dag"],"Created by":["Gemaakt door"],"Fetching...":["Ophalen..."],"Not logged in":["Niet ingelogt"],"Energy Dashboard":["Energie Dashboard"],"Logout":["Uitloggen"],"Dismiss":["Negeren"],"Signed in as %s %s":["Ingelogd als %s %s"],"Signed in as %s":["Ingelogd als %s"],"Dutch":["Nederlands"],"English":["Engels"],"":{"domain":"messages","plural_forms":"nplurals=2; plural=(n != 1);","lang":"nl"}};
+	module.exports = {"Credits":["Credits"],"This project is made possible with the following tools":["Dit project is mede mogelijk gemaakt door de volgende hulpmiddelen"],"Logging you out...":["Je wordt uitgelogt"],"Authenticate":["Aanmelden"],"Username":["Gebruikersnaam"],"Password":["Wachtwoord"],"Login":["Inloggen"],"Logged out":["Uitgelogt"],"Login failed":["Login niet gelukt"],"This year":["Dit jaar"],"Last year":["Afgelopen jaar"],"This month":["Deze maand"],"Last month":["Afgelopen maand"],"This week":["Deze week"],"Last week":["Vorige week"],"Week:":["Week:"],"Today":["Vandaag"],"Yesterday":["Gisteren"],"Last":["Afgelopen"],"Unknown":["Onbekend"],"Year":["Jaar"],"Month":["Maand"],"Week":["Week"],"Day":["Dag"],"Created by":["Gemaakt door"],"Fetching...":["Ophalen..."],"Not logged in":["Niet ingelogt"],"Energy Dashboard":["Energie Dashboard"],"Logout":["Uitloggen"],"Dismiss":["Negeren"],"Signed in as %s %s":["Ingelogd als %s %s"],"Signed in as %s":["Ingelogd als %s"],"Dutch":["Nederlands"],"English":["Engels"],"kWh":["kWh"],"Watt":["Watt"]," W":["W"]," kWh":[" kWh"]," m³":[" m³"],"":{"domain":"messages","plural_forms":"nplurals=2; plural=(n != 1);","lang":"nl"}};
 
 /***/ },
 
@@ -1304,6 +1304,8 @@ webpackJsonp([0],{
 
 	var _moment2 = _interopRequireDefault(_moment);
 
+	var _i18n = __webpack_require__(267);
+
 	// we need flot and the various plugins
 	__webpack_require__(657);
 	__webpack_require__(658);
@@ -1335,9 +1337,9 @@ webpackJsonp([0],{
 	                    break;
 	                case 'kwh':
 	                    if (stepSize == 'minute') {
-	                        unitLabel = 'Watts';
+	                        unitLabel = (0, _i18n.t)('Watt');
 	                    } else {
-	                        unitLabel = 'kWh';
+	                        unitLabel = (0, _i18n.t)('kWh');
 	                    }
 	                    break;
 	                default:
@@ -1423,16 +1425,16 @@ webpackJsonp([0],{
 	                position: 'left',
 	                tickFormatter: function tickFormatter(v, axis) {
 	                    if (stepSize == 'minute') {
-	                        return v.toFixed(0) + ' W';
+	                        return v.toFixed(0) + (0, _i18n.t)(' W');
 	                    } else {
-	                        return v.toFixed(axis.tickDecimals) + ' kWh';
+	                        return v.toFixed(axis.tickDecimals) + (0, _i18n.t)(' kWh');
 	                    }
 	                }
 	            }, {
 	                // m3
 	                position: 'right',
 	                tickFormatter: function tickFormatter(v, axis) {
-	                    return v.toFixed(axis.tickDecimals) + ' m³';
+	                    return v.toFixed(axis.tickDecimals) + (0, _i18n.t)(' m³');
 	                }
 	            }],
 	            tooltip: true,
