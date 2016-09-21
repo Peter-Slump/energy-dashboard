@@ -1,5 +1,5 @@
 import Jed from 'jed';
-import Cookie from 'js-cookie';
+
 
 let i18n = null;
 
@@ -18,10 +18,10 @@ export function setLocale(locale) {
             'ed': translations
         }
     });
-    Cookie.set('lang', locale);
+
 }
 
-setLocale(Cookie.get('lang') || 'en');  // Configure English by default
+setLocale('en');  // Configure English by default
 
 function gettext(key) {
     return i18n.translate(key).fetch( );

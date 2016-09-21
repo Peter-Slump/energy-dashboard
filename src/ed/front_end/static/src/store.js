@@ -2,11 +2,13 @@ import { applyMiddleware, createStore, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk'
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore} from 'react-router-redux';
+import Cookie from 'js-cookie';
 
 // import the root reducer
 import rootReducer from './reducers/index';
 
 import { fetchUser } from './actions/user';
+import { changeLanguage } from './actions/language';
 
 const store = createStore(
     rootReducer,
@@ -16,7 +18,17 @@ const store = createStore(
 );
 
 // Load user on startup
-store.dispatch(fetchUser());
+store.dispatch(
+    fetchUser()
+).then(
+    data => {
+        changeLanguage(Cookie.get('lang') || 'en')
+    }
+).then(
+    data => {
+        browserHistory.push('/')
+    }
+);
 
 export const history = syncHistoryWithStore(browserHistory, store);
 

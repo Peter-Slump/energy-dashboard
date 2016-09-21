@@ -1,4 +1,6 @@
 import { setLocale } from '../i18n';
+import moment from 'moment'
+import Cookie from 'js-cookie';
 
 export const LANGUAGE_CHANGED = 'LANGUAGE_CHANGED';
 export function changed(code) {
@@ -10,8 +12,13 @@ export function changed(code) {
 
 export function changeLanguage(code) {
     return function(dispatch) {
-        let locale = code == 'GB' ? 'EN' : code;
-        setLocale(locale.toLowerCase());
-        return dispatch(changed(code));
+        return new Promise(function(resolve, reject) {
+            let locale = code == 'GB' ? 'EN' : code;
+            setLocale(locale.toLowerCase());
+            moment.locale(locale.toLowerCase());
+            Cookie.set('lang', code);
+            dispatch(changed(code));
+            resolve(code);
+        });
     }
 }

@@ -104,6 +104,7 @@ const FlotChart = React.createClass({
                 min: this.props.start,
                 max: this.props.end,
                 color: '#666666',
+                monthNames: moment.monthsShort('-MMM-')
             },
             yaxis: {
                 min: 0,

@@ -11,6 +11,7 @@ var entry = {
         'flot',
         'flot/jquery.flot.time',
         'flot-tooltip/jquery.flot.tooltip',
+        'jed',
         'jquery',
         'js-cookie',
         'moment',
@@ -25,6 +26,7 @@ var entry = {
         'redux',
     ]
 }
+
 
 module.exports = {
     entry: entry,
@@ -53,6 +55,10 @@ module.exports = {
             },
             {
                 test: /\.po$/,
+                exclude: [
+                    /node_modules/,
+                    /vendor/
+                ],
                 loader: 'po-catalog-loader',
             },
         ],

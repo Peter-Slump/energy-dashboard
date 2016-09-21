@@ -7,8 +7,8 @@ import { t as _ } from '../i18n';
 const initial = {
     code: 'GB',
     availableLanguages: {
-        'NL': _('Dutch'),
-        'GB': _('English')
+        'NL': 'Dutch',
+        'GB': 'English'
     }
 }
 
