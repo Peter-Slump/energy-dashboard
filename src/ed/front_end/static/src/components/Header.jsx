@@ -32,11 +32,11 @@ const Header = React.createClass({
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav pullRight>
-                        <LanguageSelect />
                         <Navbar.Text>{signedInLine}</Navbar.Text>
                         <NavItem to={ auth.loggedIn ? '/logout' : '/login' }>
                             { auth.loggedIn ? _('Logout') : _('Login') }
                         </NavItem>
+                        <LanguageSelect {...this.props} />
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

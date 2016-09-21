@@ -21,7 +21,6 @@ import store, { history } from './store';
 
 // Set some default jQuery AJAX settings
 import jQuery from 'jquery';
-import Cookie from 'js-cookie';
 
 jQuery.ajaxSetup({
     contentType: "application/json; charset=utf-8",

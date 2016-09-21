@@ -1,12 +1,13 @@
 import Jed from 'jed';
+import Cookie from 'js-cookie';
+
+let i18n = null;
 
 function getTranslations(locale) {
     return require('./locale/' + locale + '.po');
 }
 
-let i18n = null;
-
-function setLocale(locale) {
+export function setLocale(locale) {
     let translations = getTranslations(locale);
     i18n = new Jed({
         'domain' : 'ed',
@@ -17,9 +18,10 @@ function setLocale(locale) {
             'ed': translations
         }
     });
+    Cookie.set('lang', locale);
 }
 
-setLocale('nl');
+setLocale(Cookie.get('lang') || 'en');  // Configure English by default
 
 function gettext(key, ...args) {
     return i18n.translate(key).fetch( ...args );

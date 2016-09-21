@@ -2,6 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as apiActions from '../actions/api';
 import * as authActions from '../actions/auth';
+import * as languageActions from '../actions/language';
 import * as notificationActions from '../actions/notification';
 import * as powerMeterActions from '../actions/powerMeter';
 import * as reportActions from '../actions/report';
@@ -14,6 +15,7 @@ function mapStateToProps(state) {
     return {
         api: state.api,
         auth: state.auth,
+        language: state.language,
         notification: state.notification,
         powerMeter: state.powerMeter,
         report: state.report,
@@ -27,6 +29,7 @@ function mapDispatchToProps(dispatch) {
     return {
         apiActions: bindActionCreators(apiActions, dispatch),
         authActions: bindActionCreators(authActions, dispatch),
+        languageActions: bindActionCreators(languageActions, dispatch),
         notificationActions: bindActionCreators(notificationActions, dispatch),
         powerMeterActions: bindActionCreators(powerMeterActions, dispatch),
         reportActions: bindActionCreators(reportActions, dispatch),

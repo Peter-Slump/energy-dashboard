@@ -27,7 +27,7 @@ const Login = React.createClass({
     },
     render: function(){
         return (
-            <Grid fluid={true}>
+            <Grid fluid={false}>
                 <Row>
                     <Col xsOffset={3} xsOffset={0} xs={12} mdOffset={3} md={6}>
                         <Panel>

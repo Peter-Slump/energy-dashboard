@@ -25,9 +25,9 @@ export default function api(state={
             let state = Object.assign({}, state, {
                 currentRequests: state.currentRequests - 1,
             });
-            if( action.code != 403 ){
+//            if( action.code != 403 ){
                 state.errors.push(action.error);
-            }
+//            }
             return state;
 
         default:

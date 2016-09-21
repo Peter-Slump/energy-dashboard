@@ -1,3 +1,5 @@
+msgid ""
+msgstr ""
 "Project-Id-Version : 0.0.18\n"
 "Report-Msgid-Bugs-To : Peter Slump\n"
 "Last-Translator : Peter Slump\n"
@@ -131,13 +133,11 @@ msgstr ""
 
 #: src/ed/front_end/static/src/components/Header.jsx 14:31
 msgid "Signed in as %s %s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
 
 #: src/ed/front_end/static/src/components/Header.jsx 16:31
 msgid "Signed in as %s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
 
 #: src/ed/front_end/static/src/components/LanguageSelect.jsx 13:76
 msgid "Dutch"
