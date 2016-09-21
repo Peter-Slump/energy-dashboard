@@ -1,7 +1,10 @@
 import React from 'react';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router';
-import { t as _ } from '../i18n';
+import {
+    t as _,
+    sprintf
+} from '../i18n';
 import LanguageSelect from './LanguageSelect';
 
 const Header = React.createClass({
@@ -12,9 +15,9 @@ const Header = React.createClass({
             if( user.isFetching ){
                 signedInLine =_('Fetching...');
             } else if( user.firstName || user.lastName ) {
-                signedInLine = _('Signed in as %s %s', user.firstName, user.lastName);
+                signedInLine = sprintf(_('Signed in as %s %s'), user.firstName, user.lastName);
             } else {
-                signedInLine = _('Signed in as %s', user.username);
+                signedInLine = sprintf(_('Signed in as %s'), user.username);
             }
         } else {
             signedInLine = _('Not logged in');

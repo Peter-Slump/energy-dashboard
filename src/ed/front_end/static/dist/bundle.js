@@ -538,29 +538,19 @@ webpackJsonp([0],{
 	setLocale(_jsCookie2['default'].get('lang') || 'en'); // Configure English by default
 
 	function gettext(key) {
-	    var _i18n$translate;
-
-	    for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-	        args[_key - 1] = arguments[_key];
-	    }
-
-	    return (_i18n$translate = i18n.translate(key)).fetch.apply(_i18n$translate, args);
+	    return i18n.translate(key).fetch();
 	}
 
 	function ngettext(singular, plural, n) {
-	    var _i18n$translate$ifPlural;
-
-	    for (var _len2 = arguments.length, args = Array(_len2 > 3 ? _len2 - 3 : 0), _key2 = 3; _key2 < _len2; _key2++) {
-	        args[_key2 - 3] = arguments[_key2];
-	    }
-
-	    return (_i18n$translate$ifPlural = i18n.translate(singular).ifPlural(n, plural)).fetch.apply(_i18n$translate$ifPlural, [n].concat(args));
+	    return i18n.translate(singular).ifPlural(n, plural).fetch(n);
 	}
 
 	var t = gettext;
 	exports.t = t;
 	var tn = ngettext;
 	exports.tn = tn;
+	var sprintf = _jed2['default'].sprintf;
+	exports.sprintf = sprintf;
 
 /***/ },
 
@@ -925,9 +915,9 @@ webpackJsonp([0],{
 	            if (user.isFetching) {
 	                signedInLine = (0, _i18n.t)('Fetching...');
 	            } else if (user.firstName || user.lastName) {
-	                signedInLine = (0, _i18n.t)('Signed in as %s %s', user.firstName, user.lastName);
+	                signedInLine = (0, _i18n.sprintf)((0, _i18n.t)('Signed in as %s %s'), user.firstName, user.lastName);
 	            } else {
-	                signedInLine = (0, _i18n.t)('Signed in as %s', user.username);
+	                signedInLine = (0, _i18n.sprintf)((0, _i18n.t)('Signed in as %s'), user.username);
 	            }
 	        } else {
 	            signedInLine = (0, _i18n.t)('Not logged in');

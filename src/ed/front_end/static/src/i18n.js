@@ -23,13 +23,14 @@ export function setLocale(locale) {
 
 setLocale(Cookie.get('lang') || 'en');  // Configure English by default
 
-function gettext(key, ...args) {
-    return i18n.translate(key).fetch( ...args );
+function gettext(key) {
+    return i18n.translate(key).fetch( );
 }
 
-function ngettext(singular, plural, n, ...args ) {
-    return i18n.translate( singular ).ifPlural( n, plural ).fetch( n, ...args )
+function ngettext(singular, plural, n ) {
+    return i18n.translate( singular ).ifPlural( n, plural ).fetch( n )
 }
 
 export const t = gettext;
 export const tn = ngettext;
+export const sprintf = Jed.sprintf;
