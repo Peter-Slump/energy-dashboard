@@ -2,7 +2,7 @@ module.exports = {
   methods: ['_', '__', 't', 'td'],
   output: 'src/ed/front_end/static/src/locale/en.pot',
   header: {
-    'Project-Id-Version': "0.0.19\\n",
+    'Project-Id-Version': "0.0.20\\n",
     'Report-Msgid-Bugs-To': "Peter Slump\\n",
     'Last-Translator': "Peter Slump\\n",
     'Language-Team': "\\n",
