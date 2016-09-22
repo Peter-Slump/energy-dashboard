@@ -20,15 +20,8 @@ const store = createStore(
 // Load user on startup
 store.dispatch(
     fetchUser()
-).then(
-    data => {
-        changeLanguage(Cookie.get('lang') || 'en')
-    }
-).then(
-    data => {
-        browserHistory.push('/')
-    }
-);
+).then(data => browserHistory.push('/'));
+store.dispatch(changeLanguage(Cookie.get('lang') || 'en'));
 
 export const history = syncHistoryWithStore(browserHistory, store);
 

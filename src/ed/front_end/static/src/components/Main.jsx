@@ -7,10 +7,15 @@ import { t as _ } from '../i18n';
 
 const Main = React.createClass({
     render: function(){
+        let props = Object.assign({}, this.props)
+
+        delete props.key
+        delete props.ref
+
         return (
             <div>
                 <Header {...this.props}></Header>
-                {React.cloneElement(this.props.children, this.props)}
+                {React.cloneElement(this.props.children, props)}
                 <footer>
                     <Grid fluid={false}>
                         <Row>
@@ -30,7 +35,7 @@ const Main = React.createClass({
                         </Row>
                     </Grid>
                 </footer>
-                <Notifier alerts={this.props.notification || []}></Notifier>
+                <Notifier alerts={props.notification || []}></Notifier>
             </div>
         );
     }

@@ -68,8 +68,8 @@ Front-end
 
 Build development front-end bundle::
 
-  $ npm start
+  $ npm run webpack-dev
 
 Build production front-end bundle::
 
-  $ npm build
+  $ npm run webpack-prod

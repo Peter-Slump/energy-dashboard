@@ -11,9 +11,7 @@ export function setLocale(locale) {
     let translations = getTranslations(locale);
     i18n = new Jed({
         'domain' : 'ed',
-        'missing_key_callback' : function(key) {
-            console.log('Missing translation:', key);
-        },
+        'missing_key_callback' : function(key) {},
         'locale_data': {
             'ed': translations
         }

@@ -73,7 +73,12 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
-          names: ['vendor'] // For splitting up into two bundles
+            names: ['vendor'] // For splitting up into two bundles
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+            }
         }),
         new webpack.ProvidePlugin({
             // Make jQuery available in all files (no need to "import jQuery from 'jquery'")

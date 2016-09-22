@@ -36,9 +36,11 @@ const Header = React.createClass({
                 <Navbar.Collapse>
                     <Nav pullRight>
                         <Navbar.Text>{signedInLine}</Navbar.Text>
-                        <NavItem to={ auth.loggedIn ? '/logout' : '/login' }>
-                            { auth.loggedIn ? _('Logout') : _('Login') }
-                        </NavItem>
+                        <li>
+                            <Link to={ auth.loggedIn ? '/logout' : '/login' }>
+                                { auth.loggedIn ? _('Logout') : _('Login') }
+                            </Link>
+                        </li>
                         <LanguageSelect {...this.props} />
                     </Nav>
                 </Navbar.Collapse>
