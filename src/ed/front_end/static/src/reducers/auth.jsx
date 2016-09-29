@@ -5,7 +5,7 @@ import {
 import { RECEIVE_USER } from '../actions/user';
 
 export default function auth(state = {
-    loggedIn: false,
+    loggedIn: null,
     key: null
 }, action) {
     switch (action.type) {

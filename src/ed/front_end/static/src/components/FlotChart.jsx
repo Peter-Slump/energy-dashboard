@@ -104,9 +104,6 @@ const FlotChart = React.createClass({
     },
 
     renderChart(options) {
-        let ids = this.props.plotData.map(function(value){
-            return value['plotId'];
-        });
         let series = this.props.plotData;
         let stepSize = this.props.stepSize
         let plotOptions = {
