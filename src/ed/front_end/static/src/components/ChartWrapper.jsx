@@ -12,7 +12,7 @@ var ChartWrapper = React.createClass({
             let currentPowerMeter = powerMeter.powerMetersById[powerMeterId];
             let currentReport = report[powerMeterId];
 
-            if(!currentPowerMeter.isSelected || currentReport.isFetching || currentReport.didInvalidate) {
+            if(!currentPowerMeter.isSelected || currentReport.didInvalidate) {
                 return;
             }
 
