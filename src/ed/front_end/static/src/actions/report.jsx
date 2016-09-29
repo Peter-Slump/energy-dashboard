@@ -18,10 +18,10 @@ export function fetchReport(powerMeterId) {
 }
 
 export const FETCH_REPORT_SUCCESS = 'FETCH_REPORT_SUCCESS';
-export function fetchReportSuccess(powerMeterId, report, start, end, stepSize) {
+export function fetchReportSuccess(powerMeter, report, start, end, stepSize) {
     return {
         type: FETCH_REPORT_SUCCESS,
-        powerMeterId,
+        powerMeter,
         report,
         start,
         end,
@@ -77,7 +77,8 @@ export function receiveReportsIfNeeded() {
         Promise.all(
             Object.keys(state.powerMeter.powerMetersById).map(function(id){
                 if (shouldReceiveReport(state, id, stepSize, start, end)){
-                    return dispatch(receiveReport(id, stepSize, start, end));
+                    let powerMeter = state.powerMeter.powerMetersById[id];
+                    return dispatch(receiveReport(powerMeter, stepSize, start, end));
                 } else {
                     return Promise.resolve();
                 }
@@ -101,14 +102,14 @@ function shouldReceiveReport(state, powerMeterId, stepSize, start, end) {
     return true;
 }
 
-function receiveReport(powerMeterId, stepSize, start, end) {
+function receiveReport(powerMeter, stepSize, start, end) {
     return function(dispatch) {
-        dispatch(fetchReport(powerMeterId));
+        dispatch(fetchReport(powerMeter['data']['id']));
         return dispatch(callApi(
-            `/api/reading-report/${powerMeterId}/${stepSize}/${start.toISOString()}/${end.toISOString()}/`
+            `/api/reading-report/${powerMeter['data']['id']}/${stepSize}/${start.toISOString()}/${end.toISOString()}/`
         )).then(
-            data => dispatch(fetchReportSuccess(powerMeterId, data, start, end, stepSize)),
-            (xhr, status, error) => dispatch(fetchReportFailed(powerMeterId, error))
+            data => dispatch(fetchReportSuccess(powerMeter, data, start, end, stepSize)),
+            (xhr, status, error) => dispatch(fetchReportFailed(powerMeter.id, error))
 
         );
     }

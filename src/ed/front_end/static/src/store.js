@@ -21,7 +21,7 @@ const store = createStore(
 store.dispatch(
     fetchUser()
 ).then(data => browserHistory.push('/'));
-store.dispatch(changeLanguage(Cookie.get('lang') || 'en'));
+store.dispatch(changeLanguage(Cookie.get('lang') || 'GB'));
 
 export const history = syncHistoryWithStore(browserHistory, store);
 

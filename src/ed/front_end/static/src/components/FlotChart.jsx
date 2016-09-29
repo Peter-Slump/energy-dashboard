@@ -30,12 +30,11 @@ let buildTooltipHandler = function(dataSets, stepSize) {
                 case 'm3':
                     unitLabel = 'm³'
                     break;
+                case 'w':
+                    unitLabel = _('Watt');
+                    break;
                 case 'kwh':
-                    if(stepSize == 'minute') {
-                        unitLabel = _('Watt');
-                    } else {
-                        unitLabel = _('kWh');
-                    }
+                    unitLabel = _('kWh');
                     break;
                 default:
                     unitLabel = '';
@@ -90,11 +89,26 @@ const FlotChart = React.createClass({
         this.renderChart();
     },
 
+    shouldComponentUpdate(nextProps, nextState) {
+        let ids = this.props.plotData.map(function(value){
+            return value['plotId'];
+        });
+        let nextIds = nextProps.plotData.map(function(value){
+            return value['plotId'];
+        });
+        return ids.sort().join() != nextIds.sort().join();
+    },
+
     componentWillUnmount() {
         jQuery(window).unbind('resize', this.renderChart);
     },
 
     renderChart(options) {
+        let ids = this.props.plotData.map(function(value){
+            return value['plotId'];
+        });
+        console.log(ids.sort());
+
         let series = this.props.plotData;
         let stepSize = this.props.stepSize
         let plotOptions = {

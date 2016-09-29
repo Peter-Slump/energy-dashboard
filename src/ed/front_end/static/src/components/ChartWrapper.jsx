@@ -10,27 +10,20 @@ var ChartWrapper = React.createClass({
         let stepSize = 'hour';
         Object.keys(report).map(function(powerMeterId){
             let currentPowerMeter = powerMeter.powerMetersById[powerMeterId];
+            let currentReport = report[powerMeterId];
 
-            if(!currentPowerMeter.isSelected) {
+            if(!currentPowerMeter.isSelected || currentReport.isFetching || currentReport.didInvalidate) {
                 return;
             }
 
             plotData.push({
-                data: report[powerMeterId].items.map(function(item){
-                    let value = parseFloat(item.value_increment)
-                    if(currentPowerMeter.data.unit == 'kwh') {
-                        if(report[powerMeterId].stepSize == 'minute') {
-                            // Calculate to watt average
-                            value = (value * 1000) * 60
-                        }
-                    }
-                    return [new Date(item.datetime), value]
-                }),
-                yaxis: currentPowerMeter.data.unit == 'kwh' ? 1 : 2,
+                plotId: currentReport.uniqueId,
+                data: currentReport.fullReport,
+                yaxis: currentReport.unit == 'm3' ? 2 : 1,
                 color: currentPowerMeter.color,
                 shadowSize: 0,
                 label: currentPowerMeter.data.name,
-                unit: currentPowerMeter.data.unit,
+                unit: currentReport.unit,
                 lines: {
                     zero: false,
                     lineWidth: 2,
@@ -39,9 +32,9 @@ var ChartWrapper = React.createClass({
                     steps: false
                 }
             });
-            start = report[powerMeterId].start;
-            end = report[powerMeterId].end;
-            stepSize = report[powerMeterId].stepSize;
+            start = currentReport.start;
+            end = currentReport.end;
+            stepSize = currentReport.stepSize;
         });
         return (
             <FlotChart style={{height: 250}} start={start} end={end} stepSize={stepSize} className="row-bottom-spacing" plotData={plotData} />
