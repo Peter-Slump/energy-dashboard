@@ -26,6 +26,12 @@ class PowerMeter(models.Model):
     name = models.CharField(max_length=255)
     unit = models.CharField(choices=UNITS, max_length=10)
 
+    # Keep a record of the current value. Some meters support this feature.
+    current_value = models.DecimalField(max_digits=18,
+                                        decimal_places=3,
+                                        null=True)
+    current_value_datetime = models.DateTimeField(null=True)
+
     def __str__(self):
         return self.name
 

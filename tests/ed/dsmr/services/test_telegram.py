@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 import mock
 
 from django.test.testcases import TestCase
@@ -31,9 +33,9 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
             '1-0:1.8.2(000422.343*kWh)',
             '1-0:2.8.1(000236.452*kWh)',
             '1-0:2.8.2(000985.525*kWh)',
-            '0-0:96.14.0(0001)',
+            '0-0:96.14.0(0002)',
             '1-0:1.7.0(00.262*kW)',
-            '1-0:2.7.0(00.000*kW)',
+            '1-0:2.7.0(00.856*kW)',
             '0-0:96.7.21(00001)',
             '0-0:96.7.9(00000)',
             '1-0:99.97.0(0)(0-0:96.7.19)',
@@ -72,14 +74,14 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
             power_meter__unit='kwh',
             power_meter__name='Consumed electricity (day)',
             meter_id='123456789',
-            type='consumed-electricity-day'
+            type='consumed-electricity-2'
         )
         qs_electricity_produced = DSMRPowerMeter.objects.filter(
             power_meter__owner=self.user,
             power_meter__unit='kwh',
             power_meter__name='Produced electricity (day)',
             meter_id='123456789',
-            type='produced-electricity-day'
+            type='produced-electricity-2'
         )
 
         self.assertFalse(qs_gas.exists())
@@ -106,21 +108,21 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
             power_meter__unit='kwh',
             power_meter__name='Consumed electricity (night)',
             meter_id='123456789',
-            type='consumed-electricity-night'
+            type='consumed-electricity-1'
         )
         qs_electricity_produced = DSMRPowerMeter.objects.filter(
             power_meter__owner=self.user,
             power_meter__unit='kwh',
             power_meter__name='Produced electricity (night)',
             meter_id='123456789',
-            type='produced-electricity-night'
+            type='produced-electricity-1'
         )
 
         self.assertFalse(qs_electricity_consumed.exists())
         self.assertFalse(qs_electricity_produced.exists())
 
         telegram_list = self.telegram_list
-        telegram_list[9] = '0-0:96.14.0(0002)'  # Set it to night mode
+        telegram_list[9] = '0-0:96.14.0(0001)'  # Set it to night mode
 
         ed.dsmr.services.telegram.parse(
             user=self.user,
@@ -145,12 +147,12 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
         ced_meter = DSMRPowerMeter.objects.get(
             power_meter__owner=self.user,
             meter_id='123456789',
-            type='consumed-electricity-day'
+            type='consumed-electricity-2'
         )
         ped_meter = DSMRPowerMeter.objects.get(
             power_meter__owner=self.user,
             meter_id='123456789',
-            type='produced-electricity-day'
+            type='produced-electricity-2'
         )
         g_meter = DSMRPowerMeter.objects.get(
             power_meter__owner=self.user,
@@ -160,13 +162,15 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
         self.add_reading_mock.assert_has_calls([
             mock.call(
                 power_meter=ced_meter.power_meter,
-                value_total=352.211,
-                datetime=dateparse.parse_datetime('2016-08-07T22:34:49+0200')
+                value_total=422.343,
+                datetime=dateparse.parse_datetime('2016-08-07T22:34:49+0200'),
+                current_value=Decimal('0.262')
             ),
             mock.call(
                 power_meter=ped_meter.power_meter,
-                value_total=236.452,
-                datetime=dateparse.parse_datetime('2016-08-07T22:34:49+0200')
+                value_total=985.525,
+                datetime=dateparse.parse_datetime('2016-08-07T22:34:49+0200'),
+                current_value=Decimal('0.856')
             ),
             mock.call(
                 power_meter=g_meter.power_meter,
@@ -182,7 +186,7 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
         """
 
         telegram_list = self.telegram_list
-        telegram_list[9] = '0-0:96.14.0(0002)'  # Set it to night mode
+        telegram_list[9] = '0-0:96.14.0(0001)'  # Set it to night mode
 
         ed.dsmr.services.telegram.parse(
             user=self.user,
@@ -193,23 +197,25 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
         ced_meter = DSMRPowerMeter.objects.get(
             power_meter__owner=self.user,
             meter_id='123456789',
-            type='consumed-electricity-night'
+            type='consumed-electricity-1'
         )
         ped_meter = DSMRPowerMeter.objects.get(
             power_meter__owner=self.user,
             meter_id='123456789',
-            type='produced-electricity-night'
+            type='produced-electricity-1'
         )
         self.add_reading_mock.assert_has_calls([
             mock.call(
                 power_meter=ced_meter.power_meter,
-                value_total=422.343,
-                datetime=dateparse.parse_datetime('2016-08-07T22:34:49+0200')
+                value_total=352.211,
+                datetime=dateparse.parse_datetime('2016-08-07T22:34:49+0200'),
+                current_value=Decimal('0.262')
             ),
             mock.call(
                 power_meter=ped_meter.power_meter,
-                value_total=985.525,
-                datetime=dateparse.parse_datetime('2016-08-07T22:34:49+0200')
+                value_total=236.452,
+                datetime=dateparse.parse_datetime('2016-08-07T22:34:49+0200'),
+                current_value=Decimal('0.856')
             )
         ])
 
@@ -223,13 +229,13 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
             power_meter__unit='kwh',
             power_meter__name='Produced electricity (day)',
             meter_id='123456789',
-            type='produced-electricity-day'
+            type='produced-electricity-2'
         )
 
         self.assertFalse(qs_electricity_produced.exists())
 
         telegram_list = self.telegram_list
-        telegram_list[7] = '1-0:2.8.1(000000.000*kWh)'
+        telegram_list[8] = '1-0:2.8.2(000000.000*kWh)'
 
         ed.dsmr.services.telegram.parse(
             user=self.user,
@@ -238,7 +244,7 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
 
         self.assertFalse(qs_electricity_produced.exists())
 
-        telegram_list[7] = '1-0:2.8.1(000000.001*kWh)'
+        telegram_list[8] = '1-0:2.8.2(000000.001*kWh)'
 
         ed.dsmr.services.telegram.parse(
             user=self.user,
@@ -257,14 +263,14 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
             power_meter__unit='kwh',
             power_meter__name='Produced electricity (night)',
             meter_id='123456789',
-            type='produced-electricity-night'
+            type='produced-electricity-1'
         )
 
         self.assertFalse(qs_electricity_produced.exists())
 
         telegram_list = self.telegram_list
-        telegram_list[8] = '1-0:2.8.2(000000.000*kWh)'
-        telegram_list[9] = '0-0:96.14.0(0002)'  # Set it to night mode
+        telegram_list[7] = '1-0:2.8.1(000000.000*kWh)'
+        telegram_list[9] = '0-0:96.14.0(0001)'  # Set it to night mode
 
         ed.dsmr.services.telegram.parse(
             user=self.user,
@@ -273,7 +279,7 @@ class DSMRTelegramTestCase(MockTestCaseMixin, TestCase):
 
         self.assertFalse(qs_electricity_produced.exists())
 
-        telegram_list[8] = '1-0:2.8.2(000000.001*kWh)'
+        telegram_list[7] = '1-0:2.8.1(000000.001*kWh)'
 
         ed.dsmr.services.telegram.parse(
             user=self.user,

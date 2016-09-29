@@ -119,3 +119,21 @@ class BackEndServiceAddReadingCallbackTestCase(TestCase):
             ).count(),
             1
         )
+
+    def test_current_value(self):
+        """
+        Case: A current value get added
+        Expected: The current value and the corresponding datetime are saved on
+                  the power meter model.
+        """
+        ed.back_end.services.add_reading(
+            power_meter=self.power_meter,
+            value_total=123.34,
+            datetime=parse_datetime('2016-08-14T22:52:00Z'),
+            current_value=Decimal('1.256')
+        )
+
+        self.power_meter.refresh_from_db()
+        self.assertEqual(self.power_meter.current_value, Decimal('1.256'))
+        self.assertEqual(self.power_meter.current_value_datetime,
+                         parse_datetime('2016-08-14T22:52:00Z'))

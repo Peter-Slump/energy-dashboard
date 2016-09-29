@@ -24,7 +24,16 @@ def reading_post_save_handler(instance, update_fields, **kwargs):
     next_.save(update_fields=('value_increment',))
 
 
-def add_reading(power_meter, value_total, datetime):
+def add_reading(power_meter, value_total, datetime, current_value=None):
+    """
+    Add a new reading to the database.
+
+    :param ed.back_end.models.PowerMeter power_meter:
+    :param float value_total: Total meter value
+    :param datetime.DateTime datetime: Timestamp of reading
+    :param decimal.Decimal current_value: Current value for the meter (snapshot)
+    :return:
+    """
     value_total = Decimal(value_total)
 
     try:
@@ -38,6 +47,11 @@ def add_reading(power_meter, value_total, datetime):
         value_increment = 0
     else:
         value_increment = value_total - previous_reading.value_total
+
+    if current_value is not None:
+        power_meter.current_value = current_value
+        power_meter.current_value_datetime = datetime
+        power_meter.save(update_fields=('current_value', 'current_value_datetime'))
 
     return Reading.objects.update_or_create(
         power_meter=power_meter,
