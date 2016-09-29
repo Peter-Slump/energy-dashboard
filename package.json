@@ -1,6 +1,6 @@
 {
   "name": "energy-dashboard",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "scripts": {
     "webpack-prod": "NODE_ENV=production webpack --config=webpack.config.js --optimize-minimize --optimize-occurrence-order",
     "webpack-dev": "webpack --colors --watch --config=webpack.config.js"
