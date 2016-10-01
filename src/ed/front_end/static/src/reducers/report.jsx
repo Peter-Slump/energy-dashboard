@@ -44,7 +44,7 @@ function generateFullReport(powerMeter, stepSize, start, end, data) {
     }
 
     prepare_next_item();
-    while( report_start < report_end ) {
+    while( report_start <= report_end ) {
         if( item != undefined && report_start >= item_date ) {
             result.push([item_date, item_value]);
             prepare_next_item();
