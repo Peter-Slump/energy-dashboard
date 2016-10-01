@@ -1,1 +1,1 @@
-git+https://github.com/peter-slump/energy-dashboard@v0.0.24#egg=energy-dashboard
+git+https://github.com/peter-slump/energy-dashboard@v0.0.25#egg=energy-dashboard
