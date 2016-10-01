@@ -1,6 +1,7 @@
 import React from 'react';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
 import {
     t as _,
     sprintf
@@ -34,13 +35,13 @@ const Header = React.createClass({
                     <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
+                    <Navbar.Text pullRight>{signedInLine}</Navbar.Text>
                     <Nav pullRight>
-                        <Navbar.Text>{signedInLine}</Navbar.Text>
-                        <li>
-                            <Link to={ auth.loggedIn ? '/logout' : '/login' }>
+                        <LinkContainer to={ auth.loggedIn ? '/logout' : '/login' }>
+                            <NavItem>
                                 { auth.loggedIn ? _('Logout') : _('Login') }
-                            </Link>
-                        </li>
+                            </NavItem>
+                        </LinkContainer>
                         <LanguageSelect {...this.props} />
                     </Nav>
                 </Navbar.Collapse>

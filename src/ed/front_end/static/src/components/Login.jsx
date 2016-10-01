@@ -37,7 +37,7 @@ const Login = React.createClass({
                             <Form horizontal ref="loginForm" onSubmit={this.handleSubmit}>
                                 <FormGroup controlId="formHorizontalEmail">
                                     <Col sm={12}>
-                                        <FormControl type="text" ref="username" placeholder={_('Username')} />
+                                        <FormControl type="text" ref="username" placeholder={_('Username')} autoFocus />
                                     </Col>
                                 </FormGroup>
 

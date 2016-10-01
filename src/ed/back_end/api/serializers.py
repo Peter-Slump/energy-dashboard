@@ -17,7 +17,7 @@ class PowerMeterSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = PowerMeter
-        fields = ('id', 'name', 'unit')
+        fields = ('id', 'name', 'unit', 'current_value', 'current_value_datetime')
 
 
 class ReadingReportSerializer(serializers.Serializer):

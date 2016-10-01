@@ -171,3 +171,12 @@ msgstr ""
 msgid " m³"
 msgstr ""
 
+#: src/ed/front_end/static/src/components/PowerMeterSelect.jsx 21:25
+msgid "Current usage:"
+msgstr ""
+
+#. Short notation of Watt
+#: src/ed/front_end/static/src/components/PowerMeterSelect.jsx 23:31
+msgid "W"
+msgstr ""
+

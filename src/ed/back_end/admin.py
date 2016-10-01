@@ -3,7 +3,7 @@ from ed.back_end.models import PowerMeter, Reading
 
 
 class PowerMeterAdmin(admin.ModelAdmin):
-    search_fields = ('name',)
+    search_fields = ('name', 'current_value', 'current_value_datetime')
 
 
 class ReadingAdmin(admin.ModelAdmin):

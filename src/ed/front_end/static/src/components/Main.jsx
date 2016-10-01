@@ -22,15 +22,15 @@ const Main = React.createClass({
                             <Col md={12}>
                                 <ul className="list-unstyled">
                                     <li>
+                                        {_('Created by')}: <a href="http://peter-slump.nl/">Peter Slump</a>
+                                    </li>
+                                    <li>
                                         <Link to="/credits">{_('Credits')}</Link>
                                     </li>
                                     <li>
                                         <a href="https://github.com/Peter-Slump/energy-dashboard">Github</a>
                                     </li>
                                 </ul>
-                                <p>
-                                {_('Created by')} <a href="http://peter-slump.nl/">Peter Slump</a>
-                                </p>
                             </Col>
                         </Row>
                     </Grid>

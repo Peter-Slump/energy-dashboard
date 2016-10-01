@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: Peter Slump\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-09-22 00:37+0200\n"
+"PO-Revision-Date: 2016-10-01 22:49+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -88,7 +88,7 @@ msgstr "Vandaag"
 msgid "Yesterday"
 msgstr "Gisteren"
 
-#. Translators: related to time as in: "Last friday".
+#. Related to time as in: "Last friday".
 #: src/ed/front_end/static/src/components/ReadingsViewPresets.jsx 89:62
 msgid "Last"
 msgstr "Afgelopen"
@@ -161,21 +161,30 @@ msgstr "kWh"
 msgid "Watt"
 msgstr "Watt"
 
-#. Translators: Short notation of Watt
-#. Translators: Please mention the whitespace before the text
+#. Short notation of Watt
+#. Please mention the whitespace before the text
 #: src/ed/front_end/static/src/components/FlotChart.jsx 122:50
 msgid " W"
 msgstr "W"
 
-#. Translators: Please mention the whitespace before the text
+#. Please mention the whitespace before the text
 #: src/ed/front_end/static/src/components/FlotChart.jsx 124:66
 msgid " kWh"
 msgstr " kWh"
 
-#. Translators: Please mention the whitespace before the text
+#. Please mention the whitespace before the text
 #: src/ed/front_end/static/src/components/FlotChart.jsx 132:62
 msgid " m³"
 msgstr " m³"
+
+#: src/ed/front_end/static/src/components/PowerMeterSelect.jsx 21:25
+msgid "Current usage:"
+msgstr "Huidig verbruik:"
+
+#. Short notation of Watt
+#: src/ed/front_end/static/src/components/PowerMeterSelect.jsx 23:31
+msgid "W"
+msgstr "W"
 
 #~ msgid "Watts"
 #~ msgstr "Watts"

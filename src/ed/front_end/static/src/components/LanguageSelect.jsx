@@ -27,7 +27,7 @@ const LanguageSelect = React.createClass({
                 <Dropdown.Menu>
                     {
                         Object.keys(languages).map((key) =>
-                            <MenuItem key={key} onClick={this.setLanguage.bind(null, key)} language={key}>
+                            <MenuItem key={key} onClick={this.setLanguage.bind(null, key)}>
                                <img src={"static/image/flags/24x24/" + key + ".png"} />
                             </MenuItem>)
                     }
