@@ -57,7 +57,7 @@ export function receiveReportsIfNeeded() {
                 end.day(0);
                 start.add(offset, 'weeks');
                 end.add(offset + 1, 'weeks');
-                stepSize = 'hour';
+                stepSize = 'day';
                 break;
             case 'month':
                 start.date(1);

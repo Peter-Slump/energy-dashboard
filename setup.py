@@ -39,7 +39,7 @@ setup(
         'celery[redis]==3.1.23',
         'django-supervisor==0.3.4',
         'gunicorn==19.4.5',
-        'dsmr-parser',
+        'dsmr-parser==0.2',
     ],
     tests_require=[
         'pytest-django',

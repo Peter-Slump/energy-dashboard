@@ -22,7 +22,7 @@ class Fixture(BaseFixture):
         for power_meter in PowerMeter.objects.all():
 
             value_total = 50000
-            current_date = timezone.now() - timedelta(days=1)
+            current_date = timezone.now() - timedelta(days=9)
             while current_date < now:
                 value_increment = decimal.Decimal(random.randrange(1, 300)) / 1000
                 value_total += value_increment

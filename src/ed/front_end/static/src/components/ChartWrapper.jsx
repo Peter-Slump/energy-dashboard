@@ -16,6 +16,19 @@ var ChartWrapper = React.createClass({
                 return;
             }
 
+            let barWidth = 24 * 60 * 60 * 1000;
+            if( currentReport.stepSize == 'minute' ) {
+                barWidth = 60 * 1000;
+            } else if ( currentReport.stepSize == 'hour' ) {
+                barWidth = 60 * 60 * 1000;
+            } else if ( currentReport.stepSize == 'day' ) {
+                barWidth = 24 * 60 * 60 * 1000;
+            } else if ( currentReport.stepSize == 'month' ) {
+                barWidth = 30 * 24 * 60 * 60 * 1000;
+            } else if ( currentReport.stepSize == 'year' ) {
+                barWidth = 365 * 24 * 60 * 60 * 1000;
+            }
+
             plotData.push({
                 plotId: currentReport.uniqueId,
                 data: currentReport.fullReport,
@@ -24,10 +37,15 @@ var ChartWrapper = React.createClass({
                 shadowSize: 0,
                 label: currentPowerMeter.data.name,
                 unit: currentReport.unit,
+                bars: {
+                    show: currentReport.stepSize != 'minute',
+                    align: 'left',
+                    barWidth: barWidth * 0.6  // 60%
+                },
                 lines: {
+                    show: currentReport.stepSize == 'minute',
                     zero: false,
                     lineWidth: 2,
-                    show: true,
                     fill: true,
                     steps: false
                 }
