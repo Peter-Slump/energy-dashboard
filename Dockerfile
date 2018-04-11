@@ -22,7 +22,7 @@ ADD docker_files/settings_docker.py energy_dashboard/energy_dashboard/
 ENV DJANGO_SETTINGS_MODULE energy_dashboard.settings_docker
 
 CMD cd energy_dashboard \
-    && pip install -U -e /code \
+    && pip install -U -e "file:///code#egg=energy-dashboard[postgres]" \
     && ./manage.py collectstatic --noinput \
     && ./manage.py migrate \
     && ./manage.py supervisor

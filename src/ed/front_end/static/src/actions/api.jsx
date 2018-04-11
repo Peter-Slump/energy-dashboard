@@ -49,10 +49,10 @@ export function callApi(path, method='GET', data=null) {
                         browserHistory.push('/login');
                     }
                 }
-            }).success(function(data) {
+            }).done(function(data) {
                 dispatch(apiRequestSuccess(data));
                 resolve(data);
-            }).error(function(xhr, status, err){
+            }).fail(function(xhr, status, err){
                 if([400, 403].indexOf(xhr.status) == -1) {
                     // Notify user about all errors except 400 and 403.
                     dispatch(notificationAdd(err, 'warning', 'API Error'));
