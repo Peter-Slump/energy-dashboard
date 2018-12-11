@@ -32,7 +32,7 @@ setup(
     install_requires=[
         'Django==1.9.*',
         'djangorestframework==3.3.*',
-        'gunicorn==19.4.*',
+        'gunicorn==19.5.*',
         'django-dynamic-fixtures',
         'pytz==2016.*',
         'django-rest-auth==0.7.0',
